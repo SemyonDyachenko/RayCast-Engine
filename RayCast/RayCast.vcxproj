@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{ac2dfb1d-b2a2-4408-aec3-48e9ed5243fa}</ProjectGuid>
+    <RootNamespace>RayCast</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;glfw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation\AnimatedMesh.cpp" />
+    <ClCompile Include="Animation\AnimatedModel.cpp" />
+    <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="EntryPoint\Editor\Editor.cpp" />
+    <ClCompile Include="EntryPoint\EditorLayer.cpp" />
+    <ClCompile Include="EntryPoint\AppGame.cpp" />
+    <ClCompile Include="EntryPoint\GameLayer.cpp" />
+    <ClCompile Include="EntryPoint\Game\GameWorld.cpp" />
+    <ClCompile Include="EntryPoint\Game\GameObject.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GUILayer.cpp" />
+    <ClCompile Include="Runtime\Core\Game.cpp" />
+    <ClCompile Include="Animation\Bone.cpp" />
+    <ClCompile Include="Runtime\Camera\Camera.cpp" />
+    <ClCompile Include="Runtime\Core\LayerStack.cpp" />
+    <ClCompile Include="Runtime\Core\Timer.cpp" />
+    <ClCompile Include="Runtime\Platform\Windows\glWindow.cpp" />
+    <ClCompile Include="EntryPoint\main.cpp" />
+    <ClCompile Include="Runtime\Rendering\Material.cpp" />
+    <ClCompile Include="Runtime\Rendering\Mesh.cpp" />
+    <ClCompile Include="Runtime\Rendering\Model.cpp" />
+    <ClCompile Include="Runtime\Rendering\OBJLoader.cpp" />
+    <ClCompile Include="Runtime\Core\Window.cpp" />
+    <ClCompile Include="Runtime\Rendering\Shader.cpp" />
+    <ClCompile Include="Runtime\Rendering\Texture.cpp" />
+    <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation\AnimatedMesh.h" />
+    <ClInclude Include="Animation\AnimatedModel.h" />
+    <ClInclude Include="Animation\Animation.h" />
+    <ClInclude Include="Animation\assimp_utils.h" />
+    <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\Editor.h" />
+    <ClInclude Include="EntryPoint\EditorLayer.h" />
+    <ClInclude Include="EntryPoint\AppGame.h" />
+    <ClInclude Include="EntryPoint\GameLayer.h" />
+    <ClInclude Include="EntryPoint\Game\GameWorld.h" />
+    <ClInclude Include="EntryPoint\Game\Scenes\Scene.h" />
+    <ClInclude Include="EntryPoint\Game\GameObject.h" />
+    <ClInclude Include="EntryPoint\Editor\GUILayer.h" />
+    <ClInclude Include="Runtime\Core\Game.h" />
+    <ClInclude Include="Animation\Bone.h" />
+    <ClInclude Include="Runtime\Camera\Camera.h" />
+    <ClInclude Include="Runtime\Core\Layer.h" />
+    <ClInclude Include="Runtime\Core\LayerStack.h" />
+    <ClInclude Include="Runtime\Core\Timer.h" />
+    <ClInclude Include="Runtime\Platform\Windows\glWindow.h" />
+    <ClInclude Include="Runtime\Core\Core.h" />
+    <ClInclude Include="Runtime\Core\Input.h" />
+    <ClInclude Include="Runtime\Rendering\Material.h" />
+    <ClInclude Include="Runtime\Rendering\Mesh.h" />
+    <ClInclude Include="Runtime\Rendering\Model.h" />
+    <ClInclude Include="Runtime\Rendering\OBJLoader.h" />
+    <ClInclude Include="Runtime\Core\Window.h" />
+    <ClInclude Include="Runtime\Simulation\Simulation.h" />
+    <ClInclude Include="Runtime\Rendering\Shader.h" />
+    <ClInclude Include="Runtime\Rendering\stb_image.h" />
+    <ClInclude Include="Runtime\Rendering\Texture.h" />
+    <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h" />
+    <ClInclude Include="Vendor\imgui\imconfig.h" />
+    <ClInclude Include="Vendor\imgui\imgui.h" />
+    <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="Vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="Vendor\imgui\stb_rect_pack.h" />
+    <ClInclude Include="Vendor\imgui\stb_textedit.h" />
+    <ClInclude Include="Vendor\imgui\stb_truetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\fragment_shader.glsl" />
+    <None Include="resources\shaders\animated_fragment_shader.glsl" />
+    <None Include="resources\shaders\animated_vertex_shader.glsl" />
+    <None Include="resources\shaders\light_vertex_shader.glsl" />
+    <None Include="resources\shaders\vertex_shader.glsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
