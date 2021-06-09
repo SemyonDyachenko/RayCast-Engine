@@ -13,6 +13,11 @@
 
 class EditorScene : public Scene {
 public:
+	void OnCreate() override;
+	void OnDestroy() override;
+
+	void OnUpdate(float DeltaTime) override;
+	void OnRender() override;
 
 };
 
