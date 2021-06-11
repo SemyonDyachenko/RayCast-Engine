@@ -152,6 +152,8 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="EntryPoint\Editor\EditorScene.cpp" />
+    <ClCompile Include="EntryPoint\Editor\EditorSceneObject.cpp" />
     <ClCompile Include="EntryPoint\Editor\Editor.cpp" />
     <ClCompile Include="EntryPoint\EditorLayer.cpp" />
     <ClCompile Include="EntryPoint\AppGame.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="EntryPoint\Game\GameWorld.cpp" />
     <ClCompile Include="EntryPoint\Game\GameObject.cpp" />
     <ClCompile Include="EntryPoint\Editor\GUILayer.cpp" />
+    <ClCompile Include="Runtime\Platform\OpenGL\glFrameBuffer.cpp" />
     <ClCompile Include="Runtime\Core\Game.cpp" />
     <ClCompile Include="Animation\Bone.cpp" />
     <ClCompile Include="Runtime\Camera\Camera.cpp" />
@@ -166,6 +169,7 @@
     <ClCompile Include="Runtime\Core\Timer.cpp" />
     <ClCompile Include="Runtime\Platform\Windows\glWindow.cpp" />
     <ClCompile Include="EntryPoint\main.cpp" />
+    <ClCompile Include="Runtime\Rendering\FrameBuffer.cpp" />
     <ClCompile Include="Runtime\Rendering\Material.cpp" />
     <ClCompile Include="Runtime\Rendering\Mesh.cpp" />
     <ClCompile Include="Runtime\Rendering\Model.cpp" />
@@ -188,6 +192,8 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\EditorScene.h" />
+    <ClInclude Include="EntryPoint\Editor\EditorSceneObject.h" />
     <ClInclude Include="EntryPoint\Editor\Editor.h" />
     <ClInclude Include="EntryPoint\EditorLayer.h" />
     <ClInclude Include="EntryPoint\AppGame.h" />
@@ -196,6 +202,7 @@
     <ClInclude Include="EntryPoint\Game\Scenes\Scene.h" />
     <ClInclude Include="EntryPoint\Game\GameObject.h" />
     <ClInclude Include="EntryPoint\Editor\GUILayer.h" />
+    <ClInclude Include="Runtime\Platform\OpenGL\glFrameBuffer.h" />
     <ClInclude Include="Runtime\Core\Game.h" />
     <ClInclude Include="Animation\Bone.h" />
     <ClInclude Include="Runtime\Camera\Camera.h" />
@@ -205,6 +212,7 @@
     <ClInclude Include="Runtime\Platform\Windows\glWindow.h" />
     <ClInclude Include="Runtime\Core\Core.h" />
     <ClInclude Include="Runtime\Core\Input.h" />
+    <ClInclude Include="Runtime\Rendering\FrameBuffer.h" />
     <ClInclude Include="Runtime\Rendering\Material.h" />
     <ClInclude Include="Runtime\Rendering\Mesh.h" />
     <ClInclude Include="Runtime\Rendering\Model.h" />
@@ -231,6 +239,8 @@
     <None Include="resources\shaders\fragment_shader.glsl" />
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
     <None Include="resources\shaders\animated_vertex_shader.glsl" />
+    <None Include="resources\shaders\framebuffer_fragment_shader.glsl" />
+    <None Include="resources\shaders\framebuffer_vertex_shader.glsl" />
     <None Include="resources\shaders\light_vertex_shader.glsl" />
     <None Include="resources\shaders\vertex_shader.glsl" />
   </ItemGroup>

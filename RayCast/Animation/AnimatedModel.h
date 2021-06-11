@@ -9,7 +9,7 @@
 #include "assimp_utils.h"
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
-#include "../Texture.h"
+#include "../Runtime/Rendering/Texture.h"
 
 struct BoneInfo
 {

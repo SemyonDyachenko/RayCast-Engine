@@ -39,6 +39,8 @@ Model::Model(const char* obj_filename)
 	m_Textures = std::vector<Texture*>();
 }
 
+
+
 void Model::AddTexture(Texture* texture)
 {
 	m_Textures.push_back(texture);
@@ -84,6 +86,8 @@ void Model::Move(int direction, float DeltaTime, float velocity)
 
 void Model::OnRender(Shader * shader)
 {
+	shader->use();
+	shader->SetMat4("ModelMatrix", m_ModelMatrix);
 
 
 	for (auto& i : m_Meshes) {

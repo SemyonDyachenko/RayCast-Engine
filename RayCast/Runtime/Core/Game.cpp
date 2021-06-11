@@ -38,12 +38,12 @@ void Game::Shutdown()
 
 void Game::Run()
 {
-    float time = (float)glfwGetTime();
-    float deltaTime = time - m_LastFrameTime;
-    m_LastFrameTime = time;
-
-
     while (!m_Window->Closed()) {
+
+        float time = (float)glfwGetTime();
+        float deltaTime = time - m_LastFrameTime;
+        m_LastFrameTime = time;
+
 
         m_Window->Clear();
         m_Window->PollEvent();

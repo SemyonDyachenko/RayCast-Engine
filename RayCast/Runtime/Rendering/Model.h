@@ -26,6 +26,7 @@ public:
 	Model(glm::vec3 position, const char* obj_filename);
 	Model(const char* obj_filename);
 
+
 	void AddTexture(Texture* texture);
 	void AddTextures(std::vector<Texture*> textures);
 

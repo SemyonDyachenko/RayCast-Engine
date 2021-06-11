@@ -68,10 +68,6 @@ void Mesh::OnRender(Shader& shader)
 	//this->ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.5f,0.0f, 0.0f));
 	//this->ModelMatrix = glm::rotate(ModelMatrix, glm::radians(-90.f),glm::vec3(0.f,1.0f, 0.0f));
 
-	shader.use();
-	shader.SetMat4("ModelMatrix",ModelMatrix);
-
-
 	glBindVertexArray(VAO);
 	if (this->m_numberOfIndices == 0)
 		glDrawArrays(GL_TRIANGLES, 0, this->m_verticesCount);

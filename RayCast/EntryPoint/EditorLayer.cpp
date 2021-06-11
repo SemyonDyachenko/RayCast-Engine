@@ -20,6 +20,7 @@ void EditorLayer::OnEvent()
 
 void EditorLayer::Update(float deltaTime)
 {
+	editor->GetGuiLayer()->Update(deltaTime);
 }
 
 void EditorLayer::Render()

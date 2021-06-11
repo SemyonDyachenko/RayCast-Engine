@@ -10,7 +10,7 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include <gtx/string_cast.hpp>
-#include "../Shader.h"
+#include "../Runtime/Rendering/Shader.h"
 
 #define MAX_BONE_INFLUENCE 4
 

@@ -1,25 +1,14 @@
 #ifndef GUI_LAYER_H
 #define GUI_LAYER_H
 
+#include <GL/glew.h>
+#include "EditorScene.h"
 #include <iostream>
 #include "../../Runtime/Core/Layer.h"
 #include "../../Runtime/Core/Game.h"
-#include "../../Vendor/imgui/imgui.h"
-#include "../../Vendor/imgui/imgui_impl_glfw.h"
-#include "../../Vendor/imgui/imgui_impl_opengl3.h"
-#include <GLFW/glfw3.h>
 #include "../Game/Scenes/StateMachine.h"
+#include <GLFW/glfw3.h>
 
-
-class EditorScene : public Scene {
-public:
-	void OnCreate() override;
-	void OnDestroy() override;
-
-	void OnUpdate(float DeltaTime) override;
-	void OnRender() override;
-
-};
 
 enum class MenuBar {
 	Save = 0,
@@ -41,6 +30,8 @@ public:
 private:
 	GLFWwindow* m_Window;
 	StateMachine* m_stateMachie;
+	std::shared_ptr<EditorScene> m_EditorScene;
+	std::unique_ptr<FrameBuffer> m_FrameBuffer;
 };
 
 #endif
