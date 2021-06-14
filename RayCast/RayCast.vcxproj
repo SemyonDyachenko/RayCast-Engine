@@ -152,6 +152,7 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorScene.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorSceneObject.cpp" />
     <ClCompile Include="EntryPoint\Editor\Editor.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="EntryPoint\Game\GameWorld.cpp" />
     <ClCompile Include="EntryPoint\Game\GameObject.cpp" />
     <ClCompile Include="EntryPoint\Editor\GUILayer.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\GuiConsole.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp" />
     <ClCompile Include="Runtime\Platform\OpenGL\glFrameBuffer.cpp" />
     <ClCompile Include="Runtime\Core\Game.cpp" />
     <ClCompile Include="Animation\Bone.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="Runtime\Rendering\Shader.cpp" />
     <ClCompile Include="Runtime\Rendering\Texture.cpp" />
     <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
@@ -192,6 +196,7 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\EditorObjectController.h" />
     <ClInclude Include="EntryPoint\Editor\EditorScene.h" />
     <ClInclude Include="EntryPoint\Editor\EditorSceneObject.h" />
     <ClInclude Include="EntryPoint\Editor\Editor.h" />
@@ -202,6 +207,8 @@
     <ClInclude Include="EntryPoint\Game\Scenes\Scene.h" />
     <ClInclude Include="EntryPoint\Game\GameObject.h" />
     <ClInclude Include="EntryPoint\Editor\GUILayer.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\GuiConsole.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h" />
     <ClInclude Include="Runtime\Platform\OpenGL\glFrameBuffer.h" />
     <ClInclude Include="Runtime\Core\Game.h" />
     <ClInclude Include="Animation\Bone.h" />
@@ -223,6 +230,7 @@
     <ClInclude Include="Runtime\Rendering\stb_image.h" />
     <ClInclude Include="Runtime\Rendering\Texture.h" />
     <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
     <ClInclude Include="Vendor\imgui\imgui.h" />
     <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h" />
@@ -241,6 +249,7 @@
     <None Include="resources\shaders\animated_vertex_shader.glsl" />
     <None Include="resources\shaders\framebuffer_fragment_shader.glsl" />
     <None Include="resources\shaders\framebuffer_vertex_shader.glsl" />
+    <None Include="resources\shaders\light_fragment_shader.glsl" />
     <None Include="resources\shaders\light_vertex_shader.glsl" />
     <None Include="resources\shaders\vertex_shader.glsl" />
   </ItemGroup>

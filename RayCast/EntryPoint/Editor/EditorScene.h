@@ -24,16 +24,22 @@ public:
 
 	void OnDeactivate() override;
 
+	void AddObject(EditorSceneObject* object);
+	void DeleteObject(std::string name);
+
+	unsigned int GetObjectCount() const;
+
 	void OnUpdate(float DeltaTime) override;
 
 	void OnRender() override;
 
+	std::vector<EditorSceneObject*> GetObjects();
+
 private:
 	Camera* m_MainCamera;
 	Shader* m_editorShader;
-	Shader* framebuffer_shader;
-	std::unique_ptr<FrameBuffer> m_FrameBuffer;
 	std::vector<EditorSceneObject*> m_Objects;
+	unsigned int m_ObjectCount;
 
 };
 

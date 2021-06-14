@@ -17,6 +17,7 @@ in vec3 vs_normal;
 
 uniform vec3 cameraPos;
 uniform vec3 lightPos0;
+uniform bool textured;
 
 out vec4 fs_color;
 
@@ -34,6 +35,8 @@ void main()
 	float specular = pow(max(dot(posToViewDirVec,reflectDirVec),0),1);
 	vec3 specularResult = material.specular * specular;
     
-	//fs_color = texture(material.specularTexture,vs_texcoord) * texture(material.diffuseTexture,vs_texcoord) * (vec4(ambientLight,1.f) + vec4(diffuseFinal,1.f) + vec4(specularResult,1.f));
-	fs_color = vec4(0.9, 0.9, 0.9,1.0);
+	if(textured) {
+	fs_color = texture(material.diffuseTexture,vs_texcoord)  * (vec4(ambientLight,1.f) + vec4(diffuseFinal,1.f) + vec4(specularResult,1.f));
+	}
+	else { fs_color = vec4(0.7f, 0.7, 0.7,1.f); } 
 }

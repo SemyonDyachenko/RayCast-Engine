@@ -3,11 +3,11 @@
 #include <chrono>
 
 
-Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount,glm::mat4 modelMatrix)
+Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount)
 {
 	this->m_verticesCount = verticesCount;
 	m_numberOfIndices = indicesCount;
-	this->ModelMatrix = modelMatrix;
+	//this->ModelMatrix = modelMatrix;
 
 	this->vertices = new Vertex[verticesCount];
 	for (size_t i = 0; i < verticesCount; i++)
@@ -53,10 +53,10 @@ Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount
 	
 }
 
-void Mesh::UpdateModelMatrix(glm::mat4 ModelMatrix)
+/*void Mesh::UpdateModelMatrix(glm::mat4 ModelMatrix)
 {
 	this->ModelMatrix = ModelMatrix;
-}
+}*/
 
 Mesh::~Mesh()
 {

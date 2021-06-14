@@ -30,9 +30,9 @@ class Mesh
 {	
 
 public:
-	Mesh(Vertex* vertices, int verticesCount, GLuint* indices, int indicesCount,glm::mat4 ModelMatrix);
+	Mesh(Vertex* vertices, int verticesCount, GLuint* indices, int indicesCount);
 
-	void UpdateModelMatrix(glm::mat4 ModelMatrix);
+	//void UpdateModelMatrix(glm::mat4 ModelMatrix);
 	
 	virtual ~Mesh();
 
@@ -50,7 +50,6 @@ private:
 	GLuint VBO;
 	GLuint EBO;
 
-	glm::mat4 ModelMatrix;
 
 };
 

@@ -88,7 +88,7 @@ void glWindow::SetSize(int width, int height)
 void glWindow::Clear()
 {
     glViewport(0, 0, m_Width, m_Height);
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(210.f / 255.f, 223.f / 255.f, 234.f / 255.f, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    
 }

@@ -22,7 +22,7 @@ Model::Model(glm::vec3 position,  const char* obj_filename) : m_Position(positio
 	m_ModelMatrix = glm::translate(m_ModelMatrix, m_Position);
 
 	std::vector<Vertex> rawModel = m_Objloader->loadObjModel(obj_filename);
-	this->m_Meshes.push_back(new Mesh(rawModel.data(), rawModel.size(), NULL, 0,m_ModelMatrix));
+	this->m_Meshes.push_back(new Mesh(rawModel.data(), rawModel.size(), NULL, 0));
 
 	m_Textures = std::vector<Texture*>();
 }
@@ -34,7 +34,7 @@ Model::Model(const char* obj_filename)
 	m_ModelMatrix = glm::mat4(1.f);
 
 	std::vector<Vertex> rawModel = m_Objloader->loadObjModel(obj_filename);
-	this->m_Meshes.push_back(new Mesh(rawModel.data(), rawModel.size(), NULL, 0, m_ModelMatrix));
+	this->m_Meshes.push_back(new Mesh(rawModel.data(), rawModel.size(), NULL, 0));
 
 	m_Textures = std::vector<Texture*>();
 }
@@ -57,7 +57,7 @@ void Model::SetPosition(glm::vec3 position)
 	m_ModelMatrix = glm::translate(m_ModelMatrix, m_Position);
 
 	for (auto& i : m_Meshes) {
-		i->UpdateModelMatrix(m_ModelMatrix);
+		//i->UpdateModelMatrix(m_ModelMatrix);
 	}
 }
 
@@ -80,7 +80,7 @@ void Model::Move(int direction, float DeltaTime, float velocity)
 	m_ModelMatrix = glm::translate(m_ModelMatrix, m_Position);
 	
 	for (auto& i : m_Meshes) {
-		i->UpdateModelMatrix(m_ModelMatrix);
+		//i->UpdateModelMatrix(m_ModelMatrix);
 	}
 }
 

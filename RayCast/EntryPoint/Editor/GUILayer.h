@@ -8,13 +8,18 @@
 #include "../../Runtime/Core/Game.h"
 #include "../Game/Scenes/StateMachine.h"
 #include <GLFW/glfw3.h>
-
+#include "GuiComponents/SceneHierarchy.h"
+#include "GuiComponents/GuiConsole.h"
+#include <chrono>
+#include "GuiComponents/ObjectAdditor.h"
 
 enum class MenuBar {
 	Save = 0,
 	View = 1,
 
 };
+
+
 
 class GUILayer : public Layer
 {
@@ -27,11 +32,21 @@ public:
 	void OnEvent() override;
 	void Update(float DeltaTime) override;
 	void Render() override;
+
+	// local
+
+	void CreateDefaultObject(DefaultObjects index, std::string name, unsigned int id);
+
 private:
 	GLFWwindow* m_Window;
 	StateMachine* m_stateMachie;
 	std::shared_ptr<EditorScene> m_EditorScene;
-	std::unique_ptr<FrameBuffer> m_FrameBuffer;
+	SceneHierarchy* m_SceneHierarchy;
+	ObjectAdditor* m_ObjectAdditor;
+	GuiConsole* m_Console;
+	int m_SceneHierarchyCounter;
+	//std::unique_ptr<FrameBuffer> m_FrameBuffer;
+
 };
 
 #endif

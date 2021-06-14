@@ -126,6 +126,18 @@
     <ClCompile Include="EntryPoint\Editor\EditorScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\GuiConsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Rendering\OBJLoader.h">
@@ -269,6 +281,18 @@
     <ClInclude Include="EntryPoint\Editor\EditorScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\EditorObjectController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\GuiConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex_shader.glsl" />
@@ -278,5 +302,6 @@
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
     <None Include="resources\shaders\framebuffer_fragment_shader.glsl" />
     <None Include="resources\shaders\framebuffer_vertex_shader.glsl" />
+    <None Include="resources\shaders\light_fragment_shader.glsl" />
   </ItemGroup>
 </Project>

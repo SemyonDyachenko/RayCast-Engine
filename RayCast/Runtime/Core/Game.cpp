@@ -6,7 +6,7 @@
 
 Game* Game::s_Instance = nullptr;
 
-static WindowProps props{"Default App",1440,900,false,false};
+static WindowProps props{"Default App",1920,1080,false,false};
 std::unique_ptr<Window> Game::m_Window = Window::Create(props);
 
 
