@@ -39,29 +39,42 @@ void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarc
 		//ImGui::OpenPopup("Create game object");
 	}
 
+	ImGui::SameLine();
+
 	if (ImGui::Button("Plane")) {
+		console->PushMessage("A new object has been added to the scene (Plane).", CalculateTime(), MessageStatus::Default);
 		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Plane, "Plane", sceneHierarchy->GetObjectsCount()));
 		sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), "Plane"+ std::to_string(sceneHierarchy->GetObjectsCount()));
-		console->PushMessage("A new object has been added to the scene (Plane).", CalculateTime(), MessageStatus::Default);
 
+		
 	}
+	ImGui::SameLine();
 
-	if (ImGui::Button("Sphere")) {
-		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Sphere, "Sphere", sceneHierarchy->GetObjectsCount()));
+	 if (ImGui::Button("Sphere")) {
 		console->PushMessage("A new object has been added to the scene (Sphere).", CalculateTime(), MessageStatus::Default);
+		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Sphere, "Sphere", sceneHierarchy->GetObjectsCount()));
 		sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), "Sphere" + std::to_string(sceneHierarchy->GetObjectsCount()));
+
+		
 	}
 
-	if (ImGui::Button("Cylinder")) {
-		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Cylinder, "Cylinder", sceneHierarchy->GetObjectsCount()));
+	 if (ImGui::Button("Cylinder")) {
 		console->PushMessage("A new object has been added to the scene (Cylinder).", CalculateTime(), MessageStatus::Default);
+		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Cylinder, "Cylinder", sceneHierarchy->GetObjectsCount()));
+		
 		sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), "Cylinder" + std::to_string(sceneHierarchy->GetObjectsCount()));
-	}
 
-	if (ImGui::Button("Cube")) {
-		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Cube, "Cube", sceneHierarchy->GetObjectsCount()));
+		
+	}
+	 ImGui::SameLine();
+
+	 if (ImGui::Button("Cube")) {
 		console->PushMessage("A new object has been added to the scene (Cube).", CalculateTime(), MessageStatus::Default);
+		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Cube, "Cube", sceneHierarchy->GetObjectsCount()));
+		
 		sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), "Cube" + std::to_string(sceneHierarchy->GetObjectsCount()));
+
+		
 		/*std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
 		Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
 		Texture* diffuse = new Texture("resources/images/textures/grass.jpg",GL_TEXTURE_2D);
@@ -91,13 +104,15 @@ void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarc
 
 	}
 
-	if (ImGui::Button("Monkey")) {
+	 ImGui::SameLine();
+
+	 if (ImGui::Button("Monkey")) {
 		editorScene.AddObject(CreateDefaultObject(DefaultObjects::Monkey, "Monkey", sceneHierarchy->GetObjectsCount()));
 		sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), "Monkey" +std::to_string(sceneHierarchy->GetObjectsCount()));
 		console->PushMessage("A new object has been added to the scene (Monkey).", CalculateTime(), MessageStatus::Default);
+
+		
 	}
-
-
 
 	ImGui::End();
 }
@@ -152,3 +167,87 @@ std::string ObjectAdditor::CalculateTime()
 
 	return time;
 }
+
+/*ImGui::Begin("Control panel");
+	if (ImGui::Button("Model")) {
+
+		std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/plane.obj");
+		Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
+
+
+
+		EditorSceneObject* object = new EditorSceneObject(0, "test"+std::to_string(0), "static");
+
+		object->AddMesh(mesh);
+
+		object->SetPosition(glm::vec3(0.f, 0.0f, 0.f));
+		object->SetScale(glm::vec3(10.f, 1.0f, 10.f));
+
+
+		m_EditorScene->AddObject(object);
+	//	count++;
+
+		m_SceneHierarchy->PushObject(m_SceneHierarchyCounter,object->GetName());
+		m_SceneHierarchyCounter++;
+
+		//ImGui::OpenPopup("Create game object");
+	}
+
+	if (ImGui::Button("Plane")) {
+		CreateDefaultObject(DefaultObjects::Plane,"Plane",m_SceneHierarchyCounter);
+
+		std::stringstream transTime;
+
+		time_t chrono_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+		transTime << std::put_time(localtime(&chrono_time), "%F %T");
+
+		std::string time = transTime.str();
+
+		m_Console->PushMessage("A new object has been added to the scene (Cube).",time, MessageStatus::Error);
+	}
+
+	if (ImGui::Button("Sphere")) {
+		CreateDefaultObject(DefaultObjects::Sphere, "Sphere", m_SceneHierarchyCounter);
+	}
+
+	if (ImGui::Button("Cylinder")) {
+		CreateDefaultObject(DefaultObjects::Cylinder, "Cylinder", m_SceneHierarchyCounter);
+	}
+
+	if (ImGui::Button("Cube")) {
+		CreateDefaultObject(DefaultObjects::Cube, "Cube", m_SceneHierarchyCounter);
+		std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
+		Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
+		Texture* diffuse = new Texture("resources/images/textures/grass.jpg",GL_TEXTURE_2D);
+		Texture* specular = new Texture("resources/images/materials/stone.jpg",GL_TEXTURE_2D);
+
+		diffuse->bind(diffuse->GetId());
+		specular->bind(specular->GetId());
+
+		Material* material = new Material(glm::vec3(0.1f), glm::vec3(1.f, 0.f, 0.5f), glm::vec3(1.f),
+			diffuse->GetId(), specular->GetId());
+
+		EditorSceneObject* object = new EditorSceneObject(count, "test" + std::to_string(count), "static");
+
+		object->AddMaterial(material);
+		object->AddMesh(mesh);
+
+
+		object->SetPosition(glm::vec3(0.f, 0.0f, 0.f));
+
+		m_EditorScene->AddObject(object);
+		count++;
+
+		m_SceneHierarchy->PushObject(m_SceneHierarchyCounter, object->GetName());
+		m_SceneHierarchyCounter++;
+
+		diffuse->unbind();
+
+	}
+
+	if (ImGui::Button("Monkey")) {
+		CreateDefaultObject(DefaultObjects::Monkey, "Monkey", m_SceneHierarchyCounter);
+	}
+
+	*/

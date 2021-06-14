@@ -16,10 +16,10 @@ void EditorScene::ImGuiScene()
 {
 
 
-	ImGui::Begin("Scene");
+	//ImGui::Begin("Scene");
 
 
-	ImGui::End();
+	//ImGui::End();
 }
 
 void EditorScene::OnActivate()

@@ -182,6 +182,7 @@
     <ClCompile Include="Runtime\Rendering\Texture.cpp" />
     <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="Runtime\Rendering\Texture.h" />
     <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
     <ClInclude Include="Vendor\imgui\imgui.h" />
     <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h" />

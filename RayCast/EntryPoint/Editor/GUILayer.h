@@ -11,7 +11,7 @@
 #include "GuiComponents/SceneHierarchy.h"
 #include "GuiComponents/GuiConsole.h"
 #include <chrono>
-#include "GuiComponents/ObjectAdditor.h"
+#include "GuiComponents/SceneProps.h"
 
 enum class MenuBar {
 	Save = 0,
@@ -44,6 +44,7 @@ private:
 	SceneHierarchy* m_SceneHierarchy;
 	ObjectAdditor* m_ObjectAdditor;
 	GuiConsole* m_Console;
+	SceneProps* m_SceneProps; 
 	int m_SceneHierarchyCounter;
 	//std::unique_ptr<FrameBuffer> m_FrameBuffer;
 

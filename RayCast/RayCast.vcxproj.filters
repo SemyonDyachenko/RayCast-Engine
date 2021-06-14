@@ -138,6 +138,9 @@
     <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Rendering\OBJLoader.h">
@@ -291,6 +294,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -53,37 +53,33 @@ void GuiConsole::Render()
 	ImGui::Begin("Console");
 		
 	for (size_t i = 0; i < m_Messages.size(); i++) {
-		std::string msg = m_Messages[0].time  + " " + "[" + MessageStatusToString(m_Messages[0].status) + "]" + " " + m_Messages[0].text;
+		std::string msg = m_Messages[i].time  + " " + "[" + MessageStatusToString(m_Messages[i].status) + "]" + " " + m_Messages[i].text;
 		
-		if (m_Messages[0].status == MessageStatus::Error) {
+		if (m_Messages[i].status == MessageStatus::Error) {
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 0, 0)));
 			ImGui::Text(msg.c_str());
 			ImGui::PopStyleColor(1);
 		}
 
-		else if (m_Messages[0].status == MessageStatus::Warning) {
+		 if (m_Messages[i].status == MessageStatus::Warning) {
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 255, 0)));
 			ImGui::Text(msg.c_str());
 			ImGui::PopStyleColor(1);
 		}
 
-		else if (m_Messages[0].status == MessageStatus::Default) {
+		 if (m_Messages[i].status == MessageStatus::Default) {
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 255, 255)));
 			ImGui::Text(msg.c_str());
 			ImGui::PopStyleColor(1);
 		}
 
-		else if (m_Messages[0].status == MessageStatus::Exception) {
+		 if (m_Messages[i].status == MessageStatus::Exception) {
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 165, 0)));
 			ImGui::Text(msg.c_str());
 			ImGui::PopStyleColor(1);
 		}
-		else {
-			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(255, 255, 255)));
-			ImGui::PopStyleColor(1);
-		}
+	
 		
 	}
-
 	ImGui::End();
 }
