@@ -6,13 +6,16 @@
 #include <vector>
 #include <string>
 #include <map>
+
+
 #include "../../Vendor/imgui/imgui.h"
 #include "../../Vendor/imgui/imgui_impl_glfw.h"
 #include "../../Vendor/imgui/imgui_impl_opengl3.h"
+#include "../EditorScene.h"
 
 class SceneHierarchy  {
 public:
-	SceneHierarchy();
+	SceneHierarchy(EditorScene & scene);
 
 	void PushObject(unsigned int id,std::string name);
 	void DeleteObject(unsigned int id);
@@ -21,6 +24,9 @@ public:
 
 	unsigned int GetObjectsCount();
 
+	unsigned int GetSelectedObject();
+	void SetSelectedObject(int id);
+
 	void Update(float DeltaTime);
 
 	void Render();
@@ -28,6 +34,7 @@ public:
 private:
 	std::map<unsigned int,std::string> objects;
 	unsigned int m_CountObject;
+	unsigned int m_SelectedObject = -1;
 };
 
 

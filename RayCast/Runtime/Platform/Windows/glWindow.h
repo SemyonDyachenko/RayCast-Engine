@@ -7,6 +7,7 @@
 #include <iostream>
 
 
+
 #include "../../Core/Window.h"
 
 
@@ -39,9 +40,22 @@ public:
 
 	bool Closed() const override;
 
+	void SetEventCallback(const EventCallbackFn& callback) override;
+
+	EventCallbackFn GetScrollCallBack() override {
+		return m_Data.m_Scrollevent;
+	}
+
 	virtual GLFWwindow* GetNativeWindow() const override;
 private:
 	GLFWwindow* m_Window;
+
+	struct WindowData
+	{
+		EventCallbackFn m_Scrollevent;
+	};
+
+	WindowData m_Data;
 
 	std::string m_Title;
 	unsigned int m_Width, m_Height;

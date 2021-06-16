@@ -1,8 +1,9 @@
 #include "SceneHierarchy.h"
 
-SceneHierarchy::SceneHierarchy()
+
+SceneHierarchy::SceneHierarchy(EditorScene& scene)
 {
-    m_CountObject = 0;
+    m_CountObject = scene.GetObjectCount();
 }
 
 void SceneHierarchy::PushObject(unsigned int id, std::string name)
@@ -41,6 +42,16 @@ unsigned int SceneHierarchy::GetObjectsCount()
     return m_CountObject;
 }
 
+unsigned int SceneHierarchy::GetSelectedObject()
+{
+    return m_SelectedObject;
+}
+
+void SceneHierarchy::SetSelectedObject(int id)
+{
+    m_SelectedObject = id;
+}
+
 void SceneHierarchy::Update(float DeltaTime)
 {
 }
@@ -52,8 +63,20 @@ void SceneHierarchy::Render()
     ImGui::Begin("Scene Hierarchy");
 
     for (auto it = objects.begin(); it != objects.end(); it++) {
-        ImGui::Text(it->second.c_str());
+
+        ImGuiTreeNodeFlags flags = ((m_SelectedObject == it->first) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+        flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
+
+        ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)it->first, flags,it->second.c_str());
+
+        if (ImGui::IsItemClicked())
+        {
+            m_SelectedObject = it->first;
+        }
     }
+
+    if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+        m_SelectedObject = -1;
 
     ImGui::End();
 }

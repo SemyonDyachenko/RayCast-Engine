@@ -13,6 +13,14 @@
 #include <chrono>
 #include "GuiComponents/SceneProps.h"
 
+#include "../../Vendor/imgui/ImGuizmo.h"
+#include "../../Vendor/imgui/imgui_internal.h"
+
+#include <gtx/quaternion.hpp>
+#include <gtc/type_ptr.hpp>
+
+#include "../../Runtime/Math/Math.h"
+
 enum class MenuBar {
 	Save = 0,
 	View = 1,
@@ -33,9 +41,6 @@ public:
 	void Update(float DeltaTime) override;
 	void Render() override;
 
-	// local
-
-	void CreateDefaultObject(DefaultObjects index, std::string name, unsigned int id);
 
 private:
 	GLFWwindow* m_Window;
@@ -46,7 +51,10 @@ private:
 	GuiConsole* m_Console;
 	SceneProps* m_SceneProps; 
 	int m_SceneHierarchyCounter;
+	bool _drawGrid = false;
+	int m_GizmosType = -1;
 	//std::unique_ptr<FrameBuffer> m_FrameBuffer;
+
 
 };
 

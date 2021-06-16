@@ -1,6 +1,8 @@
 #include "EditorScene.h"
 #include "../../Runtime/Core/Game.h"
 
+
+
 void EditorScene::OnCreate()
 {
 	m_MainCamera = new Camera(glm::vec3(0.0f, 0.0f, 2.f), static_cast<float>(Game::GetWindow().GetWidth()) / static_cast<float>(Game::GetWindow().GetHeight()), glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 0.f, -1.f), 90.f, 0.1f, 1000.f);
@@ -54,11 +56,96 @@ unsigned int EditorScene::GetObjectCount() const
 	return m_ObjectCount;
 }
 
+EditorSceneObject* EditorScene::GetSelectedObject()
+{
+	if (m_Objects.size() != 0) {
+		for (size_t i = 0; i < m_Objects.size(); i++) {
+			if (m_Objects[i]->Selected()) {
+				return m_Objects[i];
+			}
+			else {
+				return nullptr;
+			}
+		}
+	}
+}
+
+void EditorScene::SelectObject(unsigned int id)
+{
+
+	for (size_t i = 0; i < m_Objects.size(); i++) {
+		if (m_Objects[i]->GetId() == id) {
+			m_Objects[i]->Select(true);
+		} 
+	}
+}
+
+void EditorScene::UnselectObject(unsigned int id)
+{
+	assert(m_Objects.size() != 0);
+	for (size_t i = 0; i < m_Objects.size(); i++) {
+			m_Objects[i]->Select(false);
+	}
+}
+
+EditorSceneObject* EditorScene::GetObjectById(unsigned int id)
+{
+	if (m_Objects.size() != 0) {
+		for (size_t i = 0; i < m_Objects.size(); i++) {
+			if (m_Objects[i]->GetId() == id) {
+				return m_Objects[i];
+			}
+		}
+	}
+	else {
+		return nullptr;
+	}
+}
+
+
+
+void EditorScene::UpdateMainCamera(float DeltaTime)
+{
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_W) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::FORWARD, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_S) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::BACK, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_A) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::LEFT, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_D) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::RIGHT, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_SPACE) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::UP, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+		m_MainCamera->Move(EditorCameraDirection::DOWN, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_LEFT) == GLFW_PRESS) {
+		m_MainCamera->Rotate(EditorCameraRotationDirection::LEFT, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
+		m_MainCamera->Rotate(EditorCameraRotationDirection::RIGHT, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_UP) == GLFW_PRESS) {
+		m_MainCamera->Rotate(EditorCameraRotationDirection::UP, DeltaTime);
+	}
+	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_DOWN) == GLFW_PRESS) {
+		m_MainCamera->Rotate(EditorCameraRotationDirection::DOWN, DeltaTime);
+	}
+		
+
+
+}
+
 void EditorScene::OnUpdate(float DeltaTime)
 {
-	
 
 	m_MainCamera->OnUpdate(DeltaTime, Game::GetWindow().GetNativeWindow());
+
 
 
 	m_editorShader->use();
@@ -74,6 +161,11 @@ void EditorScene::OnUpdate(float DeltaTime)
 
 		}
 	}
+}
+
+Camera& EditorScene::GetMainCamera()
+{
+	return *m_MainCamera;
 }
 
 void EditorScene::OnRender()

@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 #include <GLFW/glfw3.h>
+#include "Event.h"
+#include <functional>
 
 struct WindowProps {
 	std::string title;
@@ -16,6 +18,8 @@ struct WindowProps {
 
 class Window {
 public:
+	using EventCallbackFn = std::function<void(Event&)>;
+
 	virtual ~Window() = default;
 
 	virtual void OnUpdate() = 0;
@@ -41,6 +45,9 @@ public:
 
 	virtual void SetFullscreen() = 0;
 
+	virtual void SetEventCallback(const EventCallbackFn & callback) = 0;
+
+	virtual	EventCallbackFn GetScrollCallBack() = 0;
 
 	static std::unique_ptr<Window> Create(WindowProps & props);
 

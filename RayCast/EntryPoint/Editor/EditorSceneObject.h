@@ -1,6 +1,9 @@
 #ifndef EDITOR_SCENE_OBJECT
 #define EDITOR_SCENE_OBJECT
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <gtx/quaternion.hpp>
+
 #include "gtc/matrix_transform.hpp"
 
 #include <vector>
@@ -8,6 +11,8 @@
 #include "../../Runtime/Rendering/Texture.h"
 #include "../../Runtime/Rendering/Material.h"
 #include "../../Animation/AnimatedModel.h"
+#include "EditorObjectController.h"
+
 
 
 class EditorSceneObject
@@ -45,6 +50,12 @@ public:
 	glm::mat4 GetModelMatrix();
 	void RecalculateModelMatrix();
 
+
+
+	bool& Selected();
+	void Select(bool selected);
+
+
 private:
 	std::vector<Mesh*> m_Meshes;
 	AnimatedModel* m_AnimatedModel;
@@ -60,6 +71,9 @@ private:
 	unsigned int Id;
 
 	glm::mat4 ModelMatrix;
+
+	bool m_Selected;
+
 };
 
 #endif

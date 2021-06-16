@@ -1,6 +1,8 @@
 #include "EditorSceneObject.h"
 
 
+
+
 EditorSceneObject::EditorSceneObject(int id, std::string name, std::string type)
 {
     m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -11,13 +13,15 @@ EditorSceneObject::EditorSceneObject(int id, std::string name, std::string type)
     m_Name = name;
     m_Type = type;
     Id = id;
+    m_Selected = true;
 
     if (m_Type == "static") {
         m_AnimatedModel = nullptr;
     }
 
-    ModelMatrix = glm::translate(glm::mat4(1.0f), m_Position);
-    ModelMatrix = glm::scale(ModelMatrix, m_Scaling);
+
+    ModelMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(glm::quat(m_Rotation)) * glm::scale(glm::mat4(1.0f), m_Scaling);
+
 }
 
 EditorSceneObject::~EditorSceneObject()
@@ -37,13 +41,14 @@ EditorSceneObject::~EditorSceneObject()
 
 void EditorSceneObject::Update(float DeltaTime)
 {
-
+    
 }
 
 void EditorSceneObject::Render(Shader * shader)
 {
     if (m_Type == "static") {
- 
+    
+     
 
         if (m_Material != nullptr) {
             shader->setBool("textured", true);
@@ -61,6 +66,7 @@ void EditorSceneObject::Render(Shader * shader)
         if (m_Meshes.size() != 0) {
             for (size_t i = 0; i < m_Meshes.size(); i++) {   
                 m_Meshes[i]->OnRender(*shader);
+             
             }
         }
     }
@@ -168,6 +174,15 @@ glm::mat4 EditorSceneObject::GetModelMatrix()
 
 void EditorSceneObject::RecalculateModelMatrix()
 {
-    ModelMatrix = glm::translate(glm::mat4(1.0f), m_Position);
-    ModelMatrix = glm::scale(ModelMatrix, m_Scaling);
+    ModelMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(glm::quat(m_Rotation)) * glm::scale(glm::mat4(1.0f), m_Scaling);
+}
+
+bool& EditorSceneObject::Selected() 
+{
+    return m_Selected;
+}
+
+void EditorSceneObject::Select(bool selected)
+{
+    m_Selected = selected;
 }

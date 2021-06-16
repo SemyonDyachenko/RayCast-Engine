@@ -38,5 +38,5 @@ void main()
 	if(textured) {
 	fs_color = texture(material.diffuseTexture,vs_texcoord)  * (vec4(ambientLight,1.f) + vec4(diffuseFinal,1.f) + vec4(specularResult,1.f));
 	}
-	else { fs_color = vec4(0.7f, 0.7, 0.7,1.f); } 
+	else { fs_color = vec4(0.7f, 0.2f, 0.4f,1.f); } 
 }

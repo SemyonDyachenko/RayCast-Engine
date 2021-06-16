@@ -152,6 +152,8 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectProperties.cpp" />
+    <ClCompile Include="Runtime\Camera\EditorCamera.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorScene.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorSceneObject.cpp" />
@@ -164,6 +166,7 @@
     <ClCompile Include="EntryPoint\Editor\GUILayer.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\GuiConsole.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp" />
+    <ClCompile Include="Runtime\Math\Math.cpp" />
     <ClCompile Include="Runtime\Platform\OpenGL\glFrameBuffer.cpp" />
     <ClCompile Include="Runtime\Core\Game.cpp" />
     <ClCompile Include="Animation\Bone.cpp" />
@@ -183,13 +186,17 @@
     <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
+    <ClCompile Include="Vendor\imgui\ImCurveEdit.cpp" />
+    <ClCompile Include="Vendor\imgui\ImGradient.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui\ImGuizmo.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_impl_glfw.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Vendor\imgui\ImSequencer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\AnimatedMesh.h" />
@@ -197,6 +204,8 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectProperties.h" />
+    <ClInclude Include="Runtime\Camera\EditorCamera.h" />
     <ClInclude Include="EntryPoint\Editor\EditorObjectController.h" />
     <ClInclude Include="EntryPoint\Editor\EditorScene.h" />
     <ClInclude Include="EntryPoint\Editor\EditorSceneObject.h" />
@@ -210,6 +219,8 @@
     <ClInclude Include="EntryPoint\Editor\GUILayer.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\GuiConsole.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h" />
+    <ClInclude Include="Runtime\Core\Event.h" />
+    <ClInclude Include="Runtime\Math\Math.h" />
     <ClInclude Include="Runtime\Platform\OpenGL\glFrameBuffer.h" />
     <ClInclude Include="Runtime\Core\Game.h" />
     <ClInclude Include="Animation\Bone.h" />
@@ -234,18 +245,24 @@
     <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
+    <ClInclude Include="Vendor\imgui\ImCurveEdit.h" />
+    <ClInclude Include="Vendor\imgui\ImGradient.h" />
     <ClInclude Include="Vendor\imgui\imgui.h" />
+    <ClInclude Include="Vendor\imgui\ImGuizmo.h" />
     <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h" />
     <ClInclude Include="Vendor\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="Vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="Vendor\imgui\ImSequencer.h" />
     <ClInclude Include="Vendor\imgui\imstb_rectpack.h" />
     <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
+    <ClInclude Include="Vendor\imgui\ImZoomSlider.h" />
     <ClInclude Include="Vendor\imgui\stb_rect_pack.h" />
     <ClInclude Include="Vendor\imgui\stb_textedit.h" />
     <ClInclude Include="Vendor\imgui\stb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="resources\shaders\fragment_shader.glsl" />
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
     <None Include="resources\shaders\animated_vertex_shader.glsl" />

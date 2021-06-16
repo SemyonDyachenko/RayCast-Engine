@@ -42,11 +42,11 @@ Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount
 	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
 	glEnableVertexAttribArray(3);
 			
-	glVertexAttribIPointer(4, 4, GL_INT, sizeof(Vertex),(GLvoid*)offsetof(Vertex, m_BoneIDs));
-	glEnableVertexAttribArray(4);
+	//glVertexAttribIPointer(4, 4, GL_INT, sizeof(Vertex),(GLvoid*)offsetof(Vertex, m_BoneIDs));
+	//glEnableVertexAttribArray(4);
 
-	glVertexAttribIPointer(5, 4, GL_INT, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_Weights));
-	glEnableVertexAttribArray(5);
+	//glVertexAttribIPointer(5, 4, GL_INT, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_Weights));
+	//glEnableVertexAttribArray(5);
 
 
 	glBindVertexArray(0);	

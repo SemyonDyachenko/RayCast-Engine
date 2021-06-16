@@ -8,10 +8,10 @@
 #include "../../Runtime/Rendering/Model.h"
 #include "../../Runtime/Rendering/FrameBuffer.h"
 #include "../../Vendor/imgui/imgui.h"
-#include "../../Vendor/imgui/imgui_impl_glfw.h"
-#include "../../Vendor/imgui/imgui_impl_opengl3.h"
+//#include "../../Vendor/imgui/imgui_impl_glfw.h"
+//#include "../../Vendor/imgui/imgui_impl_opengl3.h"
 #include "EditorSceneObject.h"
-
+#include "../../Runtime/Core/Event.h"
 
 class EditorScene : public Scene {
 public:
@@ -29,7 +29,18 @@ public:
 
 	unsigned int GetObjectCount() const;
 
+	EditorSceneObject* GetSelectedObject();
+
+	void SelectObject(unsigned int id);
+	void UnselectObject(unsigned int id);
+
+	EditorSceneObject* GetObjectById(unsigned int id);
+
+	void UpdateMainCamera(float DeltaTime);
+
 	void OnUpdate(float DeltaTime) override;
+
+	Camera& GetMainCamera();
 
 	void OnRender() override;
 

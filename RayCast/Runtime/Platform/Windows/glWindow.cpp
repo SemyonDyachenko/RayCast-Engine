@@ -7,7 +7,6 @@ glWindow::glWindow(WindowProps& props)
 		fprintf(stderr, "Failed to initialize GLFW\n");
 	}
 
-
     m_Width = props.width;
     m_Height = props.height;
     m_Title = props.title;
@@ -16,6 +15,15 @@ glWindow::glWindow(WindowProps& props)
 
 	m_Window = glfwCreateWindow(m_Width,m_Height,m_Title.c_str(), NULL, NULL);
     glfwMakeContextCurrent(m_Window);
+
+    glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+        {
+            WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+            MouseScrollEvent event((float)xOffset, (float)yOffset);
+            data.m_Scrollevent(event);
+
+        });
 
 
     glewExperimental = GL_TRUE;
@@ -111,6 +119,13 @@ bool glWindow::Closed() const
 {
     return glfwWindowShouldClose(m_Window);
 }
+
+void glWindow::SetEventCallback(const EventCallbackFn& callback)
+{
+    m_Data.m_Scrollevent = callback;
+}
+
+
 
 GLFWwindow* glWindow::GetNativeWindow() const
 {

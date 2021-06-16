@@ -20,7 +20,7 @@ Camera::Camera(glm::vec3 position, float aspectRatio, glm::vec3 up, glm::vec3 fr
     m_roll = 0.f;
 
     m_viewMatrix = glm::mat4(1.f);
-    m_viewMatrix = glm::lookAt(m_Position, m_Position + m_Front, m_Up); 
+    m_viewMatrix = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 
     m_projectionMatrix = glm::mat4(1.f);
     m_projectionMatrix = glm::perspective(glm::radians(m_fov), m_aspectRatio, m_nearPlane, m_farPlane);
@@ -30,54 +30,88 @@ Camera::Camera(glm::vec3 position, float aspectRatio, glm::vec3 up, glm::vec3 fr
 
 }
 
-
 Camera::~Camera()
 {
 }
 
 void Camera::OnUpdate(float DeltaTime,GLFWwindow* window)
 {
-    
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        m_Position += m_MovementSpeed * m_Front * DeltaTime;    
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    Recalculate();
+}
+
+void Camera::Move(EditorCameraDirection direction, float DeltaTime)
+{
+    switch (direction)
+    {
+    case EditorCameraDirection::FORWARD:
+        m_Position += m_MovementSpeed * m_Front * DeltaTime;
+        break;
+    case EditorCameraDirection::BACK:
         m_Position -= m_MovementSpeed * m_Front * DeltaTime;
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        m_Position -= glm::normalize(glm::cross(m_Front, m_Up)) * m_MovementSpeed * DeltaTime;
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        m_Position += glm::normalize(glm::cross(m_Front, m_Up)) * m_MovementSpeed * DeltaTime;
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        break;
+    case EditorCameraDirection::UP:
         m_Position.y +=  m_MovementSpeed * DeltaTime;
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        break;
+    case EditorCameraDirection::DOWN:
         m_Position.y -= m_MovementSpeed * DeltaTime;
-
-    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        m_yaw += -35.f * DeltaTime;
+        break;
+    case EditorCameraDirection::LEFT:
+        m_Position -= glm::normalize(glm::cross(m_Front, m_Up)) * m_MovementSpeed * DeltaTime;
+        break;
+    case EditorCameraDirection::RIGHT:
+        m_Position += glm::normalize(glm::cross(m_Front, m_Up)) * m_MovementSpeed * DeltaTime;
+        break;
+    default:
+        break;
     }
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        m_yaw += 35.f * DeltaTime;
-    }
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        m_pitch += 35.f * DeltaTime;
-    }
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        m_pitch += -35.f * DeltaTime;
-    }
-
-    glm::vec3 direction;
-    direction.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-    direction.y = sin(glm::radians(m_pitch));
-    direction.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-    m_Front = glm::normalize(direction);
-
-    
-
     Recalculate();
 
 }
 
-void Camera::Move()
+void Camera::Rotate(EditorCameraRotationDirection direction, float DeltaTime)
 {
+    switch (direction)
+    {
+    case EditorCameraRotationDirection::LEFT:
+        m_yaw += -35.f * DeltaTime;
+        break;
+    case EditorCameraRotationDirection::RIGHT:
+        m_yaw += 35.f * DeltaTime;
+        break;
+    case EditorCameraRotationDirection::UP:
+        m_pitch += 35.f * DeltaTime;
+        break;
+    case EditorCameraRotationDirection::DOWN:
+        m_pitch += -35.f * DeltaTime;
+        break;
+    default:
+        break;
+    }
+
+    glm::vec3 l_direction;
+    l_direction.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    l_direction.y = sin(glm::radians(m_pitch));
+    l_direction.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    m_Front = glm::normalize(l_direction);
+
+
+    if (m_pitch > 89.0f)
+        m_pitch = 89.0f;
+    if (m_pitch < -89.0f)
+        m_pitch = -89.0f;
+
+    Recalculate();
+}
+
+void Camera::Zoom(float ScaleFactor)
+{
+    m_fov -= ScaleFactor;
+    if (m_fov < 1.0f)
+        m_fov = 1.0f;
+    if (m_fov > 90.0f)
+        m_fov = 90.0f;
+
+    Recalculate();  
 }
 
 void Camera::Recalculate()
@@ -102,13 +136,18 @@ const glm::mat4& Camera::GetViewProjectionMatrix()
     return m_viewMatrix * m_projectionMatrix;
 }
 
-const glm::mat4& Camera::GetViewMatrix()
+const glm::mat4& Camera::GetViewMatrix() const
 {
-
     return m_viewMatrix;
 }
 
-const glm::mat4& Camera::GetProjectionMatrix()
+const glm::mat4& Camera::GetProjectionMatrix() const
 {
     return m_projectionMatrix;
 }
+
+const float& Camera::GetFov()
+{
+    return m_fov;
+}
+

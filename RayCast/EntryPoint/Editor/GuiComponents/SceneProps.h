@@ -15,6 +15,10 @@ public:
 	SceneProps();
 
 	virtual ~SceneProps() = default;
+
+	int GetGizmosType();
+
+	void SetGizmosType(int type);
 	
 	TransformMode GetTransformMode();
 
@@ -23,6 +27,7 @@ public:
 	void Render();
 private:
 	TransformMode m_TransformMode;
+	int m_GizmosType = -1;
 
 };
 

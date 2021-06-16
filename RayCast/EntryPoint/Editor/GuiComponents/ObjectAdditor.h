@@ -22,6 +22,10 @@ public:
 
 	void Update(float DeltaTime);
 
+	bool& OnPopupEvent();
+
+	void AddObjectToScene(int id,DefaultObjects index,std::string name, EditorScene& editorScene, SceneHierarchy* sceneHierarchy, GuiConsole* console);
+
 	void Render(EditorScene & editorScene,SceneHierarchy* sceneHierarchy,GuiConsole* console);
 
 	EditorSceneObject* CreateDefaultObject(DefaultObjects index, std::string name, unsigned int id);
@@ -29,6 +33,14 @@ public:
 	std::string CalculateTime();
 
 private:
+	char m_NewObjectNameBuffer[60] = "";
+	char m_NewObjectTypeBuffer[60] = "";
+	char m_NewObjectModelPath[128] = "";
+	glm::vec3 m_NewObjectPosition = { 0.0f,0.0f,0.0f };
+
+	bool m_OnPopup = false;
+
+	unsigned int m_ObjectsCount;
 
 };
 
