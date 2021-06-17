@@ -2,6 +2,7 @@
 #define EDITOR_SCENE_H
 
 #include <GL/glew.h>
+
 #include "../Game/Scenes/Scene.h"
 #include "../../Runtime/Camera/Camera.h"
 #include "../../Runtime/Rendering/Shader.h"
@@ -12,6 +13,7 @@
 //#include "../../Vendor/imgui/imgui_impl_opengl3.h"
 #include "EditorSceneObject.h"
 #include "../../Runtime/Core/Event.h"
+#include "../../Runtime/Light/LightPoint.h"
 
 class EditorScene : public Scene {
 public:
@@ -24,10 +26,19 @@ public:
 
 	void OnDeactivate() override;
 
+	Entity& CreateEntity(unsigned int id,std::string name) override;
+	void DeleteEntity(unsigned int id) override;
+
+	std::unique_ptr<Entity>& GetEntity(unsigned int id);
+
+	void AddLightPoint(LightPoint * lightPoint);
+
 	void AddObject(EditorSceneObject* object);
-	void DeleteObject(std::string name);
+	void DeleteObject(unsigned int id);
 
 	unsigned int GetObjectCount() const;
+	unsigned int GetEntitiesCount();
+	void RecalculateEntitiesCount();
 
 	EditorSceneObject* GetSelectedObject();
 
@@ -51,6 +62,8 @@ private:
 	Shader* m_editorShader;
 	std::vector<EditorSceneObject*> m_Objects;
 	unsigned int m_ObjectCount;
+	LightPoint* m_LightPoint;
+
 
 };
 

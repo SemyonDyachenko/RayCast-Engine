@@ -162,6 +162,33 @@
     <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Platform\Windows\WindowsPlatformUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint\Editor\SceneSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Light\LightPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Entity\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Entity\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Entity\EntityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Entity\EngineScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntryPoint\Game\Scenes\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Rendering\OBJLoader.h">
@@ -347,16 +374,41 @@
     <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Utils\PlatformUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Platform\Windows\WindowsPlatformUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\SceneSerializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Light\LightPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Entity\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Entity\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Entity\EntityManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Entity\EngineScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex_shader.glsl" />
     <None Include="resources\shaders\fragment_shader.glsl" />
-    <None Include="resources\shaders\light_vertex_shader.glsl" />
     <None Include="resources\shaders\animated_vertex_shader.glsl" />
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
-    <None Include="resources\shaders\framebuffer_fragment_shader.glsl" />
-    <None Include="resources\shaders\framebuffer_vertex_shader.glsl" />
-    <None Include="resources\shaders\light_fragment_shader.glsl" />
     <None Include="cpp.hint" />
+    <None Include="resources\shaders\color_vertex_shader.glsl" />
+    <None Include="resources\shaders\color_fragment_shader.glsl" />
   </ItemGroup>
 </Project>

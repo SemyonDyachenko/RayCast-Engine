@@ -4,6 +4,7 @@
 #include <iomanip>
 
 
+
 GUILayer::GUILayer()
 {
 
@@ -34,6 +35,18 @@ void GUILayer::Attach()
 
 	m_SceneProps->SetGizmosType(0);
 
+	m_ObjectProperties = new ObjectProperties();
+
+	m_ContentBrowser = new ContentBrowserPanel();
+
+	m_SceneSerializer = new SceneSerializer(*m_EditorScene);
+
+	lightPoint = new LightPoint(glm::vec3(0.0f,2.f,1.f));
+	lightPoint->SetColor({ 1.f,0.f,0.f });
+	lightPoint->SetPower(0.1f);
+
+	m_EditorScene->AddLightPoint(lightPoint);
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -43,7 +56,6 @@ void GUILayer::Attach()
 
 	ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
 	ImGui_ImplOpenGL3_Init("#version 450");
-
 
 
 }
@@ -66,10 +78,13 @@ void GUILayer::Update(float DeltaTime)
 	m_Console->Update(DeltaTime);
 	m_ObjectAdditor->Update(DeltaTime);
 	m_SceneProps->Update(DeltaTime);
+	m_ObjectProperties->OnUpdate(DeltaTime);
 
 	ImGuiIO& io = ImGui::GetIO();
-	m_EditorScene->GetMainCamera().Zoom(io.MouseWheel*2.f);
+	m_EditorScene->GetMainCamera().Zoom(io.MouseWheel*4.f);
 
+
+	
 }
 
 void GUILayer::Render()
@@ -106,8 +121,17 @@ void GUILayer::Render()
 	{
 		if (ImGui::BeginMenu("File"))
 		{
-			if (ImGui::MenuItem("Open..", "Ctrl+O")) {}
-			if (ImGui::MenuItem("Save", "Ctrl+S")) {  }
+			if (ImGui::MenuItem("Open..", "Ctrl+O")) 
+			{
+				std::string path = FileDialogs::OpenFile("RayCast Scene (*.obj)\0*.obj\0");
+
+
+			}
+			if (ImGui::MenuItem("Save", "Ctrl+S"))
+			{
+				std::string file = FileDialogs::SaveFile("RayCast Scene (*.raycast)\0*.raycast\0");
+				m_SceneSerializer->Serialize(file);
+			}
 			if (ImGui::MenuItem("Close", "Ctrl+W")) { my_tool_active = false; exit(true); Game::GetWindow().Close(); }
 			ImGui::EndMenu();
 		}
@@ -154,7 +178,7 @@ void GUILayer::Render()
 		ImGuizmo::DrawGrid(glm::value_ptr(m_EditorScene->GetMainCamera().GetViewMatrix()), glm::value_ptr(m_EditorScene->GetMainCamera().GetProjectionMatrix()), identityMatrix, m_EditorScene->GetMainCamera().GetFov());
 
 	}
-	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_F7) == GLFW_PRESS) {
+	if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Insert))) {
 		if (_drawGrid)
 			_drawGrid = false;
 		else
@@ -162,14 +186,15 @@ void GUILayer::Render()
 	}
 
 
-	if (m_SceneHierarchy->GetSelectedObject() != -1 && m_SceneProps->GetGizmosType() != -1) {	
+	if (m_SceneHierarchy->HasSelectedEntity() && m_SceneProps->GetGizmosType() != -1) {	
 		
 
 		const glm::mat4& projection = m_EditorScene->GetMainCamera().GetProjectionMatrix();
 		glm::mat4 cameraView = m_EditorScene->GetMainCamera().GetViewMatrix();
 
+		auto& ts = m_SceneHierarchy->GetSelectedEntity().GetComponent<TransformComponent>();
 
-		glm::mat4 modelmatrix = m_EditorScene->GetObjectById(m_SceneHierarchy->GetSelectedObject())->GetModelMatrix();
+		glm::mat4 modelmatrix = ts.GetTrasnform();
 
 		ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(projection), (ImGuizmo::OPERATION)m_SceneProps->GetGizmosType(), ImGuizmo::LOCAL, glm::value_ptr(modelmatrix));
 
@@ -183,30 +208,30 @@ void GUILayer::Render()
 			DecomposeModelMatrix(modelmatrix, position, rotation, scale);
 
 
-			glm::vec3 dtRotation = rotation - m_EditorScene->GetSelectedObject()->GetRotation();
-			m_EditorScene->GetObjectById(m_SceneHierarchy->GetSelectedObject())->SetPosition(position);
-
-			m_EditorScene->GetObjectById(m_SceneHierarchy->GetSelectedObject())->SetRotation(m_EditorScene->GetSelectedObject()->GetRotation() + dtRotation);
-			m_EditorScene->GetObjectById(m_SceneHierarchy->GetSelectedObject())->SetScale(scale);
+			glm::vec3 dtRotation = rotation - ts.Rotation;
+			ts.Position = position;
+			ts.Rotation += dtRotation;
+			ts.Scale = scale;
 
 		}
 	}
-
+	
 
 
 	m_ObjectAdditor->Render(*m_EditorScene, m_SceneHierarchy, m_Console);
 
-	m_SceneHierarchy->Render();
+	m_SceneHierarchy->Render(*m_EditorScene);
 
-	ImGui::Begin("Resources");
-	ImGui::End();
+	m_ContentBrowser->OnRender();
 
 
 	m_Console->Render();
 
-	ImGui::Begin("Properties");	
-	ImGui::End();
+	m_ObjectProperties->OnRender(*m_EditorScene,*m_Console,*m_SceneHierarchy);
 
+
+	SceneSerializer serializer(*m_EditorScene);
+	serializer.Serialize("resources/scenes/example.raycast");
 
 	
 	m_EditorScene->ImGuiScene();

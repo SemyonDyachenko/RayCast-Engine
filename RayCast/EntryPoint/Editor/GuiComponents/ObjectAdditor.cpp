@@ -22,9 +22,8 @@ void ObjectAdditor::AddObjectToScene(int id,DefaultObjects index, std::string na
 {
 	console->PushMessage("A new object has been added to the scene (" + name+").", CalculateTime(), MessageStatus::Default);
 	editorScene.AddObject(CreateDefaultObject(index, name, id));
-	sceneHierarchy->PushObject(id, name + std::to_string(id));
+	sceneHierarchy->PushObject(id, name + std::to_string(id), editorScene);
 	sceneHierarchy->SetSelectedObject(id);
-	m_ObjectsCount++;
 }
 
 void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarchy,GuiConsole* console)
@@ -65,7 +64,8 @@ void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarc
 
 			console->PushMessage("A new object has been added to the scene ("+name+").", CalculateTime(), MessageStatus::Default);
 			editorScene.AddObject(object);
-			sceneHierarchy->PushObject(sceneHierarchy->GetObjectsCount(), name);
+			sceneHierarchy->PushObject(m_ObjectsCount, name, editorScene);
+			m_ObjectsCount++;
 
 			m_NewObjectPosition = { 0.0f,0.0f,0.0f };
 			memset(m_NewObjectNameBuffer, 0, IM_ARRAYSIZE(m_NewObjectNameBuffer) * sizeof(char));
@@ -89,7 +89,19 @@ void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarc
 	ImGui::SameLine();
 
 	if (ImGui::Button("Plane")) {
-		AddObjectToScene(m_ObjectsCount, DefaultObjects::Plane, "Plane", editorScene, sceneHierarchy, console);
+		//AddObjectToScene(m_ObjectsCount, DefaultObjects::Plane, "Plane", editorScene, sceneHierarchy, console);
+		
+		
+	
+		auto& entity = editorScene.CreateEntity(editorScene.GetEntitiesCount(), "Plane");
+		editorScene.RecalculateEntitiesCount();
+		entity.AddComponent<MeshComponent>(*CreateDefaultEntity(DefaultObjects::Cube,"Plane", m_ObjectsCount));
+
+		console->PushMessage("A new object has been added to the scene (" + std::to_string(entity.GetId()) +").", CalculateTime(), MessageStatus::Default);
+
+	
+		//sceneHierarchy->PushObject(entity.GetId(), "Plane" + std::to_string(entity.GetId()),editorScene);
+		//sceneHierarchy->SetSelectedObject(entity.GetId());
 	}
 	ImGui::SameLine();
 
@@ -152,6 +164,38 @@ EditorSceneObject* ObjectAdditor::CreateDefaultObject(DefaultObjects index, std:
 
 	return object;
 
+}
+
+Mesh* ObjectAdditor::CreateDefaultEntity(DefaultObjects index, std::string name, unsigned int id)
+{
+	std::string path;
+
+	switch (index)
+	{
+	case DefaultObjects::Plane:
+		path = "resources/vanilla/obj/plane.obj";
+		break;
+	case DefaultObjects::Sphere:
+		path = "resources/vanilla/obj/sphere.obj";
+		break;
+	case DefaultObjects::Cylinder:
+		path = "resources/vanilla/obj/cylinder.obj";
+		break;
+	case DefaultObjects::Cube:
+		path = "resources/vanilla/obj/cube.obj";
+		break;
+	case DefaultObjects::Monkey:
+		path = "resources/vanilla/obj/monkey.obj";
+		break;
+
+	default:
+		break;
+	}
+
+	std::vector<Vertex> rawModel = OBJLoader::loadObjModel(path);
+	Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
+
+	return mesh;
 }
 
 std::string ObjectAdditor::CalculateTime()

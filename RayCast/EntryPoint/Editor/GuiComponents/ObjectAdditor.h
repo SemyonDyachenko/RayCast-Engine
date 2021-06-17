@@ -29,6 +29,7 @@ public:
 	void Render(EditorScene & editorScene,SceneHierarchy* sceneHierarchy,GuiConsole* console);
 
 	EditorSceneObject* CreateDefaultObject(DefaultObjects index, std::string name, unsigned int id);
+	Mesh* CreateDefaultEntity(DefaultObjects index, std::string name, unsigned int id);
 
 	std::string CalculateTime();
 

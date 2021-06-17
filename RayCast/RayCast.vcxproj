@@ -119,13 +119,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\entt-3.7.1\single_include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,7 +153,14 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="EntryPoint\Game\Scenes\Scene.cpp" />
+    <ClCompile Include="Runtime\Entity\EngineScene.cpp" />
+    <ClCompile Include="Runtime\Entity\EntityManager.cpp" />
+    <ClCompile Include="Runtime\Entity\Component.cpp" />
+    <ClCompile Include="Runtime\Entity\Entity.cpp" />
+    <ClCompile Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectProperties.cpp" />
+    <ClCompile Include="Runtime\Light\LightPoint.cpp" />
     <ClCompile Include="Runtime\Camera\EditorCamera.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp" />
     <ClCompile Include="EntryPoint\Editor\EditorScene.cpp" />
@@ -186,6 +194,7 @@
     <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
+    <ClCompile Include="EntryPoint\Editor\SceneSerializer.cpp" />
     <ClCompile Include="Vendor\imgui\ImCurveEdit.cpp" />
     <ClCompile Include="Vendor\imgui\ImGradient.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
@@ -197,6 +206,7 @@
     <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\imgui\ImSequencer.cpp" />
+    <ClCompile Include="Runtime\Platform\Windows\WindowsPlatformUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\AnimatedMesh.h" />
@@ -204,7 +214,13 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="Runtime\Entity\EngineScene.h" />
+    <ClInclude Include="Runtime\Entity\EntityManager.h" />
+    <ClInclude Include="Runtime\Entity\Component.h" />
+    <ClInclude Include="Runtime\Entity\Entity.h" />
+    <ClInclude Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectProperties.h" />
+    <ClInclude Include="Runtime\Light\LightPoint.h" />
     <ClInclude Include="Runtime\Camera\EditorCamera.h" />
     <ClInclude Include="EntryPoint\Editor\EditorObjectController.h" />
     <ClInclude Include="EntryPoint\Editor\EditorScene.h" />
@@ -244,6 +260,8 @@
     <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
     <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h" />
+    <ClInclude Include="Runtime\Utils\PlatformUtils.h" />
+    <ClInclude Include="EntryPoint\Editor\SceneSerializer.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
     <ClInclude Include="Vendor\imgui\ImCurveEdit.h" />
     <ClInclude Include="Vendor\imgui\ImGradient.h" />
@@ -260,16 +278,15 @@
     <ClInclude Include="Vendor\imgui\stb_rect_pack.h" />
     <ClInclude Include="Vendor\imgui\stb_textedit.h" />
     <ClInclude Include="Vendor\imgui\stb_truetype.h" />
+    <ClInclude Include="Runtime\Platform\Windows\WindowsPlatformUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="resources\shaders\color_fragment_shader.glsl" />
+    <None Include="resources\shaders\color_vertex_shader.glsl" />
     <None Include="resources\shaders\fragment_shader.glsl" />
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
     <None Include="resources\shaders\animated_vertex_shader.glsl" />
-    <None Include="resources\shaders\framebuffer_fragment_shader.glsl" />
-    <None Include="resources\shaders\framebuffer_vertex_shader.glsl" />
-    <None Include="resources\shaders\light_fragment_shader.glsl" />
-    <None Include="resources\shaders\light_vertex_shader.glsl" />
     <None Include="resources\shaders\vertex_shader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

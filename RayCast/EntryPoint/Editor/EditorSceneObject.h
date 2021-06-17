@@ -30,6 +30,7 @@ public:
 	void AddMaterial(Material * material);
 
 	Material* GetMaterial();
+	std::vector<Texture*>& GetTextures();
 
 	void AddAnimatedModel(AnimatedModel* model);
 	AnimatedModel& GetAnimatedModel() const;
@@ -51,9 +52,10 @@ public:
 	void RecalculateModelMatrix();
 
 
-
 	bool& Selected();
 	void Select(bool selected);
+
+	void ChangeName(std::string name);
 
 
 private:

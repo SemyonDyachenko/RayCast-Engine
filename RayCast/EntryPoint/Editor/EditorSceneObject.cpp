@@ -102,6 +102,11 @@ Material* EditorSceneObject::GetMaterial()
         return nullptr;
 }
 
+std::vector<Texture*>& EditorSceneObject::GetTextures()
+{
+    return m_Textures;
+}
+
 void EditorSceneObject::AddAnimatedModel(AnimatedModel* model)
 {
     if (m_Type == "dynamic") {
@@ -185,4 +190,9 @@ bool& EditorSceneObject::Selected()
 void EditorSceneObject::Select(bool selected)
 {
     m_Selected = selected;
+}
+
+void EditorSceneObject::ChangeName(std::string name)
+{
+    m_Name = name;
 }

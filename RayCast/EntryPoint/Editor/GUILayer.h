@@ -21,6 +21,13 @@
 
 #include "../../Runtime/Math/Math.h"
 
+#include "GuiComponents/ObjectProperties.h"
+#include "GuiComponents/ContentBrowserPanel.h"
+
+#include "../../Runtime/Utils/PlatformUtils.h"
+
+#include "SceneSerializer.h"
+
 enum class MenuBar {
 	Save = 0,
 	View = 1,
@@ -50,10 +57,15 @@ private:
 	ObjectAdditor* m_ObjectAdditor;
 	GuiConsole* m_Console;
 	SceneProps* m_SceneProps; 
+	ObjectProperties* m_ObjectProperties;
+	ContentBrowserPanel* m_ContentBrowser;
 	int m_SceneHierarchyCounter;
 	bool _drawGrid = false;
 	int m_GizmosType = -1;
 	//std::unique_ptr<FrameBuffer> m_FrameBuffer;
+
+	SceneSerializer* m_SceneSerializer;
+	LightPoint* lightPoint;
 
 
 };
