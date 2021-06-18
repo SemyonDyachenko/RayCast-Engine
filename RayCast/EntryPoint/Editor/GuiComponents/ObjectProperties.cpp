@@ -1,8 +1,9 @@
 #include "ObjectProperties.h"
 
-ObjectProperties::ObjectProperties()
+ObjectProperties::ObjectProperties(SceneHierarchy& sceneHierarchy)
 {
 	m_Object = nullptr;
+	m_SceneHierarchy = &sceneHierarchy;
 }
 
 ObjectProperties::~ObjectProperties()
@@ -13,22 +14,22 @@ void ObjectProperties::OnUpdate(float DeltaTime)
 {
 }
 
-void ObjectProperties::OnRender(EditorScene& scene, GuiConsole& console, SceneHierarchy& sceneHierarchy)
+void ObjectProperties::OnRender(EditorScene& scene)
 {
-	ImGui::Begin("Object Properties");
+	ImGuiWindowFlags window_flags = 0;
+	window_flags |= ImGuiWindowFlags_NoMove;
+	bool open_ptr = true;
 
-	if (sceneHierarchy.GetSelectedObject() == -1) {
+	ImGui::Begin("Properties",&open_ptr,window_flags);
+
+	if (!m_SceneHierarchy->HasSelectedEntity()) {
 		m_ObjectId = -1;
 		m_Object = nullptr;
 	}
 	else {
-		m_ObjectId = sceneHierarchy.GetSelectedObject();
-		//m_Object = scene.GetObjectById(m_ObjectId);
-		auto & m_Entity = scene.GetEntity(m_ObjectId);
+		auto& m_Entity = scene.GetEntity(m_SceneHierarchy->GetSelectedEntity().GetId());// for already components 
 
-		auto tc = m_Entity->GetComponent<TransformComponent>();
-		
-		std::string objectName = m_Entity->GetName();
+		std::string objectName = m_Entity->GetComponent<TagComponent>().tag;
 
 		char buffer[256];
 
@@ -36,99 +37,104 @@ void ObjectProperties::OnRender(EditorScene& scene, GuiConsole& console, SceneHi
 
 		strcpy_s(buffer, sizeof(buffer), objectName.c_str());
 
-		if (ImGui::InputText("Name",buffer,IM_ARRAYSIZE(buffer))) {
-			//std::string new_name = std::string(buffer);
-			//scene.GetObjectById(m_ObjectId)->ChangeName(new_name);
+		const ImGuiTreeNodeFlags treeNodeFlags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_AllowItemOverlap;
+
+		if (m_Entity->HasComponent<TagComponent>()) {
+			auto& tagComponent = m_Entity->GetComponent<TagComponent>();
+
+			if (ImGui::TreeNodeEx((void*)typeid(tagComponent).hash_code(), treeNodeFlags, "Tag Component")) {
+				ImGui::Text("Tag     "); ImGui::SameLine();
+				if (ImGui::InputText(" ", buffer, IM_ARRAYSIZE(buffer))) {
+					tagComponent.tag = std::string(buffer);
+				}
+
+				ImGui::TreePop();
+			}
+
 		}
-
-
-		if (ImGui::TreeNodeEx((void*)typeid(m_Object).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform")) {
-
-
-			ImGui::DragFloat3("Position", glm::value_ptr(tc.Position));
-			ImGui::DragFloat3("Rotation", glm::value_ptr(tc.Rotation));
-			ImGui::DragFloat3("Scale", glm::value_ptr(tc.Scale));
-			
-			ImGui::TreePop();
 		
-		}
-
-		if (ImGui::TreeNodeEx((void*)typeid(m_Object).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Material")) {
-
-			if (!m_Entity->HasComponent<MaterialComponent>()) {
-
-				if (ImGui::Button("Add Material")) {
-					ImGui::OpenPopup("New Material");
-				}
-
-				if (ImGui::BeginPopupModal("New Material"))
-				{
-					
-
-					
-					
-					ImGui::InputText("Diffuse texture", texture_filename, IM_ARRAYSIZE(texture_filename));
-
-					ImGui::InputFloat3("Ambient",glm::value_ptr(ambient));
-					ImGui::InputFloat3("Diffuse",glm::value_ptr(diffuse));
-					ImGui::InputFloat3("Specular",glm::value_ptr(specular));
-
-					ImGui::ColorPicker3("Color",glm::value_ptr(material_color));
-
-					if (ImGui::Button("Create")) {
+		if (m_Entity->HasComponent<TransformComponent>()) {
+			auto& tc = m_Entity->GetComponent<TransformComponent>();
 
 
-						std::string finalPath = "resources/images/textures/" + std::string(texture_filename);
+			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform Component")) {
 
+				float v_Speed = 0.1f;
 
-						diffuseTexture = new Texture(finalPath.c_str(), GL_TEXTURE_2D);
-						specularTexture = new Texture(finalPath.c_str(), GL_TEXTURE_2D);
-					
-						diffuseTexture->bind(diffuseTexture->GetId());
-						specularTexture->bind(specularTexture->GetId());
+				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("P", glm::value_ptr(tc.Position), v_Speed);
+				ImGui::Text("Rotation"); ImGui::SameLine(); ImGui::DragFloat3("R", glm::value_ptr(tc.Rotation), v_Speed);
+				ImGui::Text("Scale       "); ImGui::SameLine(); ImGui::DragFloat3("S", glm::value_ptr(tc.Scale), v_Speed);
 
-						glm::vec3 new_color = glm::vec3(material_color.x / 255.f, material_color.y / 255.f, material_color.z / 255.f);
-
-						material = new Material(ambient, diffuse, specular,
-							diffuseTexture->GetId(), specularTexture->GetId(), new_color);
-
-						scene.GetObjectById(m_ObjectId)->AddMaterial(material);
-						scene.GetObjectById(m_ObjectId)->AddTexture(diffuseTexture);
-
-						memset(texture_filename, 0, sizeof(texture_filename));
-						ambient = glm::vec3(0.0f);
-						diffuse = glm::vec3(0.0f);
-						specular = glm::vec3(0.0f);
-						ImGui::CloseCurrentPopup();
-					}
-					ImGui::SameLine();
-
-					if (ImGui::Button("Cancel")) {
-						ImGui::CloseCurrentPopup();
-					}
-
-					ImGui::EndPopup();
-				}
+				ImGui::TreePop();
 
 			}
-			else {
+		}
 
-				glm::vec3 ambient = m_Entity->GetComponent<MaterialComponent>().material.GetAmbient();
-				glm::vec3 diffuse = m_Entity->GetComponent<MaterialComponent>().material.GetDiffuse();
-				glm::vec3 specular = m_Entity->GetComponent<MaterialComponent>().material.GetSpecular();
+		if (m_Entity->HasComponent<MeshComponent>()) {
+			auto& meshComponent = m_Entity->GetComponent<MeshComponent>();
 
-				ImGui::DragFloat3("Ambient",glm::value_ptr(ambient));
-				ImGui::DragFloat3("Diffuse", glm::value_ptr(diffuse));
-				ImGui::DragFloat3("Specular",glm::value_ptr(specular));
+			if (ImGui::TreeNodeEx((void*)m_Entity->HasComponent<MeshComponent>(), ImGuiTreeNodeFlags_DefaultOpen, "Mesh Component")) {
+
+				ImGui::ColorEdit3("Color", glm::value_ptr(meshComponent.color));
+				meshComponent.SetColor();
+				
+
+				ImGui::TreePop();
+			}
+
+		}
+
+		if (m_Entity->HasComponent<MaterialComponent>()) {
+			auto& material = m_Entity->GetComponent<MaterialComponent>();
+			if (ImGui::TreeNodeEx((void*)&material, ImGuiTreeNodeFlags_DefaultOpen, "Mesh Component")) {
+
+
+				ImGui::TreePop();
+			}
+		}
+		
+		if (ImGui::Button("Add Component")) {
+			ImGui::OpenPopup("AddComponent");
+		}
+
+		if (ImGui::BeginPopup("AddComponent")) {
+
+			if (!m_Entity->HasComponent<MeshComponent>()) {
+				if (ImGui::MenuItem("Mesh Component")) {
+
+					std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
+					Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+					glm::vec3 defaultColor = { 1.0f,1.0f,1.0f };
+					m_Entity->AddComponent<MeshComponent>(mesh, defaultColor);
+					if (m_Entity->HasComponent<MeshComponent>()) {
+						
+					}
+				}
+			}
+
+			if (!m_Entity->HasComponent<TransformComponent>()) {
+				if (ImGui::MenuItem("Transform Component")) {
+					m_Entity->AddComponent<TransformComponent>();
+				}
+			}
+
+			/*if (!m_Entity.HasComponent<AnimationComponent>()) {
+				if (ImGui::MenuItem("Animation Component")) {
+					m_Entity.AddComponent<AnimationComponent>();
+				}
+			}
+
+			if (!m_Entity.HasComponent<MaterialComponent>()) {
+				if (ImGui::MenuItem("Material Component")) {
+					m_Entity.AddComponent<MaterialComponent>();
+				}
+			}*/
+
+			ImGui::EndPopup();
+		}
+
 			
-				//ImGui::Text(scene.GetObjectById(m_ObjectId)->GetTextures()[0]->GetFilename());
-			}
-
-			ImGui::TreePop();
-
-		}
 	}
-
-
+	
 	ImGui::End();
 }

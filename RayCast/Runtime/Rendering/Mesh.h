@@ -36,12 +36,15 @@ public:
 	
 	virtual ~Mesh();
 
+	void SetSolidColor(glm::vec3& color);
+
 	void OnRender(Shader & shader);
 
 private:
 	Vertex * vertices;
 	std::vector<unsigned int> indices;
 
+	glm::vec3 m_SolidColor = { 1.0f,1.0f,1.0f };
 	
 	int m_verticesCount;
 	int m_numberOfIndices;

@@ -62,11 +62,19 @@ Mesh::~Mesh()
 {
 }
 
+void Mesh::SetSolidColor(glm::vec3& color)
+{
+	m_SolidColor = color;
+}
+
 void Mesh::OnRender(Shader& shader)
 {
 	//this->ModelMatrix = glm::mat4(1.f);
 	//this->ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.5f,0.0f, 0.0f));
 	//this->ModelMatrix = glm::rotate(ModelMatrix, glm::radians(-90.f),glm::vec3(0.f,1.0f, 0.0f));
+
+	shader.use();
+	shader.SetVec3("u_Color", m_SolidColor);
 
 	glBindVertexArray(VAO);
 	if (this->m_numberOfIndices == 0)

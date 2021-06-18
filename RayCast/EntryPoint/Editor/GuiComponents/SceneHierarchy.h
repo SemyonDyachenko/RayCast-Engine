@@ -32,7 +32,7 @@ public:
 	bool HasSelectedEntity() { 
 		return HasSelected;
 	}
-	Entity GetSelectedEntity() { return m_SelectedEntity; }
+	Entity& GetSelectedEntity() { return m_SelectedEntity; }
 	void SetSelectedEntity(Entity entity) {}
 
 	void Update(float DeltaTime);

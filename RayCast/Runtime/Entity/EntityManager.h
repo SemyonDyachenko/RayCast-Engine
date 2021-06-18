@@ -22,6 +22,7 @@ public:
 		e->SetId(id);
 		e->SetName(name);
 		e->AddComponent<TransformComponent>();   
+		e->AddComponent<TagComponent>(name);
 		std::unique_ptr<Entity> uPtr{ e };
 		m_Entities.emplace_back(std::move(uPtr));
 
@@ -32,7 +33,6 @@ public:
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
 			if (m_Entities[i]->GetId() == id) {
-				std::cout << i << "\n";
 				m_Entities.erase(m_Entities.begin() + i);
 			}
 		}
@@ -43,7 +43,7 @@ public:
 	}
 
 	unsigned int GetEntitiesCount() {
-		return m_Entities.size();
+		return (unsigned int)m_Entities.size();
 	}
 
 	std::vector<std::unique_ptr<Entity>>& GetEntities() {

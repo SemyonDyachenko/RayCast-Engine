@@ -48,6 +48,9 @@ public:
 	void Update(float DeltaTime) override;
 	void Render() override;
 
+	// local
+	void SetImGuiTheme();
+
 
 private:
 	GLFWwindow* m_Window;

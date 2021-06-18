@@ -28,7 +28,7 @@ void SceneProps::Update(float DeltaTime)
 void SceneProps::Render()
 {
 	ImGuiWindowFlags window_flags = 0;
-	window_flags |= ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar;
+	window_flags |= ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoResize;
 	// etc.
 	bool open_ptr = true;
 	ImGui::Begin("Scene",&open_ptr,window_flags);

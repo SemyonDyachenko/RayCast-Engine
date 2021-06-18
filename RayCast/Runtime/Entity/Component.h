@@ -100,6 +100,10 @@ public:
 
 	AnimationComponent() = default;
 	AnimationComponent(const AnimationComponent&) = default;
+	AnimationComponent(AnimatedModel& model,Animator & animator) : model(model),animator(animator){}
+
+	void AddAnimation(std::string name,Animation& animation) {}
+	void SetAnimation(std::string name) {}
 };
 
 
@@ -107,8 +111,22 @@ class MeshComponent : public Component{
 public:
 
 	Mesh mesh;
+	glm::vec3 color;
 
 	MeshComponent() = default;
 	MeshComponent(const MeshComponent&) = default;
-	MeshComponent(Mesh& mesh) : mesh(mesh) {}
+	MeshComponent(Mesh& mesh, glm::vec3& color) : mesh(mesh), color(color) { this->mesh.SetSolidColor(this->color); }
+
+	void SetColor() {
+		this->mesh.SetSolidColor(this->color);
+	}
+};
+
+class TagComponent : public Component {
+public:
+	std::string tag;
+
+	TagComponent() = default;
+	TagComponent(const TagComponent&) = default;
+	TagComponent(std::string& tag) : tag(tag) { }
 };

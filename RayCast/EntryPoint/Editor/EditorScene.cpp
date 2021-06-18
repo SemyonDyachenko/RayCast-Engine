@@ -219,19 +219,23 @@ void EditorScene::OnRender()
 		}
 	}
 	
-	if (!m_Manager.GetEntities().empty()) {
 		for (auto& entity : m_Manager.GetEntities()) {
 			m_editorShader->use();
-			m_editorShader->SetMat4("ModelMatrix", entity->GetComponent<TransformComponent>().GetTrasnform());
+
+			if (entity->HasComponent<TransformComponent>()) {
+				m_editorShader->SetMat4("ModelMatrix", entity->GetComponent<TransformComponent>().GetTrasnform());
+			}
 
 			if (entity->HasComponent<MaterialComponent>()) {
 				m_editorShader->setBool("textured",true);
 				entity->GetComponent<MaterialComponent>().material.SetUniforms(*m_editorShader);
 			}
 
-			entity->GetComponent<MeshComponent>().mesh.OnRender(*m_editorShader);
+			if (entity->HasComponent<MeshComponent>()) {
+				entity->GetComponent<MeshComponent>().mesh.OnRender(*m_editorShader);
+			}
 		}
-	}
+
 }
 
 std::vector<EditorSceneObject*> EditorScene::GetObjects()

@@ -4,6 +4,7 @@
 SceneHierarchy::SceneHierarchy(EditorScene& scene)
 {
     m_Scene = &scene;
+    m_CountObject = scene.GetEntitiesCount();
 }
 
 void SceneHierarchy::PushObject(unsigned int id, std::string name, EditorScene& scene)
@@ -63,60 +64,102 @@ void SceneHierarchy::Update(float DeltaTime)
 
 void SceneHierarchy::Render(EditorScene& editorScene)
 {
-    std::map<int, std::string>::iterator it;
-    m_CountObject = editorScene.GetEntitiesCount();
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoMove;
+    bool open_ptr = true;
+    ImGui::Begin("Scene Hierarchy",&open_ptr,window_flags);
 
-    ImGui::Begin("Scene Hierarchy");
+    ImGuiTreeNodeFlags camera_flags =  ImGuiTreeNodeFlags_OpenOnArrow;
+
+    bool camera = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)88543223, camera_flags, "Main Camera");
+
+    if (camera)
+    {
+        ImGui::TreePop();
+    }
 
     for (auto& entity : m_Scene->GetManager().GetEntities()) {
+        if (entity) {
+            std::string name = entity->GetName();
 
-        std::string name = entity->GetName();
+            ImGuiTreeNodeFlags flags = ((entity->GetId() == m_SelectedEntity.GetId() && HasSelected) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+            flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
 
-        ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;
-        flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
+            bool opened = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)entity->GetId(), flags, entity->GetComponent<TagComponent>().tag.c_str());
 
-        bool opened = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)entity->GetId(), flags, name.c_str());
-
-        if (ImGui::IsItemClicked())
-        {
-            m_SelectedEntity = *entity;
-            HasSelected = true;
-        }
-
-        if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Delete))) {
-            if (entity->GetId() == m_SelectedEntity.GetId()) {
-                m_SelectedEntity = {};
-                HasSelected = false;
-
-                std::cout << entity->GetId() << "\n";
-
-                m_Scene->DeleteEntity(entity->GetId());
-                editorScene.RecalculateEntitiesCount();
-               
+            if (ImGui::IsItemClicked())
+            {
+                m_SelectedEntity = *entity;
+                HasSelected = true;
             }
-        }
 
-        if (ImGui::BeginPopupContextItem())
-        {
-            if (ImGui::MenuItem("Delete Entity")) {
+            bool entityDeleted = false;
+            if (ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Delete))) {
                 if (entity->GetId() == m_SelectedEntity.GetId()) {
                     m_SelectedEntity = {};
                     HasSelected = false;
+                    entityDeleted = true;
                 }
 
-                m_Scene->DeleteEntity(entity->GetId());
-                editorScene.RecalculateEntitiesCount();
-          
             }
-            ImGui::EndPopup();
+
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::MenuItem("Delete Entity")) {
+                    if (entity->GetId() == m_SelectedEntity.GetId()) {
+                        m_SelectedEntity = {};
+                        HasSelected = false;
+                    }
+                    entityDeleted = true;
+
+                }
+                ImGui::EndPopup();
+            }
+
+
+            if (opened)
+            {
+                if (entity->HasComponent<TagComponent>()) {
+                    auto& tag = entity->GetComponent<TagComponent>();
+
+                    if(ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId()+231), camera_flags, "Tag Component")) {
+                        ImGui::Text(tag.tag.c_str());
+
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<TransformComponent>()) {
+                    auto& transform = entity->GetComponent<TransformComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 232), camera_flags, "Transform Component")) {
+                        
+
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<MeshComponent>()) {
+                    auto& meshComponent = entity->GetComponent<MeshComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 233), camera_flags, "Mesh Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                ImGui::TreePop();
+            }
+
+            if (entityDeleted) {
+
+                m_Scene->DeleteEntity(entity->GetId());
+                m_Scene->RecalculateEntitiesCount();
+            }
+
         }
-    
-
-    if (opened)
-    {
-        ImGui::TreePop();
-    }   
-
     }
 
   /*  for (auto it = objects.begin(); it != objects.end();) {
@@ -180,6 +223,18 @@ void SceneHierarchy::Render(EditorScene& editorScene)
         HasSelected = false;
         m_SelectedEntity = {};
     }
+
+    if (ImGui::BeginPopupContextWindow(0,1,false))
+    {
+        if (ImGui::MenuItem("Create Entity")) {
+              
+            auto& entity = m_Scene->CreateEntity(m_Scene->GetEntitiesCount(), "New Entity");
+            m_Scene->RecalculateEntitiesCount();
+
+        }
+        ImGui::EndPopup();
+    }
+
         
 
     ImGui::End();

@@ -95,7 +95,12 @@ void ObjectAdditor::Render(EditorScene& editorScene,SceneHierarchy* sceneHierarc
 	
 		auto& entity = editorScene.CreateEntity(editorScene.GetEntitiesCount(), "Plane");
 		editorScene.RecalculateEntitiesCount();
-		entity.AddComponent<MeshComponent>(*CreateDefaultEntity(DefaultObjects::Cube,"Plane", m_ObjectsCount));
+		glm::vec3 defaultColor = { 1.0f,1.0f,1.0f };
+
+		std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
+		Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
+
+		entity.AddComponent<MeshComponent>(*mesh,defaultColor);
 
 		console->PushMessage("A new object has been added to the scene (" + std::to_string(entity.GetId()) +").", CalculateTime(), MessageStatus::Default);
 

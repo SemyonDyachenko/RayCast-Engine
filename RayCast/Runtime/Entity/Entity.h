@@ -42,6 +42,10 @@ public:
 		return *component;	
 	}
 
+	template<typename T>
+	void RemoveComponent() {
+	}
+
 
 	template<typename T>
 	T& GetComponent() const {
@@ -53,7 +57,7 @@ public:
 	void SetId(unsigned int id) { m_Id = id; }
 
 	virtual void OnUpdate(float DeltaTime) {
-
+	
 	}
 
 	bool Selected() const {

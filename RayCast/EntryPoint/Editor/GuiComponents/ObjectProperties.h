@@ -10,31 +10,23 @@ class ObjectProperties
 {	
 public:
 
-	ObjectProperties();
+	ObjectProperties(SceneHierarchy& sceneHierarchy);
 
 	virtual ~ObjectProperties();
 
 	void OnUpdate(float DeltaTime);
 
-	void OnRender(EditorScene& scene,GuiConsole & console,SceneHierarchy& sceneHierarchy);
+	void OnRender(EditorScene& scene);
 
 private:
+	SceneHierarchy* m_SceneHierarchy;
+
 	unsigned int m_ObjectId = -1;
 	EditorSceneObject* m_Object;
-
-
-
-	//material popup
-	char texture_filename[256];
 
 	glm::vec3 ambient = { 0.0f,0.0f,0.0f };
 	glm::vec3 diffuse = { 0.0f,0.0f,0.0f };
 	glm::vec3 specular = { 0.0f,0.0f,0.0f };
-
-	Texture* diffuseTexture;
-	Texture* specularTexture;
-	Material* material;
-	glm::vec3 material_color;
 };
 
 
