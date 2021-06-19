@@ -78,6 +78,16 @@ void SceneHierarchy::Render(EditorScene& editorScene)
         ImGui::TreePop();
     }
 
+    if (&editorScene.GetMainLight()) {
+        bool mainLight = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)88543224, camera_flags, "Directional Light");
+
+        if (mainLight) {
+            ImGui::TreePop();
+        }
+    }
+
+    
+
     for (auto& entity : m_Scene->GetManager().GetEntities()) {
         if (entity) {
             std::string name = entity->GetName();
@@ -149,6 +159,36 @@ void SceneHierarchy::Render(EditorScene& editorScene)
                     }
 
                 }
+
+                if (entity->HasComponent<MaterialComponent>()) {
+                    auto& meshComponent = entity->GetComponent<MaterialComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 234), camera_flags, "Material Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<DirectionalLightComponent>()) {
+                    auto& meshComponent = entity->GetComponent<DirectionalLightComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 235), camera_flags, "Direction Light Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<LightPointComponent>()) {
+                    auto& meshComponent = entity->GetComponent<LightPointComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 236), camera_flags, "Light Point Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+
+                
 
                 ImGui::TreePop();
             }

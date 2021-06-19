@@ -41,12 +41,6 @@ void GUILayer::Attach()
 
 	m_SceneSerializer = new SceneSerializer(*m_EditorScene);
 
-	lightPoint = new LightPoint(glm::vec3(0.0f,2.f,1.f));
-	lightPoint->SetColor({ 1.f,0.f,0.f });
-	lightPoint->SetPower(0.1f);
-
-	m_EditorScene->AddLightPoint(lightPoint);
-
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -72,9 +66,22 @@ void GUILayer::OnEvent()
 void GUILayer::Update(float DeltaTime)
 {
 	m_stateMachie->Update(DeltaTime);
-	if(!m_ObjectAdditor->OnPopupEvent()) {
+	const glm::vec2& mouse{ImGui::GetMousePos().x,ImGui::GetMousePos().y};
+	glm::vec2 delta = (mouse - m_InitialMousePos);
+	m_InitialMousePos = mouse;
+
+
+
+	if (ImGui::IsMouseDown(ImGuiMouseButton_Right)) {
 		m_EditorScene->UpdateMainCamera(DeltaTime);
+		m_EditorScene->GetMainCamera().MouseRotate(delta);
 	}
+
+	if (ImGui::IsKeyDown(ImGui::GetKeyIndex(ImGuiKey_V))) {
+		m_EditorScene->GetMainCamera().MousePan(delta);
+	}
+
+
 	m_SceneHierarchy->Update(DeltaTime);
 	m_Console->Update(DeltaTime);
 	m_ObjectAdditor->Update(DeltaTime);
@@ -85,7 +92,6 @@ void GUILayer::Update(float DeltaTime)
 	m_EditorScene->GetMainCamera().Zoom(io.MouseWheel*4.f);
 
 
-	
 }
 
 void GUILayer::Render()
@@ -146,6 +152,16 @@ void GUILayer::Render()
 		{
 			if (ImGui::MenuItem("Clear", "Ctrl+J")) { m_Console->Clear(); }
 			ImGui::EndMenu();
+		}
+
+		if (ImGui::BeginMenu("Game Object")) {
+			if (ImGui::MenuItem("Cube")) { }
+			if (ImGui::MenuItem("Cylinder")) { }
+			if (ImGui::MenuItem("Sphere")) { }
+			if (ImGui::MenuItem("Plane")) { }
+			if (ImGui::MenuItem("Monkey")) { }
+
+			ImGui::EndMenu();	
 		}
 
 		if (ImGui::BeginMenu("Window"))

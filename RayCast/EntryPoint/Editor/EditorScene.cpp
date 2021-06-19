@@ -182,12 +182,8 @@ void EditorScene::OnUpdate(float DeltaTime)
 	m_editorShader->use();
 	m_editorShader->SetMat4("ViewMatrix", m_MainCamera->GetViewMatrix());
 	m_editorShader->SetMat4("ProjectionMatrix", m_MainCamera->GetProjectionMatrix());
-	if (!m_LightPoint)
-		m_editorShader->SetVec3("lightPos0", m_MainCamera->GetPosition());
-	else
-		m_editorShader->SetVec3("lightPos0", m_LightPoint->GetPosition());
 
-;	m_editorShader->SetVec3("cameraPos", m_MainCamera->GetPosition());
+	m_editorShader->SetVec3("cameraPos", m_MainCamera->GetPosition());
 
 
 	if (m_Objects.size() != 0) {
@@ -218,6 +214,9 @@ void EditorScene::OnRender()
 			m_Objects[i]->Render(m_editorShader);
 		}
 	}
+
+	if (m_LightPoint)
+		m_LightPoint->SetUniforms(*m_editorShader);
 	
 		for (auto& entity : m_Manager.GetEntities()) {
 			m_editorShader->use();
@@ -227,12 +226,24 @@ void EditorScene::OnRender()
 			}
 
 			if (entity->HasComponent<MaterialComponent>()) {
+				m_editorShader->use();
 				m_editorShader->setBool("textured",true);
 				entity->GetComponent<MaterialComponent>().material.SetUniforms(*m_editorShader);
+			}
+			else {
+				m_editorShader->setBool("textured", false);
 			}
 
 			if (entity->HasComponent<MeshComponent>()) {
 				entity->GetComponent<MeshComponent>().mesh.OnRender(*m_editorShader);
+			}
+
+			if (entity->HasComponent<DirectionalLightComponent>()) {
+				entity->GetComponent<DirectionalLightComponent>().light.SetUniforms(*m_editorShader);
+			}
+
+			if (entity->HasComponent<LightPointComponent>()) {
+				entity->GetComponent<LightPointComponent>().light.SetUniforms(*m_editorShader);
 			}
 		}
 

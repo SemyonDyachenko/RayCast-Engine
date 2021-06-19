@@ -17,6 +17,8 @@ public:
 	void OnRender();
 private:
 	std::filesystem::path m_CurrentDirectory;
+	Texture * jpgTexture;
+
 };
 
 #endif

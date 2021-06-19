@@ -49,6 +49,12 @@ public:
 	void Move(EditorCameraDirection direction,float DeltaTime);
 	void Rotate(EditorCameraRotationDirection direction, float DeltaTime);
 
+	void MousePan(const glm::vec2& delta);
+	void MouseRotate(const glm::vec2& delta);
+
+	std::pair<float, float> PanSpeed() const;
+
+
 	void Zoom(float ZoomFactor);
 
 	void Recalculate();

@@ -29,7 +29,7 @@ std::string GuiConsole::MessageStatusToString(MessageStatus status)
 	switch (status)
 	{
 	case MessageStatus::Default:
-		return "Default";
+		return "Info";
 		break;
 	case MessageStatus::Warning:
 		return "Warning";

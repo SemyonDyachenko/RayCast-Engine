@@ -32,6 +32,7 @@ public:
 	std::unique_ptr<Entity>& GetEntity(unsigned int id);
 
 	void AddLightPoint(LightPoint * lightPoint);
+	LightPoint& GetMainLight() { return *m_LightPoint; }
 
 	void AddObject(EditorSceneObject* object);
 	void DeleteObject(unsigned int id);

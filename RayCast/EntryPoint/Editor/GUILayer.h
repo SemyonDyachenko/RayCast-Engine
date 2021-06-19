@@ -67,8 +67,9 @@ private:
 	int m_GizmosType = -1;
 	//std::unique_ptr<FrameBuffer> m_FrameBuffer;
 
+	glm::vec2 m_InitialMousePos;
+
 	SceneSerializer* m_SceneSerializer;
-	LightPoint* lightPoint;
 
 
 };

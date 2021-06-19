@@ -103,6 +103,46 @@ void Camera::Rotate(EditorCameraRotationDirection direction, float DeltaTime)
     Recalculate();
 }
 
+void Camera::MousePan(const glm::vec2& delta)
+{
+    auto [xSpeed, ySpeed] = PanSpeed();
+    m_Position += glm::normalize(glm::cross(m_Front, m_Up)) * delta.x * 0.01f;
+    m_Position.y += delta.y * 0.01f;
+  //  m_Position.y += 0.01f * delta.y * 1.f;
+}
+
+void Camera::MouseRotate(const glm::vec2& delta)
+{
+    float yawSign = 0.1f;
+    m_yaw += yawSign * delta.x * 0.8f;
+    m_pitch += delta.y * 0.1f;
+
+    if (m_pitch > 89.0f)
+        m_pitch = 89.0f;
+    if (m_pitch < -89.0f)
+        m_pitch = -89.0f;
+
+    glm::vec3 l_direction;
+    l_direction.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    l_direction.y = sin(glm::radians(m_pitch));
+    l_direction.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+    m_Front = glm::normalize(l_direction);
+
+    Recalculate();
+}
+
+std::pair<float, float> Camera::PanSpeed() const
+{
+    float x = std::min(1920.f / 1000.0f, 2.4f); // max = 2.4f
+    float xFactor = 0.0366f * (x * x) - 0.1778f * x + 0.3021f;
+
+    float y = std::min(1080.f / 1000.0f, 2.4f); // max = 2.4f
+    float yFactor = 0.0366f * (y * y) - 0.1778f * y + 0.3021f;
+
+    return { xFactor, yFactor };
+
+}
+
 void Camera::Zoom(float ScaleFactor)
 {
     m_fov -= ScaleFactor;

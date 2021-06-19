@@ -7,11 +7,15 @@
 #include <GL/glew.h>
 #include <iostream>
 
+
 class Texture
 {
 public:
 	Texture(const char * filename,GLenum type);
 	virtual ~Texture();
+
+	int GetWidth() const { return width; }
+	int GetHeight() const { return height; }
 
 	void bind(const GLint texture_unit);
 	void unbind();

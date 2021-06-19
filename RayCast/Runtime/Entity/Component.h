@@ -11,6 +11,8 @@
 #include "../../Animation/AnimatedModel.h"
 #include "../../Animation/Animation.h"
 #include "../../Animation/Animator.h"
+#include "../Light/LightPoint.h"
+#include "../Light/DirectionalLight.h"
 
 #define MAX_COMPONENTS 32
 
@@ -129,4 +131,42 @@ public:
 	TagComponent() = default;
 	TagComponent(const TagComponent&) = default;
 	TagComponent(std::string& tag) : tag(tag) { }
+};
+
+class CircleColliderComponent : public Component {
+public:
+	CircleColliderComponent() = default;
+	CircleColliderComponent(const CircleColliderComponent&) = default;
+
+};
+
+class BoxColliderComponent : public Component {
+public:
+	BoxColliderComponent() = default;
+	BoxColliderComponent(const BoxColliderComponent&) = default;
+
+};
+
+class RigidBodyComponent : public Component {
+public:
+	RigidBodyComponent() = default;
+	RigidBodyComponent(const RigidBodyComponent&) = default;
+
+};
+
+class DirectionalLightComponent : public Component {
+public:
+	DirectionalLight light;
+	DirectionalLightComponent() = default;
+	DirectionalLightComponent(const DirectionalLightComponent&) = default;
+	DirectionalLightComponent(DirectionalLight& light) : light(light) {}
+};
+
+class LightPointComponent : public Component {
+public:
+	LightPoint light;
+	glm::vec3 position;
+	LightPointComponent() = default;
+	LightPointComponent(const LightPointComponent&) = default;
+	LightPointComponent(LightPoint& light, glm::vec3 position) : light(light), position(position) { light.SetPosition(this->position); }
 };

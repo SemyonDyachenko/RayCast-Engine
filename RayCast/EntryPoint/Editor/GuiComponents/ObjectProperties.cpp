@@ -29,6 +29,9 @@ void ObjectProperties::OnRender(EditorScene& scene)
 	else {
 		auto& m_Entity = scene.GetEntity(m_SceneHierarchy->GetSelectedEntity().GetId());// for already components 
 
+		float v_Speed = 0.1f;
+
+
 		std::string objectName = m_Entity->GetComponent<TagComponent>().tag;
 
 		char buffer[256];
@@ -59,8 +62,6 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform Component")) {
 
-				float v_Speed = 0.1f;
-
 				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("P", glm::value_ptr(tc.Position), v_Speed);
 				ImGui::Text("Rotation"); ImGui::SameLine(); ImGui::DragFloat3("R", glm::value_ptr(tc.Rotation), v_Speed);
 				ImGui::Text("Scale       "); ImGui::SameLine(); ImGui::DragFloat3("S", glm::value_ptr(tc.Scale), v_Speed);
@@ -77,6 +78,51 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 				ImGui::ColorEdit3("Color", glm::value_ptr(meshComponent.color));
 				meshComponent.SetColor();
+
+				if (ImGui::Button("Change Model")) {
+					ImGui::OpenPopup("ChangeModel");
+				}
+
+				if (ImGui::BeginPopup("ChangeModel")) {
+					if (ImGui::MenuItem("Cube")) {
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+
+						meshComponent.mesh = mesh;
+					}
+
+					if (ImGui::MenuItem("Sphere")) {
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/sphere.obj");
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+
+						meshComponent.mesh = mesh;
+					}
+
+					if (ImGui::MenuItem("Plane")) {
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/plane.obj");
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+
+						meshComponent.mesh = mesh;
+					}
+
+					if (ImGui::MenuItem("Monkey")) {
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/monkey.obj");
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+
+						meshComponent.mesh = mesh;
+					}
+
+					if (ImGui::MenuItem("Cylinder")) {
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cylinder.obj");
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+
+						meshComponent.mesh = mesh;
+					}
+
+
+					ImGui::EndPopup();
+				}
+
 				
 
 				ImGui::TreePop();
@@ -84,9 +130,59 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 		}
 
+
+
+		if (m_Entity->HasComponent<DirectionalLightComponent>()) {
+			auto& tc = m_Entity->GetComponent<DirectionalLightComponent>();
+
+
+			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Directional Light Component")) {
+				auto& direction = tc.light.GetDirection();
+
+				ImGui::Text("Direction "); ImGui::SameLine();  ImGui::DragFloat3("D", glm::value_ptr(direction), v_Speed);
+				tc.light.SetDirection(direction);
+
+				ImGui::TreePop();
+
+			}
+		}
+
+		if (m_Entity->HasComponent<LightPointComponent>()) {
+			auto& tc = m_Entity->GetComponent<LightPointComponent>();
+
+
+			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Light Point Component")) {
+
+				tc.light.SetPosition(m_Entity->GetComponent<TransformComponent>().Position);
+				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("Lp", glm::value_ptr(tc.light.GetPosition()), v_Speed);
+
+				ImGui::TreePop();
+
+			}
+		}
+
+
 		if (m_Entity->HasComponent<MaterialComponent>()) {
 			auto& material = m_Entity->GetComponent<MaterialComponent>();
-			if (ImGui::TreeNodeEx((void*)&material, ImGuiTreeNodeFlags_DefaultOpen, "Mesh Component")) {
+			if (ImGui::TreeNodeEx((void*)&material, ImGuiTreeNodeFlags_DefaultOpen, "Material Component")) {
+
+				ImGui::Text("Basic Material");
+
+				ImGui::ColorEdit3("Color", glm::value_ptr(material.material.GetColor()));
+
+				ImGui::Text("Shininess: "); ImGui::SameLine();
+				ImGui::PushItemWidth(160);
+				ImGui::DragFloat("    ", &material.material.GetShininess(), 1.f,1.f,145.f);
+				ImGui::PopItemWidth();
+
+				ImGui::Text("Diffuse map:    "); ImGui::SameLine();
+
+				ImGui::ImageButton((void*)material.material.GetDiffuseTexture().GetId(), {45,45});
+
+				ImGui::Text("Specular map: "); ImGui::SameLine();
+
+				ImGui::ImageButton((void*)material.material.GetSpecularTexture().GetId(), { 45,45 });
+
 
 
 				ImGui::TreePop();
@@ -118,17 +214,61 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				}
 			}
 
+			if (!m_Entity->HasComponent<RigidBodyComponent>()) {
+				if (ImGui::MenuItem("RigidBody Component")) {
+					m_Entity->AddComponent<RigidBodyComponent>();
+				}
+			}
+
+			if (!m_Entity->HasComponent<BoxColliderComponent>()) {
+				if (ImGui::MenuItem("BoxCollider Component")) {
+					m_Entity->AddComponent<BoxColliderComponent>();
+				}
+			}
+
+			if (!m_Entity->HasComponent<CircleColliderComponent>()) {
+				if (ImGui::MenuItem("CircleCollider Component")) {
+					m_Entity->AddComponent<CircleColliderComponent>();
+				}
+			}
+			
+			if (!m_Entity->HasComponent<MaterialComponent>()) {
+				if (ImGui::MenuItem("Material Component")) {
+
+					Texture* diffuse = new Texture("resources/images/textures/wood1.jpg",GL_TEXTURE_2D);
+					Texture* specular = new Texture("resources/images/textures/stone.jpg",GL_TEXTURE_2D);
+
+					Material* material = new Material(diffuse,specular,32.f,glm::vec3(1.f,1.f,1.f));
+
+					m_Entity->AddComponent<MaterialComponent>(*material);
+				}
+			}
+
+			if (!m_Entity->HasComponent<DirectionalLightComponent>()) {
+				if (ImGui::MenuItem("Directional Light")) {
+					DirectionalLight* light = new DirectionalLight(glm::vec3(-1.0f),glm::vec3(0.1f, 0.3f, 0.2f), glm::vec3(0.7f, 0.42f, 0.26f), glm::vec3(0.7f, 0.7f, 0.7f),glm::vec3(1.0f));
+
+					m_Entity->AddComponent<DirectionalLightComponent>(*light);
+				}
+			}
+
+			if (!m_Entity->HasComponent<LightPointComponent>()) {
+				if (ImGui::MenuItem("Point Light")) {
+					LightPoint* light = new LightPoint(m_Entity->GetComponent<TransformComponent>().Position, glm::vec3(0.1f, 0.3f, 0.2f), glm::vec3(0.7f, 0.42f, 0.26f), glm::vec3(0.7f, 0.7f, 0.7f), glm::vec3(1.0f),1.0f, 0.09f, 0.032f);
+
+					m_Entity->AddComponent<LightPointComponent>(*light,m_Entity->GetComponent<TransformComponent>().Position);
+
+					
+				}
+			}
+
 			/*if (!m_Entity.HasComponent<AnimationComponent>()) {
 				if (ImGui::MenuItem("Animation Component")) {
 					m_Entity.AddComponent<AnimationComponent>();
 				}
-			}
-
-			if (!m_Entity.HasComponent<MaterialComponent>()) {
-				if (ImGui::MenuItem("Material Component")) {
-					m_Entity.AddComponent<MaterialComponent>();
-				}
 			}*/
+
+		
 
 			ImGui::EndPopup();
 		}

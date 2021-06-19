@@ -3,7 +3,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-
 Texture::Texture(const char * filename, GLenum type)
 {
 	this->m_Filename = filename;
