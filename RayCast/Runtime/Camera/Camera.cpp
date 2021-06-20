@@ -70,36 +70,7 @@ void Camera::Move(EditorCameraDirection direction, float DeltaTime)
 
 void Camera::Rotate(EditorCameraRotationDirection direction, float DeltaTime)
 {
-    switch (direction)
-    {
-    case EditorCameraRotationDirection::LEFT:
-        m_yaw += -35.f * DeltaTime;
-        break;
-    case EditorCameraRotationDirection::RIGHT:
-        m_yaw += 35.f * DeltaTime;
-        break;
-    case EditorCameraRotationDirection::UP:
-        m_pitch += 35.f * DeltaTime;
-        break;
-    case EditorCameraRotationDirection::DOWN:
-        m_pitch += -35.f * DeltaTime;
-        break;
-    default:
-        break;
-    }
-
-    glm::vec3 l_direction;
-    l_direction.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-    l_direction.y = sin(glm::radians(m_pitch));
-    l_direction.z = sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
-    m_Front = glm::normalize(l_direction);
-
-
-    if (m_pitch > 89.0f)
-        m_pitch = 89.0f;
-    if (m_pitch < -89.0f)
-        m_pitch = -89.0f;
-
+   
     Recalculate();
 }
 

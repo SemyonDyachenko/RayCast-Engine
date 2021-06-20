@@ -1,4 +1,5 @@
 #include "GUILayer.h"
+#include "Utils/IconsFontAwesome5.h"
 
 #pragma warning(disable : 4996) 
 #include <iomanip>
@@ -322,5 +323,9 @@ void GUILayer::SetImGuiTheme()
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
+
+	static  const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+	ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true;
+	io.Fonts->AddFontFromFileTTF("resources/fonts/fa-solid-900.ttf", 17.f, &icons_config, icons_ranges);
 }
 	

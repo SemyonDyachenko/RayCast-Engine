@@ -154,6 +154,7 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="Runtime\Rendering\Cubemap.cpp" />
     <ClCompile Include="Runtime\Light\DirectionalLight.cpp" />
     <ClCompile Include="EntryPoint\Game\Scenes\Scene.cpp" />
     <ClCompile Include="Runtime\Core\Log.cpp" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Vendor\imgui\ImSequencer.cpp" />
     <ClCompile Include="Runtime\Platform\Windows\WindowsPlatformUtils.cpp" />
+    <ClCompile Include="Runtime\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\AnimatedMesh.h" />
@@ -218,6 +220,8 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\Utils\IconsFontAwesome5.h" />
+    <ClInclude Include="Runtime\Rendering\Cubemap.h" />
     <ClInclude Include="Runtime\Light\DirectionalLight.h" />
     <ClInclude Include="Runtime\Core\Log.h" />
     <ClInclude Include="Runtime\Entity\EngineScene.h" />
@@ -286,6 +290,7 @@
     <ClInclude Include="Vendor\imgui\stb_textedit.h" />
     <ClInclude Include="Vendor\imgui\stb_truetype.h" />
     <ClInclude Include="Runtime\Platform\Windows\WindowsPlatformUtils.h" />
+    <ClInclude Include="Runtime\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

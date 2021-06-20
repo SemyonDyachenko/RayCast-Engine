@@ -7,6 +7,11 @@ void EditorScene::OnCreate()
 {
 	m_MainCamera = new Camera(glm::vec3(0.0f, 2.0f, 5.f), static_cast<float>(Game::GetWindow().GetWidth()) / static_cast<float>(Game::GetWindow().GetHeight()), glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 0.f, -1.f), 60.f, 0.1f, 1000.f);
 	m_editorShader = new Shader("resources/shaders/vertex_shader.glsl", "resources/shaders/fragment_shader.glsl");
+
+
+	m_skyboxShader = new Shader("resources/shaders/color_vertex_shader.glsl", "resources/shaders/color_fragment_shader.glsl");
+
+
 	m_EntitiesCount = m_Manager.GetEntitiesCount();
 }
 
@@ -186,6 +191,8 @@ void EditorScene::OnUpdate(float DeltaTime)
 	m_editorShader->SetVec3("cameraPos", m_MainCamera->GetPosition());
 
 
+
+
 	if (m_Objects.size() != 0) {
 		for (size_t i = 0; i < m_Objects.size(); i++) {
 			m_Objects[i]->Update(DeltaTime);
@@ -203,6 +210,7 @@ Camera& EditorScene::GetMainCamera()
 
 void EditorScene::OnRender()
 {
+
 	if (m_Objects.size() != 0) {
 		for (size_t i = 0; i < m_Objects.size(); i++) {
 			m_editorShader->use();
@@ -226,9 +234,15 @@ void EditorScene::OnRender()
 			}
 
 			if (entity->HasComponent<MaterialComponent>()) {
-				m_editorShader->use();
-				m_editorShader->setBool("textured",true);
-				entity->GetComponent<MaterialComponent>().material.SetUniforms(*m_editorShader);
+				auto& materialComponent = entity->GetComponent<MaterialComponent>();
+				if (materialComponent.material.IsActive()) {
+					m_editorShader->use();
+					m_editorShader->setBool("textured", true);
+					materialComponent.material.SetUniforms(*m_editorShader);
+				}
+				else {
+					m_editorShader->setBool("textured", false);
+				}
 			}
 			else {
 				m_editorShader->setBool("textured", false);

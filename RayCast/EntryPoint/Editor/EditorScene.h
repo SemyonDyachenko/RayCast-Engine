@@ -7,6 +7,7 @@
 #include "../../Runtime/Camera/Camera.h"
 #include "../../Runtime/Rendering/Shader.h"
 #include "../../Runtime/Rendering/Model.h"
+#include "../../Runtime/Rendering/Cubemap.h"
 #include "../../Runtime/Rendering/FrameBuffer.h"
 #include "../../Vendor/imgui/imgui.h"
 //#include "../../Vendor/imgui/imgui_impl_glfw.h"
@@ -61,7 +62,11 @@ public:
 private:
 	Camera* m_MainCamera;
 	Shader* m_editorShader;
+	Shader* m_skyboxShader;
 	std::vector<EditorSceneObject*> m_Objects;
+
+
+
 	unsigned int m_ObjectCount;
 	LightPoint* m_LightPoint;
 

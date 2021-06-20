@@ -5,6 +5,7 @@
 #include <filesystem>
 
 
+#include "../Utils/IconsFontAwesome5.h"
 
 #include "SceneHierarchy.h"
 

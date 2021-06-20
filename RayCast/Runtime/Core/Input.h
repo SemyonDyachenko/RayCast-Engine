@@ -3,6 +3,7 @@
 
 #include <GL/glew.h>
 #include <iostream>
+#include <glm.hpp>
 
 #define INPUT_GAMEPAD_DRAP_UP 0x0001
 #define INPUT_GAMEPAD_DRAP_DOWN 0x0002
@@ -57,22 +58,41 @@
 #define INPUT_KEY_Y 89
 #define INPUT_KEY_Z 90
 
-typedef struct _INPUT_GAMEPAD {
-	unsigned int wButtons;
-	GLbyte bLeftTrigger;
-	GLbyte bRightTrigger;
-	short sThumbLX;
-	short sThumbLY;
-	short sThumbRX;
-	short sThumbRY;
-} INPUT_GAMEPAD;
+namespace Gamepad
+{
+
+	enum Axis {
+		X, Y, Z, R,
+		U, V,
+		PovX, PovY
+	};
+}
+
+
+class Input {
+public:
+
+	Input(const Input&) = delete;
+
+	virtual ~Input() = default;
+
+
+    static bool IsKeyPressed(int key);
 	
+    static bool IsMouseButtonPressed(int button);
 
-typedef struct _INPUT_KEYBOARD {
-	
+    static glm::vec2 GetMousePosition();
 
-} INPUT_KEYBOARD;
+    static bool GamepadIsConnected(unsigned int gamepad);
 
+    static bool GamepadHasAxis(unsigned int gamepad, Gamepad::Axis axis);
+
+    static bool GamepadIsButtonPressed(unsigned int gamepad, unsigned int button);
+
+	static float GamepadGetAxisPosition(unsigned int gamepad, Gamepad::Axis axis);
+
+
+};
 
 
 #endif

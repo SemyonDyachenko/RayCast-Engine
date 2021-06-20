@@ -10,11 +10,21 @@
 class Material
 {
 public:
+	Material();
 	Material(Texture * diffuseTexture,Texture * specularTexture,float shininess,glm::vec3 color);
 	virtual ~Material();
 
 	Texture& GetDiffuseTexture();
 	Texture& GetSpecularTexture();
+
+	void AddDiffuseTexture(Texture * diffuse);
+	void AddSpecularTexture(Texture* specular);
+
+	bool& IsActive();
+	bool& IsVisisble();
+
+	void Enable();
+	void Disable();
 	
 	float& GetShininess();
 
@@ -27,6 +37,9 @@ private:
 	float m_Shininess;
 	Texture* m_iDiffuseTexture;
 	Texture* m_iSpecularTexture;
+
+	bool m_Active = false;
+	bool m_Visibility = true;
 	
 };
 

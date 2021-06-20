@@ -51,7 +51,7 @@ void ContentBrowserPanel::OnRender()
 	ImGui::Begin("Content Browser");
 
 	if (m_CurrentDirectory != std::filesystem::path(s_AssetsPath)) {
-		if (ImGui::Button("<-")) {
+		if (ImGui::Button(ICON_FA_ARROW_LEFT)) {
 			m_CurrentDirectory = m_CurrentDirectory.parent_path();
 		}
 	}
@@ -63,36 +63,41 @@ void ContentBrowserPanel::OnRender()
 		std::string filenameString = relativePath.filename().string();
 
 		if (it.is_directory()) {
+
 			
+			ImGui::Button(ICON_FA_FOLDER);
+
+			ImGui::SameLine();
+	
 			if (ImGui::Button(filenameString.c_str())) {
 				m_CurrentDirectory /= path.filename();
 			}
-			ImGui::SameLine();
 
+			
+			
 		}
 		else {
-			if (path.extension().string() == ".jpg" || path.extension().string() == ".png") {
-				std::string texturePath = path.string();
+			std::string texturePath = path.string();
 
-				GLuint id = 0;
-				int width = 0, height = 0;
-				LoadTextureImGui(texturePath.c_str(), &id, &width, &height);
-				
-				if (ImGui::ImageButton((void*)(id), { 55,55 }, ImVec2(55.f / width, 55.f / height),ImVec2(1,1))) {
+			GLuint id = 0;
+			int width = 0, height = 0;
+			//LoadTextureImGui(texturePath.c_str(), &id, &width, &height);		
 
-				}
-			}
-			else {
-				std::string q = path.extension().string();
-				if (ImGui::Button(q.c_str())) {
+			std::string filename = path.filename().string();
 
-				}
-			}
+
+			ImGui::Button(ICON_FA_FILE);
 			ImGui::SameLine();
-		}
+			if (ImGui::Button(filename.c_str())) {
 
+			}
+
+		}
 	}
 
 	ImGui::End();
 
 }
+
+	
+

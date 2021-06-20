@@ -6,6 +6,8 @@
 #include "GuiConsole.h"
 #include "SceneHierarchy.h"
 
+#include <filesystem>
+
 class ObjectProperties
 {	
 public:
@@ -13,6 +15,8 @@ public:
 	ObjectProperties(SceneHierarchy& sceneHierarchy);
 
 	virtual ~ObjectProperties();
+
+	std::string GetTexturePath();
 
 	void OnUpdate(float DeltaTime);
 

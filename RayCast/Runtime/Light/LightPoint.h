@@ -26,6 +26,10 @@ public:
 	glm::vec3& GetAmbient() { return m_Ambient; }
 	glm::vec3& GetSpecular() { return m_Specular; }
 
+	float& GetConstant() { return m_Constant; }
+	float& GetLinear() { return m_Linear; }
+	float& GetQuadratic() { return m_Quadratic; }
+
 	void SetUniforms(Shader& shader);
 
 private:

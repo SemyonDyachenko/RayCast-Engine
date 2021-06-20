@@ -1,4 +1,7 @@
 #include "ObjectProperties.h"
+#include "../../../Runtime/Core/Input.h"
+#include "../../../Runtime/Utils/PlatformUtils.h"
+
 
 ObjectProperties::ObjectProperties(SceneHierarchy& sceneHierarchy)
 {
@@ -8,6 +11,17 @@ ObjectProperties::ObjectProperties(SceneHierarchy& sceneHierarchy)
 
 ObjectProperties::~ObjectProperties()
 {
+}
+
+std::string ObjectProperties::GetTexturePath()
+{
+	std::string pathStdString = FileDialogs::OpenFile("Image File (*.jpg)\0*.jpg\0(*.png)\0*.png\0");
+	const std::filesystem::path systemPath = pathStdString;
+	const std::string filename = systemPath.filename().string();
+
+	std::string texturePath = "resources/images/textures/" + filename;
+
+	return texturePath;
 }
 
 void ObjectProperties::OnUpdate(float DeltaTime)
@@ -62,9 +76,9 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform Component")) {
 
-				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("P", glm::value_ptr(tc.Position), v_Speed);
-				ImGui::Text("Rotation"); ImGui::SameLine(); ImGui::DragFloat3("R", glm::value_ptr(tc.Rotation), v_Speed);
-				ImGui::Text("Scale       "); ImGui::SameLine(); ImGui::DragFloat3("S", glm::value_ptr(tc.Scale), v_Speed);
+				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("##tposition", glm::value_ptr(tc.Position), v_Speed);
+				ImGui::Text("Rotation"); ImGui::SameLine(); ImGui::DragFloat3("##trotation", glm::value_ptr(tc.Rotation), v_Speed);
+				ImGui::Text("Scale       "); ImGui::SameLine(); ImGui::DragFloat3("##tscale", glm::value_ptr(tc.Scale), v_Speed);
 
 				ImGui::TreePop();
 
@@ -106,7 +120,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 					}
 
 					if (ImGui::MenuItem("Monkey")) {
-						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/monkey.obj");
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/models/assets/skel.obj");
 						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
 
 						meshComponent.mesh = mesh;
@@ -130,8 +144,6 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 		}
 
-
-
 		if (m_Entity->HasComponent<DirectionalLightComponent>()) {
 			auto& tc = m_Entity->GetComponent<DirectionalLightComponent>();
 
@@ -139,7 +151,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Directional Light Component")) {
 				auto& direction = tc.light.GetDirection();
 
-				ImGui::Text("Direction "); ImGui::SameLine();  ImGui::DragFloat3("D", glm::value_ptr(direction), v_Speed);
+				ImGui::Text("Direction"); ImGui::SameLine();  ImGui::DragFloat3("##directionlight", glm::value_ptr(direction), v_Speed);
 				tc.light.SetDirection(direction);
 
 				ImGui::TreePop();
@@ -154,7 +166,11 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			if (ImGui::TreeNodeEx((void*)typeid(tc).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Light Point Component")) {
 
 				tc.light.SetPosition(m_Entity->GetComponent<TransformComponent>().Position);
-				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("Lp", glm::value_ptr(tc.light.GetPosition()), v_Speed);
+				ImGui::Text("Position   "); ImGui::SameLine();  ImGui::DragFloat3("##position", glm::value_ptr(tc.light.GetPosition()), v_Speed);
+				
+				ImGui::Text("Constant "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat("##const", &tc.light.GetConstant(), v_Speed); ImGui::PopItemWidth();
+				ImGui::Text("Linear       "); ImGui::SameLine(); ImGui::PushItemWidth(160); ImGui::DragFloat("##linear", &tc.light.GetLinear(), v_Speed/10); ImGui::PopItemWidth();
+				ImGui::Text("Quadratic"); ImGui::SameLine();  ImGui::PushItemWidth(160); ImGui::DragFloat("##quadratic", &tc.light.GetQuadratic(), v_Speed/100); ImGui::PopItemWidth();
 
 				ImGui::TreePop();
 
@@ -172,18 +188,35 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 				ImGui::Text("Shininess: "); ImGui::SameLine();
 				ImGui::PushItemWidth(160);
-				ImGui::DragFloat("    ", &material.material.GetShininess(), 1.f,1.f,145.f);
+				ImGui::DragFloat("    ", &material.material.GetShininess(), 1.f, 1.f, 145.f);
 				ImGui::PopItemWidth();
 
-				ImGui::Text("Diffuse map:    "); ImGui::SameLine();
-
-				ImGui::ImageButton((void*)material.material.GetDiffuseTexture().GetId(), {45,45});
-
-				ImGui::Text("Specular map: "); ImGui::SameLine();
-
-				ImGui::ImageButton((void*)material.material.GetSpecularTexture().GetId(), { 45,45 });
 
 
+				if (material.material.IsActive()) {
+					ImGui::Text("Diffuse map:    "); ImGui::SameLine();
+
+					ImGui::ImageButton((void*)material.material.GetDiffuseTexture().GetId(), { 45,45 });
+
+					ImGui::Text("Specular map: "); ImGui::SameLine();
+
+					ImGui::ImageButton((void*)material.material.GetSpecularTexture().GetId(), { 45,45 });
+				}
+				else {
+					ImGui::Text("Diffuse map:    "); ImGui::SameLine();
+
+					if (ImGui::Button("Add Diffuse map")) {
+						material.material.AddDiffuseTexture(new Texture(GetTexturePath().c_str(),GL_TEXTURE_2D));
+					}
+
+					ImGui::Text("Specular map: "); ImGui::SameLine();
+
+					if (ImGui::Button("Add Specular map")) {
+						material.material.AddSpecularTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+
+						material.material.Enable();
+					}
+				}
 
 				ImGui::TreePop();
 			}
@@ -235,13 +268,16 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			if (!m_Entity->HasComponent<MaterialComponent>()) {
 				if (ImGui::MenuItem("Material Component")) {
 
-					Texture* diffuse = new Texture("resources/images/textures/wood1.jpg",GL_TEXTURE_2D);
-					Texture* specular = new Texture("resources/images/textures/stone.jpg",GL_TEXTURE_2D);
+					Texture* diffuse = new Texture("resources/images/textures/skull.jpg",GL_TEXTURE_2D);
+					Texture* specular = new Texture("resources/images/textures/skull.jpg",GL_TEXTURE_2D);
 
-					Material* material = new Material(diffuse,specular,32.f,glm::vec3(1.f,1.f,1.f));
+					Material* material = new Material();
+
 
 					m_Entity->AddComponent<MaterialComponent>(*material);
+
 				}
+
 			}
 
 			if (!m_Entity->HasComponent<DirectionalLightComponent>()) {
