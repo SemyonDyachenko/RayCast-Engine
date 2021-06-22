@@ -24,6 +24,11 @@ public:
 
 	bool& OnPopupEvent();
 
+	Mesh* AddMesh(DefaultObjects object);
+
+	void AddEntity(DefaultObjects object,std::string name,EditorScene& target,GuiConsole & console);
+	void AddEntity(std::string meshPath,std::string name,EditorScene& target,GuiConsole & console);
+
 	void AddObjectToScene(int id,DefaultObjects index,std::string name, EditorScene& editorScene, SceneHierarchy* sceneHierarchy, GuiConsole* console);
 
 	void Render(EditorScene & editorScene,SceneHierarchy* sceneHierarchy,GuiConsole* console);

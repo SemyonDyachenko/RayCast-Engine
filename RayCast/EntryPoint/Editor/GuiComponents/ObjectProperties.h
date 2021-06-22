@@ -27,6 +27,7 @@ private:
 
 	unsigned int m_ObjectId = -1;
 	EditorSceneObject* m_Object;
+	Texture* m_Transparent;
 
 	glm::vec3 ambient = { 0.0f,0.0f,0.0f };
 	glm::vec3 diffuse = { 0.0f,0.0f,0.0f };

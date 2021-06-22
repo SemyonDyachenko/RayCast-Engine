@@ -131,7 +131,7 @@ void GUILayer::Render()
 		{
 			if (ImGui::MenuItem("Open..", "Ctrl+O")) 
 			{
-				std::string path = FileDialogs::OpenFile("RayCast Scene (*.obj)\0*.obj\0");
+				std::string path = FileDialogs::OpenFile("RayCast Scene (*.raycast)\0*.raycast\0");
 
 
 			}
@@ -156,11 +156,26 @@ void GUILayer::Render()
 		}
 
 		if (ImGui::BeginMenu("Game Object")) {
-			if (ImGui::MenuItem("Cube")) { }
-			if (ImGui::MenuItem("Cylinder")) { }
-			if (ImGui::MenuItem("Sphere")) { }
-			if (ImGui::MenuItem("Plane")) { }
-			if (ImGui::MenuItem("Monkey")) { }
+			if (ImGui::MenuItem("Cube")) {
+				m_ObjectAdditor->AddEntity(DefaultObjects::Cube, "Cube", *m_EditorScene, *m_Console);
+			}
+			if (ImGui::MenuItem("Cylinder")) { 
+				m_ObjectAdditor->AddEntity(DefaultObjects::Cylinder, "Cylinder", *m_EditorScene, *m_Console);
+			}
+			if (ImGui::MenuItem("Sphere")) { 
+				m_ObjectAdditor->AddEntity(DefaultObjects::Sphere, "Sphere", *m_EditorScene, *m_Console);
+			}
+			if (ImGui::MenuItem("Plane")) {
+				m_ObjectAdditor->AddEntity(DefaultObjects::Plane, "Plane", *m_EditorScene, *m_Console);
+			}
+			if (ImGui::MenuItem("Monkey")) { 
+				m_ObjectAdditor->AddEntity(DefaultObjects::Monkey, "Monkey", *m_EditorScene, *m_Console);
+			}
+			if (ImGui::MenuItem("Static Mesh")) {
+				// change for release
+				std::string path = FileDialogs::OpenFile("RayCast Scene (*.obj)\0*.obj\0");
+				m_ObjectAdditor->AddEntity(path, "New Entity", *m_EditorScene, *m_Console);
+			}
 
 			ImGui::EndMenu();	
 		}

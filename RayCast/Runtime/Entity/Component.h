@@ -21,6 +21,7 @@
 #include "../Rendering/Mesh.h"
 
 #include "Entity.h"
+#include "../PhysicsEngine/BoxCollider.h"
 
 inline size_t GetComponentTypeID() {
 	static size_t lastID = 0;
@@ -59,6 +60,11 @@ public:
 		glm::mat4 rotation = glm::toMat4(glm::quat(Rotation));
 
 		return glm::translate(glm::mat4(1.f), Position) * rotation * glm::scale(glm::mat4(1.0f), Scale);
+	}
+
+	glm::quat GetQuatRotation() {
+		glm::quat rotation = glm::quat(Rotation);
+		return rotation;
 	}
 };
 
@@ -142,8 +148,15 @@ public:
 
 class BoxColliderComponent : public Component {
 public:
+	BoxCollider collider;
+
 	BoxColliderComponent() = default;
 	BoxColliderComponent(const BoxColliderComponent&) = default;
+	BoxColliderComponent(glm::vec3 size, glm::vec3 position, glm::quat rotation) {
+		collider.Size = size;
+		collider.Position = position;
+		collider.Rotation = rotation;
+	}
 
 };
 

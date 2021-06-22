@@ -7,6 +7,7 @@ ObjectProperties::ObjectProperties(SceneHierarchy& sceneHierarchy)
 {
 	m_Object = nullptr;
 	m_SceneHierarchy = &sceneHierarchy;
+	m_Transparent = new Texture("resources/images/editor/transparentbg.jpg", GL_TEXTURE_2D);
 }
 
 ObjectProperties::~ObjectProperties()
@@ -120,7 +121,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 					}
 
 					if (ImGui::MenuItem("Monkey")) {
-						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/models/assets/skel.obj");
+						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/monkey.obj");
 						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
 
 						meshComponent.mesh = mesh;
@@ -154,6 +155,10 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				ImGui::Text("Direction"); ImGui::SameLine();  ImGui::DragFloat3("##directionlight", glm::value_ptr(direction), v_Speed);
 				tc.light.SetDirection(direction);
 
+				ImGui::Text("Ambient   "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##ambientdir", glm::value_ptr(tc.light.GetAmbient()), v_Speed); ImGui::PopItemWidth();
+				ImGui::Text("Diffuse     "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##diffusedir", glm::value_ptr(tc.light.GetDiffuse()), v_Speed); ImGui::PopItemWidth();
+				ImGui::Text("Specular  "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##speculardir", glm::value_ptr(tc.light.GetSpecular()), v_Speed); ImGui::PopItemWidth();
+
 				ImGui::TreePop();
 
 			}
@@ -172,9 +177,27 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				ImGui::Text("Linear       "); ImGui::SameLine(); ImGui::PushItemWidth(160); ImGui::DragFloat("##linear", &tc.light.GetLinear(), v_Speed/10); ImGui::PopItemWidth();
 				ImGui::Text("Quadratic"); ImGui::SameLine();  ImGui::PushItemWidth(160); ImGui::DragFloat("##quadratic", &tc.light.GetQuadratic(), v_Speed/100); ImGui::PopItemWidth();
 
+				ImGui::Text("Ambient   "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##ambientpoint", glm::value_ptr(tc.light.GetAmbient()), v_Speed); ImGui::PopItemWidth();
+				ImGui::Text("Diffuse     "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##diffusepoint", glm::value_ptr(tc.light.GetDiffuse()), v_Speed); ImGui::PopItemWidth();
+				ImGui::Text("Specular  "); ImGui::SameLine(); 	ImGui::PushItemWidth(160); ImGui::DragFloat3("##specularpoint", glm::value_ptr(tc.light.GetSpecular()), v_Speed); ImGui::PopItemWidth();
+
 				ImGui::TreePop();
 
 			}
+		}
+
+		if (m_Entity->HasComponent<BoxColliderComponent>()) {
+			auto& boxCollider = m_Entity->GetComponent<BoxColliderComponent>();
+			if (ImGui::TreeNodeEx((void*)typeid(boxCollider).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Box Collider Component")) {
+
+				ImGui::Text("Size          "); ImGui::SameLine();  ImGui::DragFloat3("##boxcollidersize", glm::value_ptr(boxCollider.collider.Size), v_Speed);
+				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("##boxcolliderposition", glm::value_ptr(boxCollider.collider.Position), v_Speed);
+				ImGui::Text("Rotation"); ImGui::SameLine();  ImGui::DragFloat3("##boxcolliderrotation", glm::value_ptr(boxCollider.collider.Position), v_Speed);
+
+				ImGui::TreePop();
+
+			}
+
 		}
 
 
@@ -191,30 +214,53 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				ImGui::DragFloat("    ", &material.material.GetShininess(), 1.f, 1.f, 145.f);
 				ImGui::PopItemWidth();
 
+				if (!material.material.IsTextured()) {
+					if (ImGui::TreeNodeEx((void*)323243242463, ImGuiTreeNodeFlags_DefaultOpen, "Diffuse map")) {
+						if (ImGui::ImageButton((void*)m_Transparent->GetId(), { 55,55 })) {
+							material.material.AddDiffuseTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+						}
+						ImGui::SameLine();
+						ImGui::Text("Use  "); ImGui::SameLine();
+						ImGui::Checkbox("##materialdiffuseused", &material.material.IsTextured());
 
-
-				if (material.material.IsActive()) {
-					ImGui::Text("Diffuse map:    "); ImGui::SameLine();
-
-					ImGui::ImageButton((void*)material.material.GetDiffuseTexture().GetId(), { 45,45 });
-
-					ImGui::Text("Specular map: "); ImGui::SameLine();
-
-					ImGui::ImageButton((void*)material.material.GetSpecularTexture().GetId(), { 45,45 });
-				}
-				else {
-					ImGui::Text("Diffuse map:    "); ImGui::SameLine();
-
-					if (ImGui::Button("Add Diffuse map")) {
-						material.material.AddDiffuseTexture(new Texture(GetTexturePath().c_str(),GL_TEXTURE_2D));
+						ImGui::TreePop();
 					}
 
-					ImGui::Text("Specular map: "); ImGui::SameLine();
+					if (ImGui::TreeNodeEx((void*)324324324324324, ImGuiTreeNodeFlags_DefaultOpen, "Specular map")) {
+						if(ImGui::ImageButton((void*)m_Transparent->GetId(), { 55,55 }))  {
+							material.material.AddSpecularTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+							material.material.Textured();
+							material.material.Enable();
+						}
+						ImGui::SameLine();
+						ImGui::Text("Use  "); ImGui::SameLine();
+						ImGui::Checkbox("##materialspecularused", &material.material.IsTextured());
 
-					if (ImGui::Button("Add Specular map")) {
-						material.material.AddSpecularTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+						ImGui::TreePop();
+					}
+				}
+				
+				else {
+					if (ImGui::TreeNodeEx((void*)3232432424634, ImGuiTreeNodeFlags_DefaultOpen, "Diffuse map")) {
+						if (ImGui::ImageButton((void*)material.material.GetDiffuseTexture().GetId(), { 55,55 })) {
+							material.material.AddDiffuseTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+						}
+						ImGui::SameLine();
+						ImGui::Text("Use  "); ImGui::SameLine();
+						ImGui::Checkbox("##materialdiffuseused", &material.material.IsTextured());
 
-						material.material.Enable();
+						ImGui::TreePop();
+					}
+
+					if (ImGui::TreeNodeEx((void*)3243243243243244, ImGuiTreeNodeFlags_DefaultOpen, "Specular map")) {
+						if (ImGui::ImageButton((void*)material.material.GetSpecularTexture().GetId(), { 55,55 })) {
+							material.material.AddSpecularTexture(new Texture(GetTexturePath().c_str(), GL_TEXTURE_2D));
+						}
+						ImGui::SameLine();
+						ImGui::Text("Use  "); ImGui::SameLine();
+						ImGui::Checkbox("##materialspecularused", &material.material.IsTextured());
+
+						ImGui::TreePop();
 					}
 				}
 
@@ -255,7 +301,10 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 			if (!m_Entity->HasComponent<BoxColliderComponent>()) {
 				if (ImGui::MenuItem("BoxCollider Component")) {
-					m_Entity->AddComponent<BoxColliderComponent>();
+					if (m_Entity->HasComponent<TransformComponent>()) {
+						auto& transform = m_Entity->GetComponent<TransformComponent>();
+						m_Entity->AddComponent<BoxColliderComponent>(transform.Scale,transform.Position,transform.GetQuatRotation());
+					}
 				}
 			}
 

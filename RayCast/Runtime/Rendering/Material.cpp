@@ -81,8 +81,10 @@ void Material::SetUniforms(Shader & shader)
 			m_iDiffuseTexture->bind(m_iDiffuseTexture->GetId());
 			m_iSpecularTexture->bind(m_iSpecularTexture->GetId());
 
+			if(m_Textured) {
 			shader.setInt("material.diffuseTexture", m_iDiffuseTexture->GetId());
 			shader.setInt("material.specularTexture", m_iSpecularTexture->GetId());
+			}
 			shader.setFloat("material.shininess", m_Shininess);
 			shader.SetVec3("material.color", m_Color);
 		}

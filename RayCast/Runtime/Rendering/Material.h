@@ -25,6 +25,9 @@ public:
 
 	void Enable();
 	void Disable();
+
+	void Textured() { m_Textured = true; }
+	bool& IsTextured() { return m_Textured; }
 	
 	float& GetShininess();
 
@@ -40,6 +43,7 @@ private:
 
 	bool m_Active = false;
 	bool m_Visibility = true;
+	bool m_Textured = false;
 	
 };
 

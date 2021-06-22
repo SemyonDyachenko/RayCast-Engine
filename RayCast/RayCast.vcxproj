@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -154,6 +154,11 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="Runtime\PhysicsEngine\BoxCollider.cpp" />
+    <ClCompile Include="Runtime\PhysicsEngine\DynamicWorld.cpp" />
+    <ClCompile Include="Runtime\PhysicsEngine\RigidBody.cpp" />
+    <ClCompile Include="Runtime\PhysicsEngine\CollisionWorld.cpp" />
+    <ClCompile Include="Runtime\PhysicsEngine\Collider.cpp" />
     <ClCompile Include="Runtime\Rendering\Cubemap.cpp" />
     <ClCompile Include="Runtime\Light\DirectionalLight.cpp" />
     <ClCompile Include="EntryPoint\Game\Scenes\Scene.cpp" />
@@ -220,6 +225,12 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\CollisionPoint.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\DynamicWorld.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\RigidBody.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\CollisionWorld.h" />
+    <ClInclude Include="Runtime\PhysicsEngine\Collider.h" />
     <ClInclude Include="EntryPoint\Editor\Utils\IconsFontAwesome5.h" />
     <ClInclude Include="Runtime\Rendering\Cubemap.h" />
     <ClInclude Include="Runtime\Light\DirectionalLight.h" />
