@@ -24,7 +24,7 @@ public:
 
 	void Update(float DeltaTime);
 
-	void Render();
+	void Render(EditorScene& scene);
 private:
 	TransformMode m_TransformMode;
 	int m_GizmosType = -1;

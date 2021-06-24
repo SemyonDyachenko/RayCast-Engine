@@ -1,3 +1,4 @@
+#include "../stdafx.h"
 #include "../Runtime/Core/Game.h"
 #include "../Runtime/Core/Core.h"
 #include "../Runtime/Core/Log.h"

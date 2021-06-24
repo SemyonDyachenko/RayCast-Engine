@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "Window.h"
 
 #ifdef _WIN32

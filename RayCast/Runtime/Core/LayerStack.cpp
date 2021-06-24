@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "LayerStack.h"
 
 LayerStack::~LayerStack()

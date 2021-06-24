@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "Cubemap.h"
 
 #include "stb_image.h"

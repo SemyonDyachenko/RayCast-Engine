@@ -1,5 +1,7 @@
+#include "../../../stdafx.h"
 #include "SceneProps.h"
 #include "../../../Vendor/imgui/ImGuizmo.h"
+#include "../Utils/IconsFontAwesome5.h"
 
 SceneProps::SceneProps()
 {
@@ -25,7 +27,7 @@ void SceneProps::Update(float DeltaTime)
 {
 }
 
-void SceneProps::Render()
+void SceneProps::Render(EditorScene & scene)
 {
 	ImGuiWindowFlags window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoResize;
@@ -48,6 +50,24 @@ void SceneProps::Render()
 	if (ImGui::Button("Scale")) {
 		m_GizmosType = ImGuizmo::SCALE;
 	}
+	ImGui::SameLine();
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.25f, 0.25f, 0.25f, 0.00f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.25f, 0.25f, 0.25f, 0.00f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.25f, 0.25f, 0.25f, 0.00f));
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 1.f, 1.f, 1.00f));
+	if (ImGui::Button(ICON_FA_PLAY)) {
+		scene.SimulatePhysics();
+	}
+	ImGui::SameLine();
+	if (ImGui::Button(ICON_FA_PAUSE)) {
+		scene.StopSimulatePhyiscs();
+	}
+	ImGui::PopStyleColor();
+	ImGui::PopStyleColor();
+	ImGui::PopStyleColor();
+	ImGui::PopStyleColor();
+
+
 	
 	ImGui::SameLine();
 

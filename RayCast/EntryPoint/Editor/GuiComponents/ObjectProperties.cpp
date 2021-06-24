@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "ObjectProperties.h"
 #include "../../../Runtime/Core/Input.h"
 #include "../../../Runtime/Utils/PlatformUtils.h"
@@ -70,7 +71,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			}
 
 		}
-		
+		 
 		if (m_Entity->HasComponent<TransformComponent>()) {
 			auto& tc = m_Entity->GetComponent<TransformComponent>();
 
@@ -194,12 +195,59 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				ImGui::Text("Position "); ImGui::SameLine();  ImGui::DragFloat3("##boxcolliderposition", glm::value_ptr(boxCollider.collider.Position), v_Speed);
 				ImGui::Text("Rotation"); ImGui::SameLine();  ImGui::DragFloat3("##boxcolliderrotation", glm::value_ptr(boxCollider.collider.Position), v_Speed);
 
+				boxCollider.collider.Position = m_Entity->GetComponent<TransformComponent>().Position;
+				boxCollider.collider.Size = m_Entity->GetComponent<TransformComponent>().Scale;
+				boxCollider.collider.Rotation = m_Entity->GetComponent<TransformComponent>().GetQuatRotation();
+
 				ImGui::TreePop();
 
 			}
 
 		}
 
+		if (m_Entity->HasComponent<CircleColliderComponent>()) {
+			auto& circleCollider = m_Entity->GetComponent<CircleColliderComponent>();
+			if (ImGui::TreeNodeEx((void*)typeid(circleCollider).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Circle Collider Component")) {
+
+				ImGui::Text("Radius "); ImGui::SameLine();  ImGui::DragFloat("##circlecolliderradius", &circleCollider.collider.Radius, v_Speed);
+				ImGui::Text("Center "); ImGui::SameLine();  ImGui::DragFloat3("##circlecollidercenter", glm::value_ptr(circleCollider.collider.Center), v_Speed);
+
+				circleCollider.collider.Center = m_Entity->GetComponent<TransformComponent>().Position;
+				circleCollider.collider.Radius = m_Entity->GetComponent<TransformComponent>().Scale.x/2.0f;
+
+				ImGui::TreePop();
+
+			}
+
+		}
+
+		if (m_Entity->HasComponent<RigidBodyComponent>()) {
+			auto& rb = m_Entity->GetComponent<RigidBodyComponent>();
+			if (ImGui::TreeNodeEx((void*)typeid(rb).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "RigidBody Component")) {
+
+				//ImGui::Text("Radius "); ImGui::SameLine();  ImGui::DragFloat("##circlecolliderradius", &circleCollider.collider.Radius, v_Speed);
+				//ImGui::Text("Center "); ImGui::SameLine();  ImGui::DragFloat3("##circlecollidercenter", glm::value_ptr(circleCollider.collider.Center), v_Speed);
+
+				ImGui::Text("Gravity  "); ImGui::SameLine();
+				ImGui::Checkbox("##rigidbodygravity", &rb.rigidbody.m_isDynamic);
+
+				ImGui::Text("Position  "); ImGui::SameLine();
+				ImGui::DragFloat3("##rigidbodyposition", glm::value_ptr(rb.rigidbody.Position));
+
+				if (!scene.IsPhysicsSimulation()) {
+					rb.rigidbody.Position = m_Entity->GetComponent<TransformComponent>().Position;
+					rb.rigidbody.boxCollider->Size = m_Entity->GetComponent<TransformComponent>().Scale;
+					rb.rigidbody.boxCollider->Rotation = m_Entity->GetComponent<TransformComponent>().Rotation;
+					rb.rigidbody.boxCollider = &m_Entity->GetComponent<BoxColliderComponent>().collider;
+				}
+
+				ImGui::TreePop();
+
+
+
+			}
+
+		}
 
 		if (m_Entity->HasComponent<MaterialComponent>()) {
 			auto& material = m_Entity->GetComponent<MaterialComponent>();
@@ -295,7 +343,18 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 			if (!m_Entity->HasComponent<RigidBodyComponent>()) {
 				if (ImGui::MenuItem("RigidBody Component")) {
-					m_Entity->AddComponent<RigidBodyComponent>();
+					if (m_Entity->HasComponent<CircleColliderComponent>()) {
+						auto& cc = m_Entity->GetComponent<CircleColliderComponent>().collider;
+						RigidBody* rb = new RigidBody(&cc,1.0f, 1.0f, 1.0f, glm::vec3(1.0f), glm::vec3(1.0f));
+						m_Entity->AddComponent<RigidBodyComponent>(*rb);
+					}
+					else if(m_Entity->HasComponent<BoxColliderComponent>()) {
+						auto& bc = m_Entity->GetComponent<BoxColliderComponent>().collider;
+						RigidBody* rb = new RigidBody(&bc,1.0f, 1.0f, 1.0f, glm::vec3(1.0f), glm::vec3(1.0f));
+						m_Entity->AddComponent<RigidBodyComponent>(*rb);
+					}
+					auto& entity_rb = m_Entity->GetComponent<RigidBodyComponent>();
+					scene.GetPhysicsWorld().AddRigidBody(&entity_rb.rigidbody);
 				}
 			}
 
@@ -310,7 +369,8 @@ void ObjectProperties::OnRender(EditorScene& scene)
 
 			if (!m_Entity->HasComponent<CircleColliderComponent>()) {
 				if (ImGui::MenuItem("CircleCollider Component")) {
-					m_Entity->AddComponent<CircleColliderComponent>();
+					auto& tc = m_Entity->GetComponent<TransformComponent>();
+					m_Entity->AddComponent<CircleColliderComponent>(tc.Scale.x,tc.Position);
 				}
 			}
 			

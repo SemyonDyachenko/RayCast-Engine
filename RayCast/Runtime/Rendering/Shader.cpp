@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "Shader.h"
 
 Shader::Shader(const char* vertex_path, const char* fragment_path)

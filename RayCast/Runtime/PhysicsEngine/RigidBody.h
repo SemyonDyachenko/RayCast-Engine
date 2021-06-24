@@ -8,18 +8,21 @@
 #include "CollisionPoint.h"
 #include "BoxCollider.h"
 
+
+
 enum class RigidBodyType {
 	STATIC = 0,
 	DYNAMIC
 };
 
 
-struct CollisionObject {
+class CollisionObject {
 public:
 	bool& IsDynamic() { return m_isDynamic; }
 
-protected:
-	BoxCollider* collider;
+public:
+	CircleCollider* circlecollider;
+	BoxCollider* boxCollider;
 	glm::vec3 Position;
 	glm::quat Rotation;
 
@@ -30,12 +33,11 @@ protected:
 
 
 
-struct RigidBody :  CollisionObject
+class RigidBody : public CollisionObject
 {
 public:
-	RigidBody() {}
-
-	RigidBody(float mass = 1.0f, float linearDrag = 1.0f, float angularDrag = 1.0f, glm::vec3 velocity = glm::vec3(0.0f), glm::vec3 angularVelocity = glm::vec3(0.0f));
+	RigidBody(BoxCollider* collider,float mass = 1.0f, float linearDrag = 1.0f, float angularDrag = 1.0f, glm::vec3 linearVelocity = glm::vec3(0.0f), glm::vec3 angularVelocity = glm::vec3(0.0f));
+	RigidBody(CircleCollider* collider,float mass = 1.0f, float linearDrag = 1.0f, float angularDrag = 1.0f, glm::vec3 linearVelocity = glm::vec3(0.0f), glm::vec3 angularVelocity = glm::vec3(0.0f));
 
 	virtual ~RigidBody() = default;
 
@@ -72,9 +74,10 @@ public:
 	void SetLinearDrag(float linearDrag) { m_LinearDrag = linearDrag; }
 	void SetAngularDrags(float angularDrag) { m_AngularDrag = angularDrag; }
 
-	
-
+public:
+	Collider* m_Collider;
 private:
+
 	glm::vec3 m_Gravity;
 	float m_iMass;
 	float m_LinearDrag;

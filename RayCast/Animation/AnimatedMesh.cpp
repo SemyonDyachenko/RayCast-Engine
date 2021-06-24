@@ -1,5 +1,7 @@
-#include "AnimatedMesh.h"
 #pragma once
+#include "../stdafx.h"
+#include "AnimatedMesh.h"
+
 
 AnimatedMesh::AnimatedMesh(std::vector<AnimatedVertex> vertices, std::vector<unsigned int> indices, std::vector<AnimatedTexture> textures)
 {

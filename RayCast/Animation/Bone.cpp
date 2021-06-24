@@ -1,3 +1,4 @@
+#include "../stdafx.h"
 #include "Bone.h"
 
 Bone::Bone(const std::string& name, int ID, const aiNodeAnim* channel) : m_Name(name), m_Id(ID)

@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "Model.h"
 
 Model::Model(glm::vec3 position, std::vector<Mesh*>& meshes) : m_Position(position),  m_Meshes(meshes)

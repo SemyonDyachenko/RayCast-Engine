@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "FrameBuffer.h"
 
 #include "../Platform/OpenGL/glFrameBuffer.h"

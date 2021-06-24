@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "Mesh.h"
 #include <gtc/matrix_transform.hpp>
 #include <chrono>

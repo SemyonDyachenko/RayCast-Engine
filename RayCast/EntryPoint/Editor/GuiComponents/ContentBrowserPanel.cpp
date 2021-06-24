@@ -1,3 +1,5 @@
+#include "../../../stdafx.h"
+
 #include "ContentBrowserPanel.h"
 
 #include "../../../Runtime/Rendering/stb_image.h"

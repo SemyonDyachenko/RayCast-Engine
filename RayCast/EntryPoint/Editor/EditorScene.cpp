@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "EditorScene.h"
 #include "../../Runtime/Core/Game.h"
 
@@ -7,12 +8,11 @@ void EditorScene::OnCreate()
 {
 	m_MainCamera = new Camera(glm::vec3(0.0f, 2.0f, 5.f), static_cast<float>(Game::GetWindow().GetWidth()) / static_cast<float>(Game::GetWindow().GetHeight()), glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 0.f, -1.f), 60.f, 0.1f, 1000.f);
 	m_editorShader = new Shader("resources/shaders/vertex_shader.glsl", "resources/shaders/fragment_shader.glsl");
-
-
 	m_skyboxShader = new Shader("resources/shaders/color_vertex_shader.glsl", "resources/shaders/color_fragment_shader.glsl");
-
-
 	m_EntitiesCount = m_Manager.GetEntitiesCount();
+	m_PhysicsWorld = new DynamicWorld();
+	m_PhysicsWorld->Init();
+	physicsSimulation = false;
 }
 
 void EditorScene::OnDestroy()
@@ -50,8 +50,6 @@ std::unique_ptr<Entity>& EditorScene::GetEntity(unsigned int id)
 			return entity;
 	
 		}
-	
-		
 	}
 }
 
@@ -160,20 +158,6 @@ void EditorScene::UpdateMainCamera(float DeltaTime)
 	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
 		m_MainCamera->Move(EditorCameraDirection::DOWN, DeltaTime);
 	}
-	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_LEFT) == GLFW_PRESS) {
-		m_MainCamera->Rotate(EditorCameraRotationDirection::LEFT, DeltaTime);
-	}
-	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_RIGHT) == GLFW_PRESS) {
-		m_MainCamera->Rotate(EditorCameraRotationDirection::RIGHT, DeltaTime);
-	}
-	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_UP) == GLFW_PRESS) {
-		m_MainCamera->Rotate(EditorCameraRotationDirection::UP, DeltaTime);
-	}
-	if (glfwGetKey(Game::GetWindow().GetNativeWindow(), GLFW_KEY_DOWN) == GLFW_PRESS) {
-		m_MainCamera->Rotate(EditorCameraRotationDirection::DOWN, DeltaTime);
-	}
-		
-
 
 }
 
@@ -197,6 +181,34 @@ void EditorScene::OnUpdate(float DeltaTime)
 		for (size_t i = 0; i < m_Objects.size(); i++) {
 			m_Objects[i]->Update(DeltaTime);
 
+		}
+	}
+
+
+	if (physicsSimulation) {
+		if (m_PhysicsWorld->GetNumRigidBodies() != 0) {
+			m_PhysicsWorld->Update(DeltaTime);
+			for (auto& entity : m_Manager.GetEntities()) {
+				if (entity->HasComponent<RigidBodyComponent>()) {
+					auto& tc = entity->GetComponent<TransformComponent>();
+					auto& rb = entity->GetComponent<RigidBodyComponent>();
+					tc.Position = rb.rigidbody.GetPosition();
+				}
+
+			}
+		}
+		else {
+			ENGINE_WARNING("Number of rigid bodies = 0!!");
+		}
+	}
+	else {
+		for (auto& entity : m_Manager.GetEntities()) {
+			if (entity->HasComponent<RigidBodyComponent>()) {
+				auto& tc = entity->GetComponent<TransformComponent>();
+				auto& rb = entity->GetComponent<RigidBodyComponent>();
+				rb.rigidbody.Position = tc.Position;
+			}
+			
 		}
 	}
 

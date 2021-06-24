@@ -16,6 +16,8 @@
 #include "../../Runtime/Core/Event.h"
 #include "../../Runtime/Light/LightPoint.h"
 
+#include "../../Runtime/PhysicsEngine/DynamicWorld.h"
+
 class EditorScene : public Scene {
 public:
 	void OnCreate() override;
@@ -38,16 +40,23 @@ public:
 	void AddObject(EditorSceneObject* object);
 	void DeleteObject(unsigned int id);
 
+	bool& IsPhysicsSimulation() { return physicsSimulation; }
+
 	unsigned int GetObjectCount() const;
 	unsigned int GetEntitiesCount();
 	void RecalculateEntitiesCount();
 
 	EditorSceneObject* GetSelectedObject();
 
+	void SimulatePhysics() { physicsSimulation = true; }
+	void StopSimulatePhyiscs() { physicsSimulation = false; }
+
 	void SelectObject(unsigned int id);
 	void UnselectObject(unsigned int id);
 
 	EditorSceneObject* GetObjectById(unsigned int id);
+
+	DynamicWorld& GetPhysicsWorld() { return *m_PhysicsWorld; }
 
 	void UpdateMainCamera(float DeltaTime);
 
@@ -65,7 +74,9 @@ private:
 	Shader* m_skyboxShader;
 	std::vector<EditorSceneObject*> m_Objects;
 
+	bool physicsSimulation;
 
+	DynamicWorld* m_PhysicsWorld;
 
 	unsigned int m_ObjectCount;
 	LightPoint* m_LightPoint;

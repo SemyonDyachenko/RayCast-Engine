@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "StateMachine.h"
 
 StateMachine::StateMachine() : m_Scenes(0),m_currentScene(0)

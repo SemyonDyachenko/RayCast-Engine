@@ -1,3 +1,4 @@
+#include "../stdafx.h"
 #include "Animation.h"
 
 Animation::Animation(const std::string& path, AnimatedModel* animatedModel)

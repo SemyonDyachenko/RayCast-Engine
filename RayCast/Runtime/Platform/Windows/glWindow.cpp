@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "glWindow.h"
 
 glWindow::glWindow(WindowProps& props) 

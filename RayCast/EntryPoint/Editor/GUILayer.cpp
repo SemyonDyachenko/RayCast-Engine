@@ -1,3 +1,4 @@
+#include "../../stdafx.h"
 #include "GUILayer.h"
 #include "Utils/IconsFontAwesome5.h"
 
@@ -174,7 +175,9 @@ void GUILayer::Render()
 			if (ImGui::MenuItem("Static Mesh")) {
 				// change for release
 				std::string path = FileDialogs::OpenFile("RayCast Scene (*.obj)\0*.obj\0");
-				m_ObjectAdditor->AddEntity(path, "New Entity", *m_EditorScene, *m_Console);
+				if (path.length() > 0) {
+					m_ObjectAdditor->AddEntity(path, "New Entity", *m_EditorScene, *m_Console);
+				}
 			}
 
 			ImGui::EndMenu();	
@@ -268,7 +271,7 @@ void GUILayer::Render()
 
 	
 	m_EditorScene->ImGuiScene();
-	m_SceneProps->Render();
+	m_SceneProps->Render(*m_EditorScene);
 	m_stateMachie->Render();
 
 

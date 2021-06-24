@@ -1,3 +1,4 @@
+#include "../../../stdafx.h"
 #include "SceneHierarchy.h"
 
 
@@ -161,7 +162,7 @@ void SceneHierarchy::Render(EditorScene& editorScene)
                 }
 
                 if (entity->HasComponent<MaterialComponent>()) {
-                    auto& meshComponent = entity->GetComponent<MaterialComponent>();
+                    auto& material = entity->GetComponent<MaterialComponent>();
 
                     if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 234), camera_flags, "Material Component")) {
                         ImGui::TreePop();
@@ -170,7 +171,7 @@ void SceneHierarchy::Render(EditorScene& editorScene)
                 }
 
                 if (entity->HasComponent<DirectionalLightComponent>()) {
-                    auto& meshComponent = entity->GetComponent<DirectionalLightComponent>();
+                    auto& dirLight = entity->GetComponent<DirectionalLightComponent>();
 
                     if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 235), camera_flags, "Direction Light Component")) {
                         ImGui::TreePop();
@@ -179,13 +180,42 @@ void SceneHierarchy::Render(EditorScene& editorScene)
                 }
 
                 if (entity->HasComponent<LightPointComponent>()) {
-                    auto& meshComponent = entity->GetComponent<LightPointComponent>();
+                    auto& lightPoint = entity->GetComponent<LightPointComponent>();
 
                     if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 236), camera_flags, "Light Point Component")) {
                         ImGui::TreePop();
                     }
 
                 }
+
+                if (entity->HasComponent<BoxColliderComponent>()) {
+                    auto& boxCollider = entity->GetComponent<BoxColliderComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 237), camera_flags, "Box Collider Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<CircleColliderComponent>()) {
+                    auto& CircleCollider = entity->GetComponent<CircleColliderComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 237), camera_flags, "Circle Collider Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+                if (entity->HasComponent<RigidBodyComponent>()) {
+                    auto& rigidBody = entity->GetComponent<RigidBodyComponent>();
+
+                    if (ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)(entity->GetId() + 238), camera_flags, "RigidBody Component")) {
+                        ImGui::TreePop();
+                    }
+
+                }
+
+
 
 
                 

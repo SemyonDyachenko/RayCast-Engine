@@ -22,6 +22,8 @@
 
 #include "Entity.h"
 #include "../PhysicsEngine/BoxCollider.h"
+#include "../PhysicsEngine/Collider.h"
+#include "../PhysicsEngine/RigidBody.h"
 
 inline size_t GetComponentTypeID() {
 	static size_t lastID = 0;
@@ -141,8 +143,16 @@ public:
 
 class CircleColliderComponent : public Component {
 public:
+	CircleCollider collider;
+	float Radius;
+	glm::vec3 Center;
+
 	CircleColliderComponent() = default;
 	CircleColliderComponent(const CircleColliderComponent&) = default;
+	CircleColliderComponent(float radius,glm::vec3 center) : Radius(radius),Center(center) {
+		collider.Radius = Radius;
+		collider.Center = Center;
+	}
 
 };
 
@@ -162,8 +172,10 @@ public:
 
 class RigidBodyComponent : public Component {
 public:
+	RigidBody rigidbody;
 	RigidBodyComponent() = default;
 	RigidBodyComponent(const RigidBodyComponent&) = default;
+	RigidBodyComponent(RigidBody& rb) : rigidbody(rb) {}
 
 };
 

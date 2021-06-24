@@ -1,5 +1,5 @@
+#include "../../../stdafx.h"
 #include "glFrameBuffer.h"
-#include <iostream>
 
 glFrameBuffer::glFrameBuffer(const FrameBufferProps& props) : m_Props(props)
 {

@@ -1,6 +1,7 @@
+#include "../../stdafx.h"
 #include "RigidBody.h"
 
-RigidBody::RigidBody(float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
+RigidBody::RigidBody(BoxCollider* collider,float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
 	: 
 	m_iMass(1.0f / mass),
 	m_LinearDrag(linearDrag),
@@ -11,6 +12,21 @@ RigidBody::RigidBody(float mass, float linearDrag, float angularDrag, glm::vec3 
 	m_LinearVelocity = linearVelocity;
 
 	m_isDynamic = true;
+
+	m_Collider = collider;
+
+	boxCollider = collider;
+
+}
+
+RigidBody::RigidBody(CircleCollider* collider, float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
+	:m_iMass(1.0f / mass),
+	m_LinearDrag(linearDrag),
+	m_AngularDrag(angularDrag)
+{
+	m_Mass = mass;
+	m_AngularVelocity = angularVelocity;
+	m_LinearVelocity = linearVelocity;
 }
 
 void RigidBody::ApplyForce(glm::vec3 force)
