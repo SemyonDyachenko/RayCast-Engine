@@ -1,3 +1,0 @@
-export LD_LIBRARY_PATH=$GLUT_HOME/lib/glut/:$LD_LIBRARY_PATH
-
-
