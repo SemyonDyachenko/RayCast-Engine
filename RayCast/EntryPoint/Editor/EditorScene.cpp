@@ -11,7 +11,6 @@ void EditorScene::OnCreate()
 	m_skyboxShader = new Shader("resources/shaders/color_vertex_shader.glsl", "resources/shaders/color_fragment_shader.glsl");
 	m_EntitiesCount = m_Manager.GetEntitiesCount();
 	m_PhysicsWorld = new DynamicWorld();
-	m_PhysicsWorld->Init();
 	physicsSimulation = false;
 }
 
@@ -193,6 +192,7 @@ void EditorScene::OnUpdate(float DeltaTime)
 					auto& tc = entity->GetComponent<TransformComponent>();
 					auto& rb = entity->GetComponent<RigidBodyComponent>();
 					tc.Position = rb.rigidbody.GetPosition();
+					tc.Rotation = glm::eulerAngles(rb.rigidbody.GetRotation());
 				}
 
 			}

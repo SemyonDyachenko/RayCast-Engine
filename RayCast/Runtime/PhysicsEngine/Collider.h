@@ -3,9 +3,10 @@
 #include <glm.hpp>
 #include "CollisionPoint.h"
 #include <iostream>
-#include <reactphysics3d/reactphysics3d.h>
 #include "PhysicsEngine.h"
- 
+
+
+
 
 struct CollisionData {
 public:
@@ -24,13 +25,15 @@ private:
 	const bool m_Distance;
 };
 
+/*
 struct Collider {
 public:
 	//virtual CollisionData Intersect(const Collider& other) = 0;
 	virtual ~Collider() = default;
 
-};
+};*/
 
+/*
 struct BoxCollider : public Collider {
 public:
 	BoxCollider() {
@@ -55,6 +58,8 @@ public:
 	glm::vec3 Position;
 	glm::quat Rotation; 
 };
+*/
+/*
 
 struct CircleCollider : public Collider {
 public:
@@ -75,11 +80,92 @@ public:
 	}
 
 public:
+
 	glm::vec3 Center;
 	float Radius;
 };
 
+*/
 
+class PhysicsMaterial {
+public:
+	float m_Friction;
+	float m_Bounciness;	
+
+	PhysicsMaterial() { m_Friction = 1.0f; m_Bounciness = 1.0f; }
+	PhysicsMaterial(float friction, float bounciness) 
+	: m_Friction(friction),
+	m_Bounciness(bounciness)
+	{
+		
+	}
+};
+
+class Collider {
+
+public:
+	~Collider() = default;
+
+
+	glm::vec3 Center;
+	glm::quat Rotation;
+	glm::vec3 Position;
+	btCollisionShape* shape;
+	PhysicsMaterial material;
+
+};
+
+class SphereCollider  : public Collider {
+public:
+	SphereCollider() {
+		Radius = 1.0f;
+		Center = glm::vec3(1.0f);
+		CreateShape();
+	}
+	SphereCollider(float radius,glm::vec3 center) : Radius(radius) {
+		Center = center;
+		CreateShape();
+	}
+
+	void SetRadius(float radius) { Radius = radius; shape = new btSphereShape(Radius);  }
+	void SetCenter(glm::vec3 center) { Center = center; }
+	void SetRotation(glm::quat rotation) { Rotation = rotation; }
+	void SetPosition(glm::vec3 position) { Position = position; }
+
+	float GetRadius() { return Radius; }
+	
+public:
+	float Radius;
+	void CreateShape() {
+		shape = new btSphereShape(Radius);
+	}
+};
+
+class BoxCollider : public Collider {
+public:
+	BoxCollider() {
+		Size = glm::vec3(1.0f);
+		Center = glm::vec3(1.0f);
+		CreateShape();
+	}
+	BoxCollider(glm::vec3 size,glm::vec3 center) : Size(size) {
+		Center = center;
+		CreateShape();
+	}
+
+	void SetSize(glm::vec3 size) { Size = size; shape = new btBoxShape({ Size.x,Size.y,Size.z }); }
+	void SetRotation(glm::quat rotation) { Rotation = rotation; }
+	void SetPosition(glm::vec3 position) { Position = position; }
+	void SetCenter(glm::vec3 center) { Center = center; }
+
+	glm::vec3& GetSize() { return Size; }
+
+public:
+	glm::vec3 Size;
+	void CreateShape() {
+		shape = new btBoxShape({Size.x,Size.y,Size.z});
+	}
+};
 
 /*
 struct Collider

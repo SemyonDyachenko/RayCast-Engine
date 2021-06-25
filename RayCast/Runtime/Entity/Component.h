@@ -143,15 +143,17 @@ public:
 
 class CircleColliderComponent : public Component {
 public:
-	CircleCollider collider;
+	SphereCollider collider;
 	float Radius;
 	glm::vec3 Center;
 
 	CircleColliderComponent() = default;
 	CircleColliderComponent(const CircleColliderComponent&) = default;
-	CircleColliderComponent(float radius,glm::vec3 center) : Radius(radius),Center(center) {
-		collider.Radius = Radius;
-		collider.Center = Center;
+	CircleColliderComponent(float radius,glm::vec3 center,glm::quat rotation) : Radius(radius),Center(center) {
+		collider.SetCenter(center);
+		collider.SetRadius(radius);
+		collider.SetPosition(center);
+		collider.SetRotation(rotation);
 	}
 
 };
@@ -163,9 +165,10 @@ public:
 	BoxColliderComponent() = default;
 	BoxColliderComponent(const BoxColliderComponent&) = default;
 	BoxColliderComponent(glm::vec3 size, glm::vec3 position, glm::quat rotation) {
-		collider.Size = size;
-		collider.Position = position;
-		collider.Rotation = rotation;
+		collider.SetSize(size);
+		collider.SetPosition(position);
+		collider.SetRotation(rotation);
+		collider.SetCenter(position);
 	}
 
 };

@@ -1,8 +1,10 @@
 #include "../../stdafx.h"
 #include "RigidBody.h"
 
-RigidBody::RigidBody(BoxCollider* collider,float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
-	: 
+
+
+RigidBody::RigidBody(Collider* collider, float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
+	:
 	m_iMass(1.0f / mass),
 	m_LinearDrag(linearDrag),
 	m_AngularDrag(angularDrag)
@@ -15,42 +17,46 @@ RigidBody::RigidBody(BoxCollider* collider,float mass, float linearDrag, float a
 
 	m_Collider = collider;
 
-	boxCollider = collider;
+	Position = m_Collider->Center;
+	Rotation = m_Collider->Rotation;
 
-}
 
-RigidBody::RigidBody(CircleCollider* collider, float mass, float linearDrag, float angularDrag, glm::vec3 linearVelocity, glm::vec3 angularVelocity)
-	:m_iMass(1.0f / mass),
-	m_LinearDrag(linearDrag),
-	m_AngularDrag(angularDrag)
-{
-	m_Mass = mass;
-	m_AngularVelocity = angularVelocity;
-	m_LinearVelocity = linearVelocity;
+	btDefaultMotionState* motionstate = new btDefaultMotionState(btTransform(
+		btQuaternion(Rotation.x, Rotation.y, Rotation.z, Rotation.w), btVector3(Position.x, Position.y, Position.z)));
+
+	btRigidBody::btRigidBodyConstructionInfo rigidBodyCI(m_Mass, motionstate,collider->shape,btVector3(0.f,0.f,0.f));
+
+	m_Body = new btRigidBody(rigidBodyCI);
 }
 
 void RigidBody::ApplyForce(glm::vec3 force)
 {
-	m_Force += force;
+	if (m_Body)
+		m_Body->applyCentralImpulse({ force.x,force.y,force.z });
 }
 
 void RigidBody::ApplyTorque(glm::vec3 torque)
 {
-	m_Torque += torque;
+	if (m_Body)
+		m_Body->applyTorque({ torque.x,torque.y,torque.z });
 }
 
 void RigidBody::ApplyImpulse(glm::vec3 impulse)
 {
+	if (m_Body)
+		m_Body->applyCentralImpulse({ impulse.x,impulse.y,impulse.z });
 }
 
 void RigidBody::ResetForce()
 {
-	m_Force = glm::vec3(0.f, 0.f, 0.f);
+	if (m_Body)
+		m_Body->applyCentralImpulse({ 0.f,0.f,0.f });
 }
 
 void RigidBody::ResetTorque()
 {
-	m_Torque = glm::vec3(0.f, 0.f, 0.f);
+	if (m_Body)
+		m_Body->applyTorque({ 0.f,0.f,0.f });
 }
 
 

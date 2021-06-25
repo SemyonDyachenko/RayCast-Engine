@@ -2,7 +2,6 @@
 #define ANIMATED_MESH_H
 
 #include <GL/glew.h>
-#include <GL/GLU.h>
 #include <vector>
 
 #include <glm.hpp>

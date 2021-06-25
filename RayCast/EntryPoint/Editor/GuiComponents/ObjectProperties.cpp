@@ -90,7 +90,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 		if (m_Entity->HasComponent<MeshComponent>()) {
 			auto& meshComponent = m_Entity->GetComponent<MeshComponent>();
 
-			if (ImGui::TreeNodeEx((void*)m_Entity->HasComponent<MeshComponent>(), ImGuiTreeNodeFlags_DefaultOpen, "Mesh Component")) {
+			if (ImGui::TreeNodeEx((void*)m_Entity->HasComponent<MeshComponent>(), ImGuiTreeNodeFlags_DefaultOpen, "Mesh Renderer")) {
 
 				ImGui::ColorEdit3("Color", glm::value_ptr(meshComponent.color));
 				meshComponent.SetColor();
@@ -213,7 +213,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				ImGui::Text("Center "); ImGui::SameLine();  ImGui::DragFloat3("##circlecollidercenter", glm::value_ptr(circleCollider.collider.Center), v_Speed);
 
 				circleCollider.collider.Center = m_Entity->GetComponent<TransformComponent>().Position;
-				circleCollider.collider.Radius = m_Entity->GetComponent<TransformComponent>().Scale.x/2.0f;
+				circleCollider.collider.SetRadius(m_Entity->GetComponent<TransformComponent>().Scale.x / 2.0f);
 
 				ImGui::TreePop();
 
@@ -225,21 +225,32 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			auto& rb = m_Entity->GetComponent<RigidBodyComponent>();
 			if (ImGui::TreeNodeEx((void*)typeid(rb).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "RigidBody Component")) {
 
+				auto& mass = rb.rigidbody.GetMass();
+				
+				ImGui::PushItemWidth(100); ImGui::Text("Mass               "); ImGui::PopItemWidth();  ImGui::SameLine(); ImGui::PushItemWidth(160);  ImGui::DragFloat("##rigidbodymass", &mass, v_Speed); ImGui::PopItemWidth();
+				ImGui::PushItemWidth(100);  ImGui::Text("Linear Drag  "); ImGui::PopItemWidth();  ImGui::SameLine(); ImGui::PushItemWidth(160); ImGui::DragFloat("##rigidbodylindrag", &rb.rigidbody.GetLinearDrag(), v_Speed); ImGui::PopItemWidth();
+				ImGui::PushItemWidth(100);  ImGui::Text("Angular Drag");  ImGui::PopItemWidth();  ImGui::SameLine(); ImGui::PushItemWidth(160);  ImGui::DragFloat("##rigidbodyangdrag", &rb.rigidbody.GetAngularDrag(), v_Speed); ImGui::PopItemWidth();
+
+				rb.rigidbody.SetMass(mass);
+
 				//ImGui::Text("Radius "); ImGui::SameLine();  ImGui::DragFloat("##circlecolliderradius", &circleCollider.collider.Radius, v_Speed);
 				//ImGui::Text("Center "); ImGui::SameLine();  ImGui::DragFloat3("##circlecollidercenter", glm::value_ptr(circleCollider.collider.Center), v_Speed);
 
 				ImGui::Text("Gravity  "); ImGui::SameLine();
 				ImGui::Checkbox("##rigidbodygravity", &rb.rigidbody.m_isDynamic);
 
-				ImGui::Text("Position  "); ImGui::SameLine();
-				ImGui::DragFloat3("##rigidbodyposition", glm::value_ptr(rb.rigidbody.Position));
+				//ImGui::Text("Position  "); ImGui::SameLine();
+				//ImGui::DragFloat3("##rigidbodyposition", glm::value_ptr(rb.rigidbody.Position));
 
 				if (!scene.IsPhysicsSimulation()) {
 					rb.rigidbody.Position = m_Entity->GetComponent<TransformComponent>().Position;
-					rb.rigidbody.boxCollider->Size = m_Entity->GetComponent<TransformComponent>().Scale;
+					m_Entity->GetComponent<TransformComponent>().Scale;
+					rb.rigidbody.m_Body->setWorldTransform();
 					rb.rigidbody.boxCollider->Rotation = m_Entity->GetComponent<TransformComponent>().Rotation;
 					rb.rigidbody.boxCollider = &m_Entity->GetComponent<BoxColliderComponent>().collider;
 				}
+				 
+				//std::cout << rb.rigidbody.GetPosition().x << " " << rb.rigidbody.GetPosition().y << " " << rb.rigidbody.GetPosition().z << "\n";
 
 				ImGui::TreePop();
 
@@ -370,7 +381,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 			if (!m_Entity->HasComponent<CircleColliderComponent>()) {
 				if (ImGui::MenuItem("CircleCollider Component")) {
 					auto& tc = m_Entity->GetComponent<TransformComponent>();
-					m_Entity->AddComponent<CircleColliderComponent>(tc.Scale.x,tc.Position);
+					m_Entity->AddComponent<CircleColliderComponent>(tc.Scale.x,tc.Position,tc.Rotation);
 				}
 			}
 			

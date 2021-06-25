@@ -126,17 +126,18 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\reactphysics\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\entt-3.7.1\single_include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\src;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\entt-3.7.1\single_include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\reactphysics\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>reactphysics3d.lib;spdlogd.lib;libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGLSupport_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;spdlogd.lib;libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\src;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
@@ -157,8 +158,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>spdlogd.lib;libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
