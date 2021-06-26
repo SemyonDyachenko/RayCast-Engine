@@ -38,6 +38,8 @@ public:
 
 	void SetFullscreen() override;
 
+	void SetTitle(std::string title) override;
+
 	bool Closed() const override;
 
 	void SetEventCallback(const EventCallbackFn& callback) override;

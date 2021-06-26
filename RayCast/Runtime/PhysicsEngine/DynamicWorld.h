@@ -5,7 +5,8 @@
 #include "CollisionWorld.h"
 #include "../Core/Log.h"
 #include "PhysicsEngine.h"
-
+#include "../../EntryPoint/Editor/GuiComponents/GuiConsole.h"
+#include "../../Runtime/Utils/PlatformUtils.h"
 
 
 class DynamicWorld 
@@ -22,16 +23,26 @@ public:
 	}
 
 	void AddRigidBody(RigidBody* rigidbody) {
-		if (rigidbody->m_Body)
-		{
-			rigidbody->SetGravity(m_Gravity);
-			m_Objects.push_back(rigidbody);
+
+		if (rigidbody) {
+			if (rigidbody->m_Collider != nullptr) {
+				if (rigidbody->m_Body)
+				{
+					rigidbody->SetGravity(m_Gravity);
+					m_Objects.push_back(rigidbody);
 
 
-			dynamicsWorld->addRigidBody(rigidbody->m_Body);
+					dynamicsWorld->addRigidBody(rigidbody->m_Body);
+				}
+				else
+				{
+					ENGINE_ERROR("Entity has not a Rigid Body!");
+				}
+			}
+			else {
+				ENGINE_ERROR("impossible to create a rigid body, there is no collider");
+			}
 		}
-		else
-			ENGINE_ERROR("Entity has not a Rigid Body!");
 	}
 
 	void RemoveRigidBody(RigidBody* rigidbody) {

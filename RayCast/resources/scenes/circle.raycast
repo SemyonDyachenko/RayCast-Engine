@@ -10,14 +10,14 @@ Entities:
     MeshComponent:
       Filename: resources/vanilla/obj/cube.obj
       SolidColor: [0.800000012, 0.800000012, 0.800000012]
-    BoxCollider:
-      Size: [1, 1, 1]
+    CircleCollider:
+      Radius: 0.5
       Position: [0, 0, 0]
       Center: [0, 0, 0]
       Rotation: [0, -0, 0]
     RigidBodyComponent:
       Mass: 1
-      Position: [-1.70133868e-24, 4.59037351e-41, 5.21264383e-08]
+      Position: [-4.76718643e+36, 4.59037351e-41, 3.32875817e-15]
       Rotation: [0, -0, 0]
       LinearDrag: 1
       AngularDrag: 1

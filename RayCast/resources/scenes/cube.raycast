@@ -1,0 +1,12 @@
+Scene: Untitled
+Entities:
+  - Entity: 0
+    TagComponent:
+      Tag: Cube
+    Transform:
+      Position: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [0.800000012, 0.800000012, 0.800000012]

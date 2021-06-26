@@ -137,7 +137,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenGLSupport_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;spdlogd.lib;libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenGLSupport_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;spdlogd.lib;yaml-cppd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -244,6 +244,7 @@
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
+    <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h" />
     <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h" />
     <ClInclude Include="Runtime\PhysicsEngine\CircleCollider.h" />
     <ClInclude Include="Runtime\PhysicsEngine\CollisionPoint.h" />

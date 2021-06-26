@@ -9,7 +9,7 @@
 
 GUILayer::GUILayer()
 {
-
+	Game::GetWindow().SetTitle("RayCast Editor - Empty Project");
 }
 
 GUILayer::~GUILayer()
@@ -133,13 +133,29 @@ void GUILayer::Render()
 			if (ImGui::MenuItem("Open..", "Ctrl+O")) 
 			{
 				std::string path = FileDialogs::OpenFile("RayCast Scene (*.raycast)\0*.raycast\0");
+				m_SceneSerializer->Deserialize(path,*m_EditorScene);
+				m_SceneFilename = path;
 
+				const std::filesystem::path systemPath = path;
+				const std::string Title = "RayCast Editor - " + systemPath.filename().string();
+
+				Game::GetWindow().SetTitle(Title);
+
+				m_EditorScene->RecalculateEntitiesCount();
 
 			}
 			if (ImGui::MenuItem("Save", "Ctrl+S"))
 			{
-				std::string file = FileDialogs::SaveFile("RayCast Scene (*.raycast)\0*.raycast\0");
-				m_SceneSerializer->Serialize(file);
+				std::string path = FileDialogs::SaveFile("RayCast Scene (*.raycast)\0*.raycast\0");
+				m_SceneSerializer->Serialize(path);
+				m_SceneFilename = path;
+
+				const std::filesystem::path systemPath = path;
+				const std::string Title = "RayCast Editor - " + systemPath.filename().string();
+
+				Game::GetWindow().SetTitle(Title);
+
+				m_EditorScene->RecalculateEntitiesCount();
 			}
 			if (ImGui::MenuItem("Close", "Ctrl+W")) { my_tool_active = false; exit(true); Game::GetWindow().Close(); }
 			ImGui::EndMenu();
@@ -147,7 +163,20 @@ void GUILayer::Render()
 
 		if (ImGui::MenuItem("Save"))
 		{
-		
+			if (m_SceneFilename.length() != 0) {
+				m_SceneSerializer->Serialize(m_SceneFilename);
+			}
+			else {
+				std::string path = FileDialogs::SaveFile("RayCast Scene (*.raycast)\0*.raycast\0");
+				m_SceneSerializer->Serialize(path);
+				m_SceneFilename = path;
+
+				const std::filesystem::path systemPath = path;
+				const std::string Title = "RayCast Editor - " + systemPath.filename().string();
+
+				Game::GetWindow().SetTitle(Title);
+				m_EditorScene->RecalculateEntitiesCount();
+			}
 		}
 
 		if (ImGui::BeginMenu("Console"))
@@ -263,13 +292,9 @@ void GUILayer::Render()
 
 	m_Console->Render();
 
-	m_ObjectProperties->OnRender(*m_EditorScene);
+	m_ObjectProperties->OnRender(*m_EditorScene,*m_Console);
 
 
-	SceneSerializer serializer(*m_EditorScene);
-	serializer.Serialize("resources/scenes/example.raycast");
-
-	
 	m_EditorScene->ImGuiScene();
 	m_SceneProps->Render(*m_EditorScene);
 	m_stateMachie->Render();

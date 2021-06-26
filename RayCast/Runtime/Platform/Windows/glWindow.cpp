@@ -116,6 +116,11 @@ void glWindow::SetFullscreen()
     m_Height = mode->height;
 }
 
+void glWindow::SetTitle(std::string title)
+{
+    glfwSetWindowTitle(m_Window, title.c_str());
+}
+
 
 bool glWindow::Closed() const
 {

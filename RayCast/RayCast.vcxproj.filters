@@ -479,6 +479,9 @@
     <ClInclude Include="Runtime\PhysicsEngine\PhysicsEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex_shader.glsl" />

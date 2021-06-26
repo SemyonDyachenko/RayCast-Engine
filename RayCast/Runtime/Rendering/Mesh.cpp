@@ -4,8 +4,9 @@
 #include <chrono>
 
 
-Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount)
+Mesh::Mesh(Vertex* vertices,int verticesCount,GLuint * indices, int indicesCount, std::string filename)
 {
+	m_Filename = filename;
 	this->m_verticesCount = verticesCount;
 	m_numberOfIndices = indicesCount;
 	//this->ModelMatrix = modelMatrix;

@@ -41,6 +41,8 @@ public:
 	
 	virtual void Close() = 0;
 
+	virtual void SetTitle(std::string title) = 0;
+
 	virtual bool Closed() const = 0;
 
 	virtual void SetFullscreen() = 0;

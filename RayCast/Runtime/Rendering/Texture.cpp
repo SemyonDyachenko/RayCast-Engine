@@ -56,7 +56,7 @@ GLuint Texture::GetId()
 	return id;
 }
 
-const char* Texture::GetFilename()
+std::string& Texture::GetFilename()
 {
 	return m_Filename;
 }

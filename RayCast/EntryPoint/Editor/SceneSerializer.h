@@ -2,13 +2,9 @@
 #define SCENE_SERIALIZER_H
 
 #include <fstream>
-
 #include "EditorScene.h"
-
-#include "EditorSceneObject.h"
-
-
 #include <yaml-cpp/yaml.h>
+#include <sstream>
 
 
 
@@ -18,8 +14,8 @@ public:
 
 	void Serialize(std::string filepath);
 	
-	bool Deserialize(std::string filepath,EditorScene& scene);
-
+	bool Deserialize(const std::string& filepath,EditorScene& scene);
+	bool DeserializeRuntime(const std::string& filepath);
 
 	~SceneSerializer() {}
 

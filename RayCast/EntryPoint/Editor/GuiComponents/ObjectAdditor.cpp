@@ -46,7 +46,7 @@ Mesh* ObjectAdditor::AddMesh(DefaultObjects object)
 	}
 
 	std::vector<Vertex> rawModel = OBJLoader::loadObjModel(path);
-	Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0);
+	Mesh* mesh = new Mesh(rawModel.data(), rawModel.size(), NULL, 0,path);
 
 	return mesh;
 }

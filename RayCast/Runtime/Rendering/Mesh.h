@@ -30,7 +30,7 @@ class Mesh
 {	
 
 public:
-	Mesh(Vertex* vertices, int verticesCount, GLuint* indices, int indicesCount);
+	Mesh(Vertex* vertices, int verticesCount, GLuint* indices, int indicesCount,std::string filename = "");
 
 	//void UpdateModelMatrix(glm::mat4 ModelMatrix);
 	
@@ -40,9 +40,15 @@ public:
 
 	void OnRender(Shader & shader);
 
+	std::string& GetFilename() { return m_Filename; }
+
+	glm::vec3& GetSolidColor() { return m_SolidColor; }
+
 private:
 	Vertex * vertices;
 	std::vector<unsigned int> indices;
+
+	std::string m_Filename;
 
 	glm::vec3 m_SolidColor = { 1.0f,1.0f,1.0f };
 	

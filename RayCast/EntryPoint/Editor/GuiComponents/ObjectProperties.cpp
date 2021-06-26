@@ -30,7 +30,7 @@ void ObjectProperties::OnUpdate(float DeltaTime)
 {
 }
 
-void ObjectProperties::OnRender(EditorScene& scene)
+void ObjectProperties::OnRender(EditorScene& scene,GuiConsole & console)
 {
 	ImGuiWindowFlags window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoMove;
@@ -102,35 +102,35 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				if (ImGui::BeginPopup("ChangeModel")) {
 					if (ImGui::MenuItem("Cube")) {
 						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
-						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0,"resources/vanilla/obj/cube.obj");
 
 						meshComponent.mesh = mesh;
 					}
 
 					if (ImGui::MenuItem("Sphere")) {
 						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/sphere.obj");
-						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0, "resources/vanilla/obj/sphere.obj");
 
 						meshComponent.mesh = mesh;
 					}
 
 					if (ImGui::MenuItem("Plane")) {
 						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/plane.obj");
-						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0, "resources/vanilla/obj/plane.obj");
 
 						meshComponent.mesh = mesh;
 					}
 
 					if (ImGui::MenuItem("Monkey")) {
 						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/monkey.obj");
-						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0, "resources/vanilla/obj/monkey.obj");
 
 						meshComponent.mesh = mesh;
 					}
 
 					if (ImGui::MenuItem("Cylinder")) {
 						std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cylinder.obj");
-						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+						Mesh mesh(rawModel.data(), rawModel.size(), 0, 0, "resources/vanilla/obj/cylinder.obj");
 
 						meshComponent.mesh = mesh;
 					}
@@ -245,9 +245,9 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				if (!scene.IsPhysicsSimulation()) {
 					rb.rigidbody.Position = m_Entity->GetComponent<TransformComponent>().Position;
 					m_Entity->GetComponent<TransformComponent>().Scale;
-					rb.rigidbody.m_Body->setWorldTransform();
-					rb.rigidbody.boxCollider->Rotation = m_Entity->GetComponent<TransformComponent>().Rotation;
-					rb.rigidbody.boxCollider = &m_Entity->GetComponent<BoxColliderComponent>().collider;
+					//rb.rigidbody.m_Body->setWorldTransform();
+					//rb.rigidbody.boxCollider->Rotation = m_Entity->GetComponent<TransformComponent>().Rotation;
+					//rb.rigidbody.boxCollider = &m_Entity->GetComponent<BoxColliderComponent>().collider;
 				}
 				 
 				//std::cout << rb.rigidbody.GetPosition().x << " " << rb.rigidbody.GetPosition().y << " " << rb.rigidbody.GetPosition().z << "\n";
@@ -337,7 +337,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				if (ImGui::MenuItem("Mesh Component")) {
 
 					std::vector<Vertex> rawModel = OBJLoader::loadObjModel("resources/vanilla/obj/cube.obj");
-					Mesh mesh(rawModel.data(), rawModel.size(), 0, 0);
+					Mesh mesh(rawModel.data(), rawModel.size(), 0, 0, "resources/vanilla/obj/cube.obj");
 					glm::vec3 defaultColor = { 1.0f,1.0f,1.0f };
 					m_Entity->AddComponent<MeshComponent>(mesh, defaultColor);
 					if (m_Entity->HasComponent<MeshComponent>()) {
@@ -365,7 +365,12 @@ void ObjectProperties::OnRender(EditorScene& scene)
 						m_Entity->AddComponent<RigidBodyComponent>(*rb);
 					}
 					auto& entity_rb = m_Entity->GetComponent<RigidBodyComponent>();
-					scene.GetPhysicsWorld().AddRigidBody(&entity_rb.rigidbody);
+					if (&entity_rb) {
+						scene.GetPhysicsWorld().AddRigidBody(&entity_rb.rigidbody);
+					}
+					else {
+						console.PushMessage("Entity has not a collider, impossible create a RigidBody!", CalculateTime(), MessageStatus::Error);
+					}
 				}
 			}
 
@@ -373,7 +378,7 @@ void ObjectProperties::OnRender(EditorScene& scene)
 				if (ImGui::MenuItem("BoxCollider Component")) {
 					if (m_Entity->HasComponent<TransformComponent>()) {
 						auto& transform = m_Entity->GetComponent<TransformComponent>();
-						m_Entity->AddComponent<BoxColliderComponent>(transform.Scale,transform.Position,transform.GetQuatRotation());
+						m_Entity->AddComponent<BoxColliderComponent>(transform.Scale,transform.Position,transform.Rotation);
 					}
 				}
 			}

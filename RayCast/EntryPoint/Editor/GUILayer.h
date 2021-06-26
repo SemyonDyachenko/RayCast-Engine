@@ -70,7 +70,7 @@ private:
 	glm::vec2 m_InitialMousePos;
 
 	SceneSerializer* m_SceneSerializer;
-
+	std::string m_SceneFilename;
 
 };
 

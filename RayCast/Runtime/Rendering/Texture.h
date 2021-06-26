@@ -22,7 +22,7 @@ public:
 
 	GLuint GetId();
 
-	const char * GetFilename();
+	std::string & GetFilename();
 
 private:
 	GLuint id;
@@ -30,7 +30,7 @@ private:
 	int height;
 	int nrChannels;
 	unsigned int type;
-	const char* m_Filename;
+	std::string m_Filename;
 
 };
 

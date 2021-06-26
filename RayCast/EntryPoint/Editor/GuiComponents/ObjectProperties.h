@@ -7,6 +7,8 @@
 #include "SceneHierarchy.h"
 
 #include <filesystem>
+#include "../Utils/TimeUtil.h"
+
 
 class ObjectProperties
 {	
@@ -20,7 +22,7 @@ public:
 
 	void OnUpdate(float DeltaTime);
 
-	void OnRender(EditorScene& scene);
+	void OnRender(EditorScene& scene, GuiConsole& console);
 
 private:
 	SceneHierarchy* m_SceneHierarchy;
