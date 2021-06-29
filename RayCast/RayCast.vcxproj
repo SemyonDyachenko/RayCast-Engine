@@ -212,12 +212,14 @@
     <ClCompile Include="Runtime\Rendering\OBJLoader.cpp" />
     <ClCompile Include="Runtime\Core\Window.cpp" />
     <ClCompile Include="Runtime\Rendering\Shader.cpp" />
+    <ClCompile Include="Runtime\Rendering\Terrain\Terrain.cpp" />
     <ClCompile Include="Runtime\Rendering\Texture.cpp" />
     <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
     <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
     <ClCompile Include="EntryPoint\Editor\SceneSerializer.cpp" />
     <ClCompile Include="Runtime\Light\Spotlight.cpp" />
+    <ClCompile Include="Runtime\Entity\ScriptableEntity.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -245,6 +247,7 @@
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
     <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h" />
+    <ClInclude Include="resources\scripts\MovementController.h" />
     <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h" />
     <ClInclude Include="Runtime\PhysicsEngine\CircleCollider.h" />
     <ClInclude Include="Runtime\PhysicsEngine\CollisionPoint.h" />
@@ -296,6 +299,7 @@
     <ClInclude Include="Runtime\Rendering\Model.h" />
     <ClInclude Include="Runtime\Rendering\OBJLoader.h" />
     <ClInclude Include="Runtime\Core\Window.h" />
+    <ClInclude Include="Runtime\Rendering\Terrain\Terrain.h" />
     <ClInclude Include="Runtime\Simulation\Simulation.h" />
     <ClInclude Include="Runtime\Rendering\Shader.h" />
     <ClInclude Include="Runtime\Rendering\stb_image.h" />
@@ -306,6 +310,7 @@
     <ClInclude Include="Runtime\Utils\PlatformUtils.h" />
     <ClInclude Include="EntryPoint\Editor\SceneSerializer.h" />
     <ClInclude Include="Runtime\Light\Spotlight.h" />
+    <ClInclude Include="Runtime\Entity\ScriptableEntity.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
     <ClInclude Include="Vendor\imgui\ImCurveEdit.h" />
@@ -333,6 +338,7 @@
     <None Include="resources\shaders\fragment_shader.glsl" />
     <None Include="resources\shaders\animated_fragment_shader.glsl" />
     <None Include="resources\shaders\animated_vertex_shader.glsl" />
+    <None Include="resources\shaders\terrain_fragment_shader.glsl" />
     <None Include="resources\shaders\vertex_shader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

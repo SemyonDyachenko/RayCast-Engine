@@ -11,6 +11,7 @@
 
 class Component;
 
+
 enum class EntityType {
 	STATIC,
 	DYNAMIC
@@ -72,5 +73,6 @@ private:
 
 	std::bitset<MAX_COMPONENTS> m_ComponentsBitset;
 	std::array<Component*, MAX_COMPONENTS> m_ComponentsArray;
+
 };
 

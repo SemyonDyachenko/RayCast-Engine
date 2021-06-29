@@ -79,15 +79,6 @@ void SceneHierarchy::Render(EditorScene& editorScene)
         ImGui::TreePop();
     }
 
-    if (&editorScene.GetMainLight()) {
-        bool mainLight = ImGui::TreeNodeEx((void*)(uint64_t)(uint32_t)88543224, camera_flags, "Directional Light");
-
-        if (mainLight) {
-            ImGui::TreePop();
-        }
-    }
-
-    
 
     for (auto& entity : m_Scene->GetManager().GetEntities()) {
         if (entity) {

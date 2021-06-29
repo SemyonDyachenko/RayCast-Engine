@@ -3,6 +3,7 @@
 #include "Core.h"
 
 #include <memory>
+#include <spdlog/spdlog.h>
 
 class Log
 {

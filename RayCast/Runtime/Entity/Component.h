@@ -25,6 +25,8 @@
 #include "../PhysicsEngine/Collider.h"
 #include "../PhysicsEngine/RigidBody.h"
 
+#include "ScriptableEntity.h"
+
 inline size_t GetComponentTypeID() {
 	static size_t lastID = 0;
 	return lastID++;
@@ -38,6 +40,7 @@ inline size_t GetComponentTypeID() noexcept {
 
 class Entity;
 
+
 class Component {
 public:
 	Entity* entity;
@@ -45,6 +48,28 @@ public:
 	virtual ~Component() {}
 };
 
+
+/*
+class NativeScriptComponent : public Component {
+public:
+	ScriptableEntity* Instance = nullptr;
+
+	ScriptableEntity* (*InstantiateScript)();
+	void (*DestroyScript)(NativeScriptComponent*);
+
+	NativeScriptComponent() = default;
+	NativeScriptComponent(const NativeScriptComponent&) = default;
+
+
+	template<typename T>
+	void Bind() {
+		InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
+		DestroyScript = [](NativeScriptComponent* nsc) { delete nsc->Instance; nsc->Instance = nullptr; };
+	}
+
+};
+
+*/
 
 class TransformComponent : public Component {
 public:
@@ -106,14 +131,20 @@ public:
 
 	AnimatedModel model;
 	Animator animator;
-	std::map<std::string, Animation> animations;
+	std::map<std::string, Animation*> animations;
 
 	AnimationComponent() = default;
 	AnimationComponent(const AnimationComponent&) = default;
 	AnimationComponent(AnimatedModel& model,Animator & animator) : model(model),animator(animator){}
 
-	void AddAnimation(std::string name,Animation& animation) {}
-	void SetAnimation(std::string name) {}
+	void Update(float DeltaTime) {
+		animator.UpdateAnimation(DeltaTime);
+	}
+
+	void AddAnimation(std::string name,Animation* animation) {}
+	void Play(std::string name) {
+		animator.PlayAnimation(animations[name]);
+	}
 };
 
 

@@ -17,6 +17,7 @@
 #include "../../Runtime/Light/LightPoint.h"
 
 #include "../../Runtime/PhysicsEngine/DynamicWorld.h"
+#include "../../Runtime/Rendering/Terrain/Terrain.h"
 
 
 
@@ -37,27 +38,13 @@ public:
 
 	std::unique_ptr<Entity>& GetEntity(unsigned int id);
 
-	void AddLightPoint(LightPoint * lightPoint);
-	LightPoint& GetMainLight() { return *m_LightPoint; }
-
-	void AddObject(EditorSceneObject* object);
-	void DeleteObject(unsigned int id);
-
 	bool& IsPhysicsSimulation() { return physicsSimulation; }
 
-	unsigned int GetObjectCount() const;
 	unsigned int GetEntitiesCount();
 	void RecalculateEntitiesCount();
 
-	EditorSceneObject* GetSelectedObject();
-
 	void SimulatePhysics() { physicsSimulation = true; }
 	void StopSimulatePhyiscs() { physicsSimulation = false; }
-
-	void SelectObject(unsigned int id);
-	void UnselectObject(unsigned int id);
-
-	EditorSceneObject* GetObjectById(unsigned int id);
 
 	DynamicWorld& GetPhysicsWorld() { return *m_PhysicsWorld; }
 
@@ -69,22 +56,13 @@ public:
 
 	void OnRender() override;
 
-	std::vector<EditorSceneObject*> GetObjects();
-
 private:
 	Camera* m_MainCamera;
 	Shader* m_editorShader;
-	Shader* m_skyboxShader;
-	std::vector<EditorSceneObject*> m_Objects;
-
 	bool physicsSimulation;
-
 	DynamicWorld* m_PhysicsWorld;
 
-	unsigned int m_ObjectCount;
-	LightPoint* m_LightPoint;
-
-
+	Terrain* m_Terrain;
 };
 
 #endif

@@ -2,7 +2,7 @@
 #define ENTITY_MANAGER_H
 
 #include <GL/glew.h>
-#define MAX_ENTITIES 10000
+#define MAX_ENTITIES 64
 
 #include "Entity.h"
 
@@ -11,8 +11,20 @@ class EntityManager {
 public:
 	void Update(float DeltaTime) {
 		if (!m_Entities.empty()) {
-			for (auto& entity : m_Entities)
+			for (auto& entity : m_Entities) {
 				entity->OnUpdate(DeltaTime);
+				
+				/*if (entity->HasComponent<NativeScriptComponent>()) {
+					auto& nsc = entity->GetComponent<NativeScriptComponent>();
+					if (!nsc.Instance) {
+						nsc.Instance = nsc.InstantiateScript();
+						nsc.Instance->m_Entity = entity;
+						nsc.Instance->OnCreate();
+					}
+					nsc.Instance->OnUpdate(DeltaTime);
+					
+				}*/
+			}
 		}
 	}
 

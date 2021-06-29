@@ -3,6 +3,8 @@
 #include "../../../Runtime/Core/Input.h"
 #include "../../../Runtime/Utils/PlatformUtils.h"
 
+#include "../../../resources/scripts/MovementController.h"
+
 
 ObjectProperties::ObjectProperties(SceneHierarchy& sceneHierarchy)
 {
@@ -423,9 +425,14 @@ void ObjectProperties::OnRender(EditorScene& scene,GuiConsole & console)
 				}
 			}
 
-			/*if (!m_Entity.HasComponent<AnimationComponent>()) {
+		
+
+			/*if (!m_Entity->HasComponent<AnimationComponent>()) {
 				if (ImGui::MenuItem("Animation Component")) {
-					m_Entity.AddComponent<AnimationComponent>();
+
+					AnimatedModel* model = new AnimatedModel("resources/demon.dae");
+
+					m_Entity->AddComponent<AnimationComponent>();
 				}
 			}*/
 

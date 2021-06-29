@@ -8,10 +8,11 @@ void EditorScene::OnCreate()
 {
 	m_MainCamera = new Camera(glm::vec3(0.0f, 2.0f, 5.f), static_cast<float>(Game::GetWindow().GetWidth()) / static_cast<float>(Game::GetWindow().GetHeight()), glm::vec3(0.f, 1.f, 0.f), glm::vec3(0.f, 0.f, -1.f), 60.f, 0.1f, 1000.f);
 	m_editorShader = new Shader("resources/shaders/vertex_shader.glsl", "resources/shaders/fragment_shader.glsl");
-	m_skyboxShader = new Shader("resources/shaders/color_vertex_shader.glsl", "resources/shaders/color_fragment_shader.glsl");
 	m_EntitiesCount = m_Manager.GetEntitiesCount();
 	m_PhysicsWorld = new DynamicWorld();
 	physicsSimulation = false;
+
+	m_Terrain = new Terrain(128.f, 128.f);
 }
 
 void EditorScene::OnDestroy()
@@ -52,32 +53,6 @@ std::unique_ptr<Entity>& EditorScene::GetEntity(unsigned int id)
 	}
 }
 
-void EditorScene::AddLightPoint(LightPoint* lightPoint)
-{
-	m_LightPoint = lightPoint;
-}
-
-void EditorScene::AddObject(EditorSceneObject* object)
-{
-	m_Objects.push_back(object);
-	m_ObjectCount++;
-}
-
-void EditorScene::DeleteObject(unsigned int id)
-{
-	if (m_Objects.size() != 0) {
-		for (size_t i = 0; i < m_Objects.size(); i++) {
-			if (m_Objects[i]->GetId() == id) {
-				m_Objects.erase(m_Objects.begin()+i);
-			}
-		}
-	}
-}
-
-unsigned int EditorScene::GetObjectCount() const
-{
-	return m_ObjectCount;
-}
 
 unsigned int EditorScene::GetEntitiesCount()
 {
@@ -87,52 +62,6 @@ unsigned int EditorScene::GetEntitiesCount()
 void EditorScene::RecalculateEntitiesCount()
 {
 	m_EntitiesCount = m_Manager.GetEntitiesCount();
-}
-
-EditorSceneObject* EditorScene::GetSelectedObject()
-{
-	if (m_Objects.size() != 0) {
-		for (size_t i = 0; i < m_Objects.size(); i++) {
-			if (m_Objects[i]->Selected()) {
-				return m_Objects[i];
-			}
-			else {
-				return nullptr;
-			}
-		}
-	}
-}
-
-void EditorScene::SelectObject(unsigned int id)
-{
-
-	for (size_t i = 0; i < m_Objects.size(); i++) {
-		if (m_Objects[i]->GetId() == id) {
-			m_Objects[i]->Select(true);
-		} 
-	}
-}
-
-void EditorScene::UnselectObject(unsigned int id)
-{
-	assert(m_Objects.size() != 0);
-	for (size_t i = 0; i < m_Objects.size(); i++) {
-			m_Objects[i]->Select(false);
-	}
-}
-
-EditorSceneObject* EditorScene::GetObjectById(unsigned int id)
-{
-	if (m_Objects.size() != 0) {
-		for (size_t i = 0; i < m_Objects.size(); i++) {
-			if (m_Objects[i]->GetId() == id) {
-				return m_Objects[i];
-			}
-		}
-	}
-	else {
-		return nullptr;
-	}
 }
 
 
@@ -176,14 +105,6 @@ void EditorScene::OnUpdate(float DeltaTime)
 
 
 
-	if (m_Objects.size() != 0) {
-		for (size_t i = 0; i < m_Objects.size(); i++) {
-			m_Objects[i]->Update(DeltaTime);
-
-		}
-	}
-
-
 	if (physicsSimulation) {
 		if (m_PhysicsWorld->GetNumRigidBodies() != 0) {
 			m_PhysicsWorld->Update(DeltaTime);
@@ -212,6 +133,13 @@ void EditorScene::OnUpdate(float DeltaTime)
 		}
 	}
 
+	for (auto& entity : m_Manager.GetEntities())
+	{
+		if (entity->HasComponent<AnimationComponent>()) {
+			entity->GetComponent<AnimationComponent>().Update(DeltaTime);
+		}
+	}
+
 	m_Manager.Update(DeltaTime);
 }
 
@@ -222,60 +150,52 @@ Camera& EditorScene::GetMainCamera()
 
 void EditorScene::OnRender()
 {
+	glm::mat4 modelmatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f)) * glm::toMat4(glm::quat(glm::vec3(0.0f))) * glm::scale(glm::mat4(1.0f), glm::vec3(1.0f));
 
-	if (m_Objects.size() != 0) {
-		for (size_t i = 0; i < m_Objects.size(); i++) {
-			m_editorShader->use();
-			m_editorShader->SetMat4("ModelMatrix", m_Objects[i]->GetModelMatrix());
+	m_editorShader->use();
+	m_editorShader->SetMat4("ModelMatrix", modelmatrix);
 
-			if(m_LightPoint)
-				m_LightPoint->SetUniforms(*m_editorShader);
+	m_Terrain->OnRender(*m_editorShader);
 
-			m_Objects[i]->Render(m_editorShader);
+	for (auto& entity : m_Manager.GetEntities()) {
+		m_editorShader->use();
+
+		if (entity->HasComponent<TransformComponent>()) {
+			m_editorShader->SetMat4("ModelMatrix", entity->GetComponent<TransformComponent>().GetTrasnform());
 		}
-	}
 
-	if (m_LightPoint)
-		m_LightPoint->SetUniforms(*m_editorShader);
-	
-		for (auto& entity : m_Manager.GetEntities()) {
-			m_editorShader->use();
-
-			if (entity->HasComponent<TransformComponent>()) {
-				m_editorShader->SetMat4("ModelMatrix", entity->GetComponent<TransformComponent>().GetTrasnform());
-			}
-
-			if (entity->HasComponent<MaterialComponent>()) {
-				auto& materialComponent = entity->GetComponent<MaterialComponent>();
-				if (materialComponent.material.IsActive()) {
-					m_editorShader->use();
-					m_editorShader->setBool("textured", true);
-					materialComponent.material.SetUniforms(*m_editorShader);
-				}
-				else {
-					m_editorShader->setBool("textured", false);
-				}
+		if (entity->HasComponent<MaterialComponent>()) {
+			auto& materialComponent = entity->GetComponent<MaterialComponent>();
+			if (materialComponent.material.IsActive()) {
+				m_editorShader->use();
+				m_editorShader->setBool("textured", true);
+				materialComponent.material.SetUniforms(*m_editorShader);
 			}
 			else {
 				m_editorShader->setBool("textured", false);
 			}
-
-			if (entity->HasComponent<MeshComponent>()) {
-				entity->GetComponent<MeshComponent>().mesh.OnRender(*m_editorShader);
-			}
-
-			if (entity->HasComponent<DirectionalLightComponent>()) {
-				entity->GetComponent<DirectionalLightComponent>().light.SetUniforms(*m_editorShader);
-			}
-
-			if (entity->HasComponent<LightPointComponent>()) {
-				entity->GetComponent<LightPointComponent>().light.SetUniforms(*m_editorShader);
-			}
+		}
+		else {
+			m_editorShader->setBool("textured", false);
 		}
 
-}
+		if (entity->HasComponent<MeshComponent>()) {
+			entity->GetComponent<MeshComponent>().mesh.OnRender(*m_editorShader);
+		}
 
-std::vector<EditorSceneObject*> EditorScene::GetObjects()
-{
-	return m_Objects;
+		if (entity->HasComponent<DirectionalLightComponent>()) {
+			entity->GetComponent<DirectionalLightComponent>().light.SetUniforms(*m_editorShader);
+		}
+
+		if (entity->HasComponent<LightPointComponent>()) {
+			entity->GetComponent<LightPointComponent>().light.SetUniforms(*m_editorShader);
+		}
+
+		/*if (entity->HasComponent<AnimationComponent>()) {
+			entity->GetComponent<AnimationComponent>().model.Draw(*m_editorShader);
+		}*/
+
+
+	}
+
 }

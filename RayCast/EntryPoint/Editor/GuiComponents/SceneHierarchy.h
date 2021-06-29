@@ -8,9 +8,9 @@
 #include <map>
 
 
-#include "../../Vendor/imgui/imgui.h"
-#include "../../Vendor/imgui/imgui_impl_glfw.h"
-#include "../../Vendor/imgui/imgui_impl_opengl3.h"
+#include "../../../Vendor/imgui/imgui.h"
+#include "../../../Vendor/imgui/imgui_impl_glfw.h"
+#include "../../../Vendor/imgui/imgui_impl_opengl3.h"
 #include "../EditorScene.h"
 
 class SceneHierarchy  {

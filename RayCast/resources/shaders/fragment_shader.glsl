@@ -32,7 +32,6 @@ struct DirectionalLight {
 
 };
 
-
 uniform Material material;
 uniform Light light;
 uniform DirectionalLight dirLight;

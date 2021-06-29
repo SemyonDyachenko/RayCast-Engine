@@ -222,6 +222,12 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Rendering\Terrain\Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Entity\ScriptableEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Rendering\OBJLoader.h">
@@ -482,6 +488,15 @@
     <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Runtime\Rendering\Terrain\Terrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\scripts\MovementController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Entity\ScriptableEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\vertex_shader.glsl" />
@@ -491,5 +506,6 @@
     <None Include="cpp.hint" />
     <None Include="resources\shaders\color_vertex_shader.glsl" />
     <None Include="resources\shaders\color_fragment_shader.glsl" />
+    <None Include="resources\shaders\terrain_fragment_shader.glsl" />
   </ItemGroup>
 </Project>

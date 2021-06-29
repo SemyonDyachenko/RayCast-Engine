@@ -282,9 +282,6 @@ void GUILayer::Render()
 	}
 	
 
-
-	m_ObjectAdditor->Render(*m_EditorScene, m_SceneHierarchy, m_Console);
-
 	m_SceneHierarchy->Render(*m_EditorScene);
 
 	m_ContentBrowser->OnRender();

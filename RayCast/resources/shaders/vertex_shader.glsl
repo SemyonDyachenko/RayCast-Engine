@@ -5,7 +5,8 @@ layout (location = 1) in vec3 vertex_color;
 layout (location = 2) in vec2 vertex_texcoord;
 layout (location = 3) in vec3 vertex_normal;
 
-
+const int MAX_BONES = 100;
+const int MAX_WEIGHTS = 4;
 
 out vec3 vs_position;
 out vec3 vs_color;
@@ -15,6 +16,9 @@ out vec3 vs_normal;
 uniform mat4 ModelMatrix;
 uniform mat4 ViewMatrix;
 uniform mat4 ProjectionMatrix;
+
+uniform mat4 bonesTransforms[MAX_BONES];
+uniform bool animated;
 
 void main()
 {

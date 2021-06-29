@@ -11,9 +11,9 @@
 #include <chrono>
 
 
-#include "../../Vendor/imgui/imgui.h"
-#include "../../Vendor/imgui/imgui_impl_glfw.h"
-#include "../../Vendor/imgui/imgui_impl_opengl3.h"
+#include "../../../Vendor/imgui/imgui.h"
+#include "../../../Vendor/imgui/imgui_impl_glfw.h"
+#include "../../../Vendor/imgui/imgui_impl_opengl3.h"
 
 enum class MessageStatus {
 	Default = 0,
