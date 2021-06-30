@@ -228,6 +228,12 @@
     <ClCompile Include="Runtime\Entity\ScriptableEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Rendering\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Rendering\Terrain\HeightmapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Rendering\OBJLoader.h">
@@ -495,6 +501,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Entity\ScriptableEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Rendering\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Rendering\Terrain\HeightmapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="github.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

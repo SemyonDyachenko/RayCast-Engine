@@ -167,6 +167,8 @@
     <ClCompile Include="Animation\AnimatedModel.cpp" />
     <ClCompile Include="Animation\Animation.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
+    <ClCompile Include="Runtime\Rendering\Terrain\HeightmapGenerator.cpp" />
+    <ClCompile Include="Runtime\Rendering\Renderer.cpp" />
     <ClCompile Include="Runtime\PhysicsEngine\BoxCollider.cpp" />
     <ClCompile Include="Runtime\PhysicsEngine\CircleCollider.cpp" />
     <ClCompile Include="Runtime\PhysicsEngine\DynamicWorld.cpp" />
@@ -247,6 +249,9 @@
     <ClInclude Include="Animation\assimp_utils.h" />
     <ClInclude Include="Animation\Animator.h" />
     <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h" />
+    <ClInclude Include="github.hpp" />
+    <ClInclude Include="Runtime\Rendering\Terrain\HeightmapGenerator.h" />
+    <ClInclude Include="Runtime\Rendering\Renderer.h" />
     <ClInclude Include="resources\scripts\MovementController.h" />
     <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h" />
     <ClInclude Include="Runtime\PhysicsEngine\CircleCollider.h" />
