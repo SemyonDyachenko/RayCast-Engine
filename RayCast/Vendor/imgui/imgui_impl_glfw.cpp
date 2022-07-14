@@ -42,7 +42,7 @@
 #include "imgui_impl_glfw.h"
 
 // GLFW
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #ifdef _WIN32
 #undef APIENTRY

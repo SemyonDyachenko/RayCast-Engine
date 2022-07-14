@@ -1,0 +1,24 @@
+Scene: Untitled
+Entities:
+  - Entity: 0
+    TagComponent:
+      Tag: Cube
+    Transform:
+      Position: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [0.800000012, 0.800000012, 0.800000012]
+    CircleCollider:
+      Radius: 0.5
+      Position: [0, 0, 0]
+      Center: [0, 0, 0]
+      Rotation: [0, -0, 0]
+    RigidBodyComponent:
+      Mass: 1
+      Position: [-4.76718643e+36, 4.59037351e-41, 3.32875817e-15]
+      Rotation: [0, -0, 0]
+      LinearDrag: 1
+      AngularDrag: 1
+      TakesGravity: true
