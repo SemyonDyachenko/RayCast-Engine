@@ -1,0 +1,54 @@
+Scene: Untitled
+Entities:
+  - Entity: 0
+    TagComponent:
+      Tag: Plane
+    Transform:
+      Position: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [5.66075277, 0.166243494, 6.67594719]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [0.85840708, 0.569739223, 0.569739223]
+    MaterialComponent:
+      Shininess: 1
+      DiffuseTexture: "�U�\x1d�\x01"
+      SpecularTexture: "0�R\x1d�\x01"
+    BoxCollider:
+      Size: [5.66075277, 0.166243494, 6.67594719]
+      Position: [0, 0, 0]
+      Center: [0, 0, 0]
+      Rotation: [0, -0, 0]
+    RigidBodyComponent:
+      Mass: 0
+      Position: [-37406064, 4.59037351e-41, -2.22939693e+32]
+      Rotation: [0, -0, 0]
+      LinearDrag: 1
+      AngularDrag: 1
+      TakesGravity: false
+  - Entity: 1
+    TagComponent:
+      Tag: Cube
+    Transform:
+      Position: [0, 3.75195003, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [0.407079637, 0.407075554, 0.407075554]
+    MaterialComponent:
+      Shininess: 1
+      DiffuseTexture: ""
+      SpecularTexture: "ߝ\x1a�\x01"
+    BoxCollider:
+      Size: [1, 1, 1]
+      Position: [0, 3.75195003, 0]
+      Center: [0, 3.75195003, 0]
+      Rotation: [0, -0, 0]
+    RigidBodyComponent:
+      Mass: 1
+      Position: [-37406064, 4.59037351e-41, -2.22939693e+32]
+      Rotation: [0, -0, 0]
+      LinearDrag: 1
+      AngularDrag: 1
+      TakesGravity: true

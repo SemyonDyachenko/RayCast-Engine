@@ -1,526 +1,479 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Source">
+      <UniqueIdentifier>{56EB95D1-428D-C0A7-2B48-D4FB178947F8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Source\Animation">
+      <UniqueIdentifier>{C54731E5-B140-5037-DA72-35BCC6CA2F43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Source\EntryPoint">
+      <UniqueIdentifier>{8168AF78-ED7E-AD0E-36F6-3830A24B7E96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\EntryPoint\Editor">
+      <UniqueIdentifier>{97EAA893-830F-F813-AC5A-DDA398DEF631}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\EntryPoint\Editor\GuiComponents">
+      <UniqueIdentifier>{5101AA4A-3D53-813A-2672-BE4A12639A23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\EntryPoint\Editor\Utils">
+      <UniqueIdentifier>{3741B048-2367-7AAF-0CAD-FF7AF8719F7B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\EntryPoint\Game">
+      <UniqueIdentifier>{CAFAF406-B6F4-1D59-9F61-B4698BFA83C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\EntryPoint\Game\Scenes">
+      <UniqueIdentifier>{BAC40FCD-26DD-F6F6-EF89-86905B618B90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime">
+      <UniqueIdentifier>{89EE4F15-75BC-431B-5E50-B4414ABD1F80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Camera">
+      <UniqueIdentifier>{E1AEE68E-4D1B-A289-160F-3AE7823AC4F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Core">
+      <UniqueIdentifier>{8190802D-EDF1-5D3B-765F-A4EDE2BF94FA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Entity">
+      <UniqueIdentifier>{B5268094-2193-3B8F-EA86-D3EC56B25DF7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Light">
+      <UniqueIdentifier>{F00432DE-DC93-BBA7-85B2-CFA27120CC4D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Math">
+      <UniqueIdentifier>{02D1852D-6E32-633B-F79F-A9ED63009AFA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\PhysicsEngine">
+      <UniqueIdentifier>{513E9C49-3DF9-8BF5-E6B0-0440D24AD685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Platform">
+      <UniqueIdentifier>{FD947116-69CC-B9AD-72D6-1DD1DE8CE0A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Platform\OpenGL">
+      <UniqueIdentifier>{911FCFBB-7D45-9922-668B-1EEE5250BEEE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Platform\Windows">
+      <UniqueIdentifier>{37ECCE8D-A3CF-DDCD-ACD2-0B0A1835A41E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Rendering">
+      <UniqueIdentifier>{1637221B-025C-719B-2BA7-562B172B70B9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Rendering\Terrain">
+      <UniqueIdentifier>{7A103572-6661-20B4-8FC5-0E767B75B31D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Simulation">
+      <UniqueIdentifier>{1D13E894-89D5-1B1F-D285-AAAB3E87F4FC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Utils">
+      <UniqueIdentifier>{A9F2DADE-9581-64A8-3EA0-78A32A0E754E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EntryPoint\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\OBJLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Core\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Camera\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\Bone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\Animator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\AnimatedModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\AnimatedMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Core\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Platform\Windows\glWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Core\LayerStack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Core\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\AppGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\GameLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Game\GameWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Game\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\EditorLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\Editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GUILayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Platform\OpenGL\glFrameBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\FrameBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\EditorSceneObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\EditorScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\GuiConsole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\ImSequencer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\ImGuizmo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\ImCurveEdit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\ImGradient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_draw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_impl_glfw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_tables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\imgui_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Camera\EditorCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Math\Math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectProperties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Platform\Windows\WindowsPlatformUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntryPoint\Editor\SceneSerializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Light\LightPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Entity\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Entity\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Entity\EntityManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Entity\EngineScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Core\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Light\DirectionalLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Light\Spotlight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Platform\Windows\WindowsInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Cubemap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\Collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\CollisionWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\RigidBody.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\DynamicWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\BoxCollider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\PhysicsEngine\CircleCollider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Terrain\Terrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Entity\ScriptableEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Rendering\Terrain\HeightmapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Source\Animation\AnimatedMesh.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\AnimatedModel.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\Animation.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\Animator.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\Bone.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\assimp_utils.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\AppGame.h">
+      <Filter>Source\EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\Editor.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\EditorObjectController.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\EditorScene.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\EditorSceneObject.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GUILayer.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\GuiConsole.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ObjectAdditor.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ObjectProperties.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\SceneHierarchy.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\SceneProps.h">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\SceneSerializer.h">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\Utils\IconsFontAwesome5.h">
+      <Filter>Source\EntryPoint\Editor\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Editor\Utils\TimeUtil.h">
+      <Filter>Source\EntryPoint\Editor\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\EditorLayer.h">
+      <Filter>Source\EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Game\GameObject.h">
+      <Filter>Source\EntryPoint\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Game\GameWorld.h">
+      <Filter>Source\EntryPoint\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Game\Scenes\Scene.h">
+      <Filter>Source\EntryPoint\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\Game\Scenes\StateMachine.h">
+      <Filter>Source\EntryPoint\Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntryPoint\GameLayer.h">
+      <Filter>Source\EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Camera\Camera.h">
+      <Filter>Source\Runtime\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Camera\EditorCamera.h">
+      <Filter>Source\Runtime\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Core.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Event.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Game.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Input.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Layer.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\LayerStack.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Log.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Timer.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Core\Window.h">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Entity\Component.h">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Entity\EngineScene.h">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Entity\Entity.h">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Entity\EntityManager.h">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Entity\ScriptableEntity.h">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Light\DirectionalLight.h">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Light\LightPoint.h">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Light\Spotlight.h">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Math\Math.h">
+      <Filter>Source\Runtime\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\BoxCollider.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CircleCollider.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\Collider.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CollisionPoint.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CollisionWorld.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\DynamicWorld.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\PhysicsEngine.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\PhysicsEngine\RigidBody.h">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Platform\OpenGL\glFrameBuffer.h">
+      <Filter>Source\Runtime\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Platform\Windows\WindowsInput.h">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Platform\Windows\WindowsPlatformUtils.h">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Platform\Windows\glWindow.h">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Cubemap.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\FrameBuffer.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Material.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Mesh.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Model.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\OBJLoader.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Renderer.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Shader.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Terrain\HeightmapGenerator.h">
+      <Filter>Source\Runtime\Rendering\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Terrain\Terrain.h">
+      <Filter>Source\Runtime\Rendering\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\Texture.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Rendering\stb_image.h">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Simulation\Simulation.h">
+      <Filter>Source\Runtime\Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Runtime\Utils\PlatformUtils.h">
+      <Filter>Source\Runtime\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Runtime\Rendering\OBJLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Camera\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\Bone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\assimp_utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\Animator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\AnimatedModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\AnimatedMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Platform\Windows\glWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Simulation\Simulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Layer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\LayerStack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\AppGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\GameLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Game\GameWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Game\Scenes\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Game\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\EditorLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\Editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GUILayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\FrameBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Platform\OpenGL\glFrameBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\EditorSceneObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\EditorScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\EditorObjectController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\GuiConsole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\ImZoomSlider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\stb_rect_pack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\stb_textedit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\stb_truetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\ImGuizmo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imstb_truetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\ImSequencer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imstb_rectpack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imstb_textedit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imconfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\ImCurveEdit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\ImGradient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imgui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imgui_impl_opengl3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vendor\imgui\imgui_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Camera\EditorCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Math\Math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectProperties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Utils\PlatformUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Platform\Windows\WindowsPlatformUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\SceneSerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Light\LightPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Entity\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Entity\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Entity\EntityManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Entity\EngineScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Core\Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Light\DirectionalLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Light\Spotlight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Platform\Windows\WindowsInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Cubemap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\Utils\IconsFontAwesome5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\Collider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\CollisionWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\RigidBody.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\DynamicWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\CollisionPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\CircleCollider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\PhysicsEngine\PhysicsEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Terrain\Terrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resources\scripts\MovementController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Entity\ScriptableEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Rendering\Terrain\HeightmapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="github.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\shaders\vertex_shader.glsl" />
-    <None Include="resources\shaders\fragment_shader.glsl" />
-    <None Include="resources\shaders\animated_vertex_shader.glsl" />
-    <None Include="resources\shaders\animated_fragment_shader.glsl" />
-    <None Include="cpp.hint" />
-    <None Include="resources\shaders\color_vertex_shader.glsl" />
-    <None Include="resources\shaders\color_fragment_shader.glsl" />
-    <None Include="resources\shaders\terrain_fragment_shader.glsl" />
+    <ClCompile Include="Source\Animation\AnimatedMesh.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation\AnimatedModel.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation\Animation.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation\Animator.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation\Bone.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\AppGame.cpp">
+      <Filter>Source\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\Editor.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\EditorObjectController.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\EditorScene.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\EditorSceneObject.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GUILayer.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\GuiConsole.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ObjectProperties.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\SceneProps.cpp">
+      <Filter>Source\EntryPoint\Editor\GuiComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Editor\SceneSerializer.cpp">
+      <Filter>Source\EntryPoint\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\EditorLayer.cpp">
+      <Filter>Source\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Game\GameObject.cpp">
+      <Filter>Source\EntryPoint\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Game\GameWorld.cpp">
+      <Filter>Source\EntryPoint\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\Game\Scenes\StateMachine.cpp">
+      <Filter>Source\EntryPoint\Game\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\GameLayer.cpp">
+      <Filter>Source\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntryPoint\main.cpp">
+      <Filter>Source\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Camera\Camera.cpp">
+      <Filter>Source\Runtime\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Camera\EditorCamera.cpp">
+      <Filter>Source\Runtime\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Core\Game.cpp">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Core\LayerStack.cpp">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Core\Log.cpp">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Core\Timer.cpp">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Core\Window.cpp">
+      <Filter>Source\Runtime\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Entity\Component.cpp">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Entity\EngineScene.cpp">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Entity\Entity.cpp">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Entity\EntityManager.cpp">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Entity\ScriptableEntity.cpp">
+      <Filter>Source\Runtime\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Light\DirectionalLight.cpp">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Light\LightPoint.cpp">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Light\Spotlight.cpp">
+      <Filter>Source\Runtime\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Math\Math.cpp">
+      <Filter>Source\Runtime\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\BoxCollider.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\CircleCollider.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\Collider.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\CollisionWorld.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\DynamicWorld.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\PhysicsEngine\RigidBody.cpp">
+      <Filter>Source\Runtime\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Platform\OpenGL\glFrameBuffer.cpp">
+      <Filter>Source\Runtime\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Platform\Windows\WindowsInput.cpp">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Platform\Windows\WindowsPlatformUtils.cpp">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Platform\Windows\glWindow.cpp">
+      <Filter>Source\Runtime\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Cubemap.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\FrameBuffer.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Material.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Mesh.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Model.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\OBJLoader.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Renderer.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Shader.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Terrain\HeightmapGenerator.cpp">
+      <Filter>Source\Runtime\Rendering\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Terrain\Terrain.cpp">
+      <Filter>Source\Runtime\Rendering\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Runtime\Rendering\Texture.cpp">
+      <Filter>Source\Runtime\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,66 @@
+Scene: Untitled
+Entities:
+  - Entity: 0
+    TagComponent:
+      Tag: New Entity
+    Transform:
+      Position: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [6.06710625, 0.185025916, 5.48653698]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [1, 1, 1]
+    MaterialComponent:
+      Shininess: 1
+      DiffuseTexture: ""
+      SpecularTexture: ""
+    BoxCollider:
+      Size: [6.06710625, 0.185025916, 5.48653698]
+      Position: [0, 0, 0]
+      Center: [0, 0, 0]
+      Rotation: [0, -0, 0]
+    RigidBodyComponent:
+      Mass: 0
+      Position: [3.54140711e+18, 4.59037351e-41, 4.53136428e+24]
+      Rotation: [0, -0, 0]
+      LinearDrag: 1
+      AngularDrag: 1
+      TakesGravity: false
+  - Entity: 1
+    TagComponent:
+      Tag: Dir Light
+    Transform:
+      Position: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    DirectionalLight:
+      Direction: [-1, -1, -1]
+      Ambient: [0.100000001, 0.300000012, 0.200000003]
+      Diffuse: [0.699999988, 0.419999987, 0.25999999]
+      Specular: [0.699999988, 0.699999988, 0.699999988]
+  - Entity: 2
+    TagComponent:
+      Tag: New Entity
+    Transform:
+      Position: [0, 5.07553625, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    MeshComponent:
+      Filename: resources/vanilla/obj/cube.obj
+      SolidColor: [1, 1, 1]
+    MaterialComponent:
+      Shininess: 1
+      DiffuseTexture: ""
+      SpecularTexture: ""
+    BoxCollider:
+      Size: [1, 1, 1]
+      Position: [0, 5.07553625, 0]
+      Center: [0, 5.07553625, 0]
+      Rotation: [0, -0, 0]
+    RigidBodyComponent:
+      Mass: 1
+      Position: [3.54140711e+18, 4.59037351e-41, 4.53136428e+24]
+      Rotation: [0, -0, 0]
+      LinearDrag: 1
+      AngularDrag: 1
+      TakesGravity: true

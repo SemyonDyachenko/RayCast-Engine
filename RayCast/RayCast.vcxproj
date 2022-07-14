@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
@@ -17,51 +9,39 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|x64">
+      <Configuration>Distribution</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{7C76DF96-E855-5E32-F16D-E9085DCCC493}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ac2dfb1d-b2a2-4408-aec3-48e9ed5243fa}</ProjectGuid>
     <RootNamespace>RayCast</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -69,282 +49,240 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>..\Binaries\RayCast\</OutDir>
+    <IntDir>..\Intermediate\RayCast\Debug\</IntDir>
+    <TargetName>RayCast</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Binaries\RayCast\</OutDir>
+    <IntDir>..\Intermediate\RayCast\Release\</IntDir>
+    <TargetName>RayCast</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles>
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;glfw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles>
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Binaries\RayCast\</OutDir>
+    <IntDir>..\Intermediate\RayCast\Distribution\</IntDir>
+    <TargetName>RayCast</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\src;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\entt-3.7.1\single_include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles>
-      </ForcedIncludeFiles>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>.;resources;Source;..\ThirdParty\ASSIMP\include;..\ThirdParty\Bullet\src;..\ThirdParty\Glad\include;..\ThirdParty\GLFW\include;..\ThirdParty\GLM\glm;Vendor\imgui;..\ThirdParty\reactphysics\include;..\ThirdParty\spdlog-1.x\include;..\ThirdParty\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OpenGLSupport_Debug.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;spdlogd.lib;yaml-cppd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\ThirdParty\ASSIMP\lib\assimpd.lib;..\ThirdParty\GLFW\lib-vc2022\glfw3.lib;..\ThirdParty\reactphysics\lib\reactphysics3d.lib;..\ThirdParty\Bullet\lib\BulletCollision_Debug.lib;..\ThirdParty\Bullet\lib\BulletDynamics_Debug.lib;..\ThirdParty\Bullet\lib\BulletFileLoader_Debug.lib;..\ThirdParty\Bullet\lib\BulletMultiThreaded_Debug.lib;..\ThirdParty\Bullet\lib\BulletSoftBody_Debug.lib;..\ThirdParty\Bullet\lib\BulletWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\BulletXmlWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\ConvexDecomposition_Debug.lib;..\ThirdParty\Bullet\lib\GIMPACTUtils_Debug.lib;..\ThirdParty\Bullet\lib\GLUI_Debug.lib;..\ThirdParty\Bullet\lib\HACD_Debug.lib;..\ThirdParty\Bullet\lib\LinearMath_Debug.lib;..\ThirdParty\Bullet\lib\MiniCL_Debug.lib;..\ThirdParty\Bullet\lib\OpenGLSupport_Debug.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\ThirdParty\ASSIMP\lib;..\ThirdParty\Bullet\lib;..\ThirdParty\GLFW\lib-vc2022;..\ThirdParty\reactphysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>.;resources;Source;..\ThirdParty\ASSIMP\include;..\ThirdParty\Bullet\src;..\ThirdParty\Glad\include;..\ThirdParty\GLFW\include;..\ThirdParty\GLM\glm;Vendor\imgui;..\ThirdParty\reactphysics\include;..\ThirdParty\spdlog-1.x\include;..\ThirdParty\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\src;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLM\glm;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\include;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles>
-      </ForcedIncludeFiles>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\cemch\source\repos\RayCast\ThirdParty\Bullet\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\spdlog-1.x\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\yaml-cpp\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\ASSIMP\lib;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLFW\lib-vc2019;C:\Users\cemch\source\repos\RayCast\ThirdParty\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>spdlogd.lib;libyaml-cppmdd.lib;assimpd.lib;zlibstaticd.lib;glew32s.lib;glfw3.lib;opengl32.lib;glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\ThirdParty\ASSIMP\lib\assimpd.lib;..\ThirdParty\GLFW\lib-vc2022\glfw3.lib;..\ThirdParty\reactphysics\lib\reactphysics3d.lib;..\ThirdParty\Bullet\lib\BulletCollision_Debug.lib;..\ThirdParty\Bullet\lib\BulletDynamics_Debug.lib;..\ThirdParty\Bullet\lib\BulletFileLoader_Debug.lib;..\ThirdParty\Bullet\lib\BulletMultiThreaded_Debug.lib;..\ThirdParty\Bullet\lib\BulletSoftBody_Debug.lib;..\ThirdParty\Bullet\lib\BulletWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\BulletXmlWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\ConvexDecomposition_Debug.lib;..\ThirdParty\Bullet\lib\GIMPACTUtils_Debug.lib;..\ThirdParty\Bullet\lib\GLUI_Debug.lib;..\ThirdParty\Bullet\lib\HACD_Debug.lib;..\ThirdParty\Bullet\lib\LinearMath_Debug.lib;..\ThirdParty\Bullet\lib\MiniCL_Debug.lib;..\ThirdParty\Bullet\lib\OpenGLSupport_Debug.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\ThirdParty\ASSIMP\lib;..\ThirdParty\Bullet\lib;..\ThirdParty\GLFW\lib-vc2022;..\ThirdParty\reactphysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Distribution|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>.;resources;Source;..\ThirdParty\ASSIMP\include;..\ThirdParty\Bullet\src;..\ThirdParty\Glad\include;..\ThirdParty\GLFW\include;..\ThirdParty\GLM\glm;Vendor\imgui;..\ThirdParty\reactphysics\include;..\ThirdParty\spdlog-1.x\include;..\ThirdParty\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\ThirdParty\ASSIMP\lib\assimpd.lib;..\ThirdParty\GLFW\lib-vc2022\glfw3.lib;..\ThirdParty\reactphysics\lib\reactphysics3d.lib;..\ThirdParty\Bullet\lib\BulletCollision_Debug.lib;..\ThirdParty\Bullet\lib\BulletDynamics_Debug.lib;..\ThirdParty\Bullet\lib\BulletFileLoader_Debug.lib;..\ThirdParty\Bullet\lib\BulletMultiThreaded_Debug.lib;..\ThirdParty\Bullet\lib\BulletSoftBody_Debug.lib;..\ThirdParty\Bullet\lib\BulletWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\BulletXmlWorldImporter_Debug.lib;..\ThirdParty\Bullet\lib\ConvexDecomposition_Debug.lib;..\ThirdParty\Bullet\lib\GIMPACTUtils_Debug.lib;..\ThirdParty\Bullet\lib\GLUI_Debug.lib;..\ThirdParty\Bullet\lib\HACD_Debug.lib;..\ThirdParty\Bullet\lib\LinearMath_Debug.lib;..\ThirdParty\Bullet\lib\MiniCL_Debug.lib;..\ThirdParty\Bullet\lib\OpenGLSupport_Debug.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\ThirdParty\ASSIMP\lib;..\ThirdParty\Bullet\lib;..\ThirdParty\GLFW\lib-vc2022;..\ThirdParty\reactphysics\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animation\AnimatedMesh.cpp" />
-    <ClCompile Include="Animation\AnimatedModel.cpp" />
-    <ClCompile Include="Animation\Animation.cpp" />
-    <ClCompile Include="Animation\Animator.cpp" />
-    <ClCompile Include="Runtime\Rendering\Terrain\HeightmapGenerator.cpp" />
-    <ClCompile Include="Runtime\Rendering\Renderer.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\BoxCollider.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\CircleCollider.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\DynamicWorld.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\RigidBody.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\CollisionWorld.cpp" />
-    <ClCompile Include="Runtime\PhysicsEngine\Collider.cpp" />
-    <ClCompile Include="Runtime\Rendering\Cubemap.cpp" />
-    <ClCompile Include="Runtime\Light\DirectionalLight.cpp" />
-    <ClCompile Include="Runtime\Core\Log.cpp" />
-    <ClCompile Include="Runtime\Entity\EngineScene.cpp" />
-    <ClCompile Include="Runtime\Entity\EntityManager.cpp" />
-    <ClCompile Include="Runtime\Entity\Component.cpp" />
-    <ClCompile Include="Runtime\Entity\Entity.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectProperties.cpp" />
-    <ClCompile Include="Runtime\Light\LightPoint.cpp" />
-    <ClCompile Include="Runtime\Camera\EditorCamera.cpp" />
-    <ClCompile Include="EntryPoint\Editor\EditorObjectController.cpp" />
-    <ClCompile Include="EntryPoint\Editor\EditorScene.cpp" />
-    <ClCompile Include="EntryPoint\Editor\EditorSceneObject.cpp" />
-    <ClCompile Include="EntryPoint\Editor\Editor.cpp" />
-    <ClCompile Include="EntryPoint\EditorLayer.cpp" />
-    <ClCompile Include="EntryPoint\AppGame.cpp" />
-    <ClCompile Include="EntryPoint\GameLayer.cpp" />
-    <ClCompile Include="EntryPoint\Game\GameWorld.cpp" />
-    <ClCompile Include="EntryPoint\Game\GameObject.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GUILayer.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\GuiConsole.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp" />
-    <ClCompile Include="Runtime\Math\Math.cpp" />
-    <ClCompile Include="Runtime\Platform\OpenGL\glFrameBuffer.cpp" />
-    <ClCompile Include="Runtime\Core\Game.cpp" />
-    <ClCompile Include="Animation\Bone.cpp" />
-    <ClCompile Include="Runtime\Camera\Camera.cpp" />
-    <ClCompile Include="Runtime\Core\LayerStack.cpp" />
-    <ClCompile Include="Runtime\Core\Timer.cpp" />
-    <ClCompile Include="Runtime\Platform\Windows\glWindow.cpp" />
-    <ClCompile Include="EntryPoint\main.cpp" />
-    <ClCompile Include="Runtime\Rendering\FrameBuffer.cpp" />
-    <ClCompile Include="Runtime\Rendering\Material.cpp" />
-    <ClCompile Include="Runtime\Rendering\Mesh.cpp" />
-    <ClCompile Include="Runtime\Rendering\Model.cpp" />
-    <ClCompile Include="Runtime\Rendering\OBJLoader.cpp" />
-    <ClCompile Include="Runtime\Core\Window.cpp" />
-    <ClCompile Include="Runtime\Rendering\Shader.cpp" />
-    <ClCompile Include="Runtime\Rendering\Terrain\Terrain.cpp" />
-    <ClCompile Include="Runtime\Rendering\Texture.cpp" />
-    <ClCompile Include="EntryPoint\Game\Scenes\StateMachine.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
-    <ClCompile Include="EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
-    <ClCompile Include="EntryPoint\Editor\SceneSerializer.cpp" />
-    <ClCompile Include="Runtime\Light\Spotlight.cpp" />
-    <ClCompile Include="Runtime\Entity\ScriptableEntity.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Vendor\imgui\ImCurveEdit.cpp" />
-    <ClCompile Include="Vendor\imgui\ImGradient.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui.cpp" />
-    <ClCompile Include="Vendor\imgui\ImGuizmo.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_tables.cpp" />
-    <ClCompile Include="Vendor\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Vendor\imgui\ImSequencer.cpp" />
-    <ClCompile Include="Runtime\Platform\Windows\WindowsPlatformUtils.cpp" />
-    <ClCompile Include="Runtime\Platform\Windows\WindowsInput.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Animation\AnimatedMesh.h" />
-    <ClInclude Include="Animation\AnimatedModel.h" />
-    <ClInclude Include="Animation\Animation.h" />
-    <ClInclude Include="Animation\assimp_utils.h" />
-    <ClInclude Include="Animation\Animator.h" />
-    <ClInclude Include="EntryPoint\Editor\Utils\TimeUtil.h" />
-    <ClInclude Include="github.hpp" />
-    <ClInclude Include="Runtime\Rendering\Terrain\HeightmapGenerator.h" />
-    <ClInclude Include="Runtime\Rendering\Renderer.h" />
-    <ClInclude Include="resources\scripts\MovementController.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\BoxCollider.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\CircleCollider.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\CollisionPoint.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\DynamicWorld.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\PhysicsEngine.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\RigidBody.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\CollisionWorld.h" />
-    <ClInclude Include="Runtime\PhysicsEngine\Collider.h" />
-    <ClInclude Include="EntryPoint\Editor\Utils\IconsFontAwesome5.h" />
-    <ClInclude Include="Runtime\Rendering\Cubemap.h" />
-    <ClInclude Include="Runtime\Light\DirectionalLight.h" />
-    <ClInclude Include="Runtime\Core\Log.h" />
-    <ClInclude Include="Runtime\Entity\EngineScene.h" />
-    <ClInclude Include="Runtime\Entity\EntityManager.h" />
-    <ClInclude Include="Runtime\Entity\Component.h" />
-    <ClInclude Include="Runtime\Entity\Entity.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectProperties.h" />
-    <ClInclude Include="Runtime\Light\LightPoint.h" />
-    <ClInclude Include="Runtime\Camera\EditorCamera.h" />
-    <ClInclude Include="EntryPoint\Editor\EditorObjectController.h" />
-    <ClInclude Include="EntryPoint\Editor\EditorScene.h" />
-    <ClInclude Include="EntryPoint\Editor\EditorSceneObject.h" />
-    <ClInclude Include="EntryPoint\Editor\Editor.h" />
-    <ClInclude Include="EntryPoint\EditorLayer.h" />
-    <ClInclude Include="EntryPoint\AppGame.h" />
-    <ClInclude Include="EntryPoint\GameLayer.h" />
-    <ClInclude Include="EntryPoint\Game\GameWorld.h" />
-    <ClInclude Include="EntryPoint\Game\Scenes\Scene.h" />
-    <ClInclude Include="EntryPoint\Game\GameObject.h" />
-    <ClInclude Include="EntryPoint\Editor\GUILayer.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\GuiConsole.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\ObjectAdditor.h" />
-    <ClInclude Include="Runtime\Core\Event.h" />
-    <ClInclude Include="Runtime\Math\Math.h" />
-    <ClInclude Include="Runtime\Platform\OpenGL\glFrameBuffer.h" />
-    <ClInclude Include="Runtime\Core\Game.h" />
-    <ClInclude Include="Animation\Bone.h" />
-    <ClInclude Include="Runtime\Camera\Camera.h" />
-    <ClInclude Include="Runtime\Core\Layer.h" />
-    <ClInclude Include="Runtime\Core\LayerStack.h" />
-    <ClInclude Include="Runtime\Core\Timer.h" />
-    <ClInclude Include="Runtime\Platform\Windows\glWindow.h" />
-    <ClInclude Include="Runtime\Core\Core.h" />
-    <ClInclude Include="Runtime\Core\Input.h" />
-    <ClInclude Include="Runtime\Rendering\FrameBuffer.h" />
-    <ClInclude Include="Runtime\Rendering\Material.h" />
-    <ClInclude Include="Runtime\Rendering\Mesh.h" />
-    <ClInclude Include="Runtime\Rendering\Model.h" />
-    <ClInclude Include="Runtime\Rendering\OBJLoader.h" />
-    <ClInclude Include="Runtime\Core\Window.h" />
-    <ClInclude Include="Runtime\Rendering\Terrain\Terrain.h" />
-    <ClInclude Include="Runtime\Simulation\Simulation.h" />
-    <ClInclude Include="Runtime\Rendering\Shader.h" />
-    <ClInclude Include="Runtime\Rendering\stb_image.h" />
-    <ClInclude Include="Runtime\Rendering\Texture.h" />
-    <ClInclude Include="EntryPoint\Game\Scenes\StateMachine.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
-    <ClInclude Include="EntryPoint\Editor\GuiComponents\SceneProps.h" />
-    <ClInclude Include="Runtime\Utils\PlatformUtils.h" />
-    <ClInclude Include="EntryPoint\Editor\SceneSerializer.h" />
-    <ClInclude Include="Runtime\Light\Spotlight.h" />
-    <ClInclude Include="Runtime\Entity\ScriptableEntity.h" />
+    <ClInclude Include="Source\Animation\AnimatedMesh.h" />
+    <ClInclude Include="Source\Animation\AnimatedModel.h" />
+    <ClInclude Include="Source\Animation\Animation.h" />
+    <ClInclude Include="Source\Animation\Animator.h" />
+    <ClInclude Include="Source\Animation\Bone.h" />
+    <ClInclude Include="Source\Animation\assimp_utils.h" />
+    <ClInclude Include="Source\EntryPoint\AppGame.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\Editor.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\EditorObjectController.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\EditorScene.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\EditorSceneObject.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GUILayer.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ContentBrowserPanel.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\GuiConsole.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ObjectAdditor.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\ObjectProperties.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\SceneHierarchy.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\GuiComponents\SceneProps.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\SceneSerializer.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\Utils\IconsFontAwesome5.h" />
+    <ClInclude Include="Source\EntryPoint\Editor\Utils\TimeUtil.h" />
+    <ClInclude Include="Source\EntryPoint\EditorLayer.h" />
+    <ClInclude Include="Source\EntryPoint\Game\GameObject.h" />
+    <ClInclude Include="Source\EntryPoint\Game\GameWorld.h" />
+    <ClInclude Include="Source\EntryPoint\Game\Scenes\Scene.h" />
+    <ClInclude Include="Source\EntryPoint\Game\Scenes\StateMachine.h" />
+    <ClInclude Include="Source\EntryPoint\GameLayer.h" />
+    <ClInclude Include="Source\Runtime\Camera\Camera.h" />
+    <ClInclude Include="Source\Runtime\Camera\EditorCamera.h" />
+    <ClInclude Include="Source\Runtime\Core\Core.h" />
+    <ClInclude Include="Source\Runtime\Core\Event.h" />
+    <ClInclude Include="Source\Runtime\Core\Game.h" />
+    <ClInclude Include="Source\Runtime\Core\Input.h" />
+    <ClInclude Include="Source\Runtime\Core\Layer.h" />
+    <ClInclude Include="Source\Runtime\Core\LayerStack.h" />
+    <ClInclude Include="Source\Runtime\Core\Log.h" />
+    <ClInclude Include="Source\Runtime\Core\Timer.h" />
+    <ClInclude Include="Source\Runtime\Core\Window.h" />
+    <ClInclude Include="Source\Runtime\Entity\Component.h" />
+    <ClInclude Include="Source\Runtime\Entity\EngineScene.h" />
+    <ClInclude Include="Source\Runtime\Entity\Entity.h" />
+    <ClInclude Include="Source\Runtime\Entity\EntityManager.h" />
+    <ClInclude Include="Source\Runtime\Entity\ScriptableEntity.h" />
+    <ClInclude Include="Source\Runtime\Light\DirectionalLight.h" />
+    <ClInclude Include="Source\Runtime\Light\LightPoint.h" />
+    <ClInclude Include="Source\Runtime\Light\Spotlight.h" />
+    <ClInclude Include="Source\Runtime\Math\Math.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\BoxCollider.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CircleCollider.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\Collider.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CollisionPoint.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\CollisionWorld.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\DynamicWorld.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\PhysicsEngine.h" />
+    <ClInclude Include="Source\Runtime\PhysicsEngine\RigidBody.h" />
+    <ClInclude Include="Source\Runtime\Platform\OpenGL\glFrameBuffer.h" />
+    <ClInclude Include="Source\Runtime\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="Source\Runtime\Platform\Windows\WindowsPlatformUtils.h" />
+    <ClInclude Include="Source\Runtime\Platform\Windows\glWindow.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Cubemap.h" />
+    <ClInclude Include="Source\Runtime\Rendering\FrameBuffer.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Material.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Mesh.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Model.h" />
+    <ClInclude Include="Source\Runtime\Rendering\OBJLoader.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Renderer.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Shader.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Terrain\HeightmapGenerator.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Terrain\Terrain.h" />
+    <ClInclude Include="Source\Runtime\Rendering\Texture.h" />
+    <ClInclude Include="Source\Runtime\Rendering\stb_image.h" />
+    <ClInclude Include="Source\Runtime\Simulation\Simulation.h" />
+    <ClInclude Include="Source\Runtime\Utils\PlatformUtils.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Vendor\imgui\imconfig.h" />
-    <ClInclude Include="Vendor\imgui\ImCurveEdit.h" />
-    <ClInclude Include="Vendor\imgui\ImGradient.h" />
-    <ClInclude Include="Vendor\imgui\imgui.h" />
-    <ClInclude Include="Vendor\imgui\ImGuizmo.h" />
-    <ClInclude Include="Vendor\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="Vendor\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="Vendor\imgui\imgui_internal.h" />
-    <ClInclude Include="Vendor\imgui\ImSequencer.h" />
-    <ClInclude Include="Vendor\imgui\imstb_rectpack.h" />
-    <ClInclude Include="Vendor\imgui\imstb_textedit.h" />
-    <ClInclude Include="Vendor\imgui\imstb_truetype.h" />
-    <ClInclude Include="Vendor\imgui\ImZoomSlider.h" />
-    <ClInclude Include="Vendor\imgui\stb_rect_pack.h" />
-    <ClInclude Include="Vendor\imgui\stb_textedit.h" />
-    <ClInclude Include="Vendor\imgui\stb_truetype.h" />
-    <ClInclude Include="Runtime\Platform\Windows\WindowsPlatformUtils.h" />
-    <ClInclude Include="Runtime\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-    <None Include="resources\shaders\color_fragment_shader.glsl" />
-    <None Include="resources\shaders\color_vertex_shader.glsl" />
-    <None Include="resources\shaders\fragment_shader.glsl" />
-    <None Include="resources\shaders\animated_fragment_shader.glsl" />
-    <None Include="resources\shaders\animated_vertex_shader.glsl" />
-    <None Include="resources\shaders\terrain_fragment_shader.glsl" />
-    <None Include="resources\shaders\vertex_shader.glsl" />
+    <ClCompile Include="Source\Animation\AnimatedMesh.cpp" />
+    <ClCompile Include="Source\Animation\AnimatedModel.cpp" />
+    <ClCompile Include="Source\Animation\Animation.cpp" />
+    <ClCompile Include="Source\Animation\Animator.cpp" />
+    <ClCompile Include="Source\Animation\Bone.cpp" />
+    <ClCompile Include="Source\EntryPoint\AppGame.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\Editor.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\EditorObjectController.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\EditorScene.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\EditorSceneObject.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GUILayer.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ContentBrowserPanel.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\GuiConsole.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ObjectAdditor.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\ObjectProperties.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\SceneHierarchy.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\GuiComponents\SceneProps.cpp" />
+    <ClCompile Include="Source\EntryPoint\Editor\SceneSerializer.cpp" />
+    <ClCompile Include="Source\EntryPoint\EditorLayer.cpp" />
+    <ClCompile Include="Source\EntryPoint\Game\GameObject.cpp" />
+    <ClCompile Include="Source\EntryPoint\Game\GameWorld.cpp" />
+    <ClCompile Include="Source\EntryPoint\Game\Scenes\StateMachine.cpp" />
+    <ClCompile Include="Source\EntryPoint\GameLayer.cpp" />
+    <ClCompile Include="Source\EntryPoint\main.cpp" />
+    <ClCompile Include="Source\Runtime\Camera\Camera.cpp" />
+    <ClCompile Include="Source\Runtime\Camera\EditorCamera.cpp" />
+    <ClCompile Include="Source\Runtime\Core\Game.cpp" />
+    <ClCompile Include="Source\Runtime\Core\LayerStack.cpp" />
+    <ClCompile Include="Source\Runtime\Core\Log.cpp" />
+    <ClCompile Include="Source\Runtime\Core\Timer.cpp" />
+    <ClCompile Include="Source\Runtime\Core\Window.cpp" />
+    <ClCompile Include="Source\Runtime\Entity\Component.cpp" />
+    <ClCompile Include="Source\Runtime\Entity\EngineScene.cpp" />
+    <ClCompile Include="Source\Runtime\Entity\Entity.cpp" />
+    <ClCompile Include="Source\Runtime\Entity\EntityManager.cpp" />
+    <ClCompile Include="Source\Runtime\Entity\ScriptableEntity.cpp" />
+    <ClCompile Include="Source\Runtime\Light\DirectionalLight.cpp" />
+    <ClCompile Include="Source\Runtime\Light\LightPoint.cpp" />
+    <ClCompile Include="Source\Runtime\Light\Spotlight.cpp" />
+    <ClCompile Include="Source\Runtime\Math\Math.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\BoxCollider.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\CircleCollider.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\Collider.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\CollisionWorld.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\DynamicWorld.cpp" />
+    <ClCompile Include="Source\Runtime\PhysicsEngine\RigidBody.cpp" />
+    <ClCompile Include="Source\Runtime\Platform\OpenGL\glFrameBuffer.cpp" />
+    <ClCompile Include="Source\Runtime\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="Source\Runtime\Platform\Windows\WindowsPlatformUtils.cpp" />
+    <ClCompile Include="Source\Runtime\Platform\Windows\glWindow.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Cubemap.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\FrameBuffer.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Material.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Mesh.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Model.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\OBJLoader.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Renderer.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Shader.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Terrain\HeightmapGenerator.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Terrain\Terrain.cpp" />
+    <ClCompile Include="Source\Runtime\Rendering\Texture.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\yaml-cpp\yaml-cpp.vcxproj">
+      <Project>{88F1A057-74BE-FB62-9DD7-E90A890331F1}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
