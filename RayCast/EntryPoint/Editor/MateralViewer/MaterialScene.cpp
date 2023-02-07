@@ -23,6 +23,7 @@ MaterialScene::MaterialScene()
     FrameBufferProps props;
     props.Width = 400;
     props.Height = 300;
+    props.Attachments = { FrameBufferTextureFormat::RGBA8,FrameBufferTextureFormat::RED_INTEGER,FrameBufferTextureFormat::Depth };
     m_FrameBuffer = FrameBuffer::Create(props);
 
     m_Material = new PBRMaterial();
@@ -64,7 +65,7 @@ void MaterialScene::Update(float DeltaTime)
 
 void MaterialScene::Render()
 {
-    glm::mat4 transformMatrix = glm::translate(glm::mat4(1.0f), { 0.0f,0.0f,0.0f }) * glm::scale(glm::mat4(1.0f), { 1.0f,1.0f,1.0f });
+    glm::mat4 transformMatrix = glm::translate(glm::mat4(1.0f), {0.0f,0.0f,0.0f}) * glm::scale(glm::mat4(1.0f), {1.0f,1.0f,1.0f});
 
     m_FrameBuffer->Bind();
     Renderer::SetClearColor({ 0.25,0.25,0.25 });

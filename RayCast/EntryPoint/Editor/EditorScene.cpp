@@ -62,11 +62,9 @@ void EditorScene::InitDefaultEntities()
 	auto* light = new Light(GetLightCount(), LightMode::DIRECTIONAL_LIGHT, entity.GetComponent<TransformComponent>().Position, glm::vec3(150.f, 150.f, 150.f));
 	AddLight();
 	entity.GetComponent<TransformComponent>().SetPosition({ 10.f, 10.f, 10.f });
-	light->SetPosition({ 10.f, 10.f, 10.f });
+	light->SetPosition(entity.GetComponent<TransformComponent>().GetPosition());
 	entity.AddComponent<LightComponent>(*light);
-
 	RecalculateEntitiesCount();
-
 	InitMainCharacter();
 }
 
@@ -116,22 +114,22 @@ void EditorScene::RecalculateEntitiesCount()
 void EditorScene::UpdateMainCamera(float DeltaTime)
 {
 	if (!m_OnStart) {
-		if (Input::IsKeyPressed(GLFW_KEY_W)) {
+		if (Input::IsKeyPressed(Input::KEY_W)) {
 			m_MainCamera->Move(EditorCameraDirection::FORWARD, DeltaTime);
 		}
-		if (Input::IsKeyPressed(GLFW_KEY_S)) {
+		if (Input::IsKeyPressed(Input::KEY_S)) {
 			m_MainCamera->Move(EditorCameraDirection::BACK, DeltaTime);
 		}
-		if (Input::IsKeyPressed(GLFW_KEY_A)) {
+		if (Input::IsKeyPressed(Input::KEY_A)) {
 			m_MainCamera->Move(EditorCameraDirection::LEFT, DeltaTime);
 		}
-		if (Input::IsKeyPressed(GLFW_KEY_D)) {
+		if (Input::IsKeyPressed(Input::KEY_D)) {
 			m_MainCamera->Move(EditorCameraDirection::RIGHT, DeltaTime);
 		}
-		if (Input::IsKeyPressed(GLFW_KEY_SPACE)) {
+		if (Input::IsKeyPressed(Input::KEY_SPACE)) {
 			m_MainCamera->Move(EditorCameraDirection::UP, DeltaTime);
 		}
-		if (Input::IsKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
+		if (Input::IsKeyPressed(Input::KEY_LSHIFT)) {
 			m_MainCamera->Move(EditorCameraDirection::DOWN, DeltaTime);
 		}
 	}

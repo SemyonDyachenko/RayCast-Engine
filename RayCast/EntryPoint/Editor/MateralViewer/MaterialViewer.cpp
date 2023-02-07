@@ -36,11 +36,10 @@ void MaterialViewer::Render(SceneHierarchy & sceneHierarchy,GuiConsole & console
 
 	if (m_Opened) {
 		ImGui::Begin("Material", &m_Opened);
-
+	
 		m_Scene->Render();
-
 		ImGui::Image((ImTextureID)m_Scene->GetFrameBuffer()->GetTextureID(), { 400,300 }, { 0,1 }, { 1,0 });
-
+			
 		if (ImGui::BeginDragDropTarget()) {
 
 			const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("contentelement");
@@ -216,6 +215,7 @@ void MaterialViewer::Render(SceneHierarchy & sceneHierarchy,GuiConsole & console
 		if (ImGui::Button("Save", { 200,25 })) {
 			MaterialController::Serialize(m_CurrentMaterialPath, m_Structure);
 		}
+	
 
 	
 

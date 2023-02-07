@@ -43,6 +43,8 @@ ThirdParty/lua
 
 Raycast/Vendor
 SandBox/
+Runtime/
+RayCast/resources
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
